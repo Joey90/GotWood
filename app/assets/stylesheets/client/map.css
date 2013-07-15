@@ -1,0 +1,9 @@
+body  {
+    background: url('/assets/client_bg.png') repeat;
+}
+
+#container {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
