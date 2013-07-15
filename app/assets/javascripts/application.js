@@ -13,3 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require ./client/config.js
+//= require ./client/map.js
