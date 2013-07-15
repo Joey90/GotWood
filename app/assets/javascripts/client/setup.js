@@ -6,5 +6,7 @@ function init() {
 	Config.Graphics.startX = canvas.width/2;
 	Config.Graphics.startY = canvas.height/2;
 	
+	// TODO: Code that fetches tile data from server
+	
 	draw();
 }

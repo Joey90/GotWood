@@ -34,7 +34,7 @@ function drawMap(ctx, tileData) {
         var xPos = Config.Graphics.startX + offsetX * Config.Graphics.xOffsets[i] + spaceX * Config.Graphics.spaces[i];
         var yPos = Config.Graphics.startY + offsetY * Config.Graphics.yOffsets[i];
         
-        tileInfo = Config.Graphics.tiles[tileData[i].tile];
+        tileInfo = Config.Graphics.tiles[tileData[i].resource];
         
         // Draw the base hexagon
         drawHexagon(ctx,
