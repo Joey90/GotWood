@@ -1,18 +1,19 @@
 from django.db import models
 
 # Create your models here.
+
 class Tile(models.Model):
-    id = models.IntegerField
-    resource = models.IntegerField
-    diceNumber = models.IntegerField
-    robber = models.BooleanField
+    tileId = models.IntegerField(default=0)
+    resource = models.IntegerField(default=0)
+    diceNumber = models.IntegerField(default=0)
+    robber = models.BooleanField(default=False)
 
 class Vertex(models.Model):
-    building = models.IntegerField
-    team = models.IntegerField
+    building = models.IntegerField(default=0)
+    team = models.IntegerField(default=0)
     tiles = models.ManyToManyField(Tile)
 
 class Edge:
-    road = models.BooleanField
-    team = models.IntegerField
+    road = models.BooleanField(default=False)
+    team = models.IntegerField(default=0)
     vertices = models.ManyToManyField(Vertex)
