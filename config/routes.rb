@@ -1,5 +1,7 @@
 GotWood::Application.routes.draw do
   get "client/index"
+  get "game/init"
+  get "game/tiles"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
