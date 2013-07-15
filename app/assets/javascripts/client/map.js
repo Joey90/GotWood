@@ -15,8 +15,8 @@ function drawMap(ctx, tileData) {
    
     // Draw the ocean hexagon
     // We need to calculate the rotated centre, we centre on the 10th hexagon
-    var x = Config.Graphics.startX + offsetX * 2 + spaceX * 2;
-    var y = Config.Graphics.startY + offsetY * 2;
+    var x = Config.Graphics.startX;
+    var y = Config.Graphics.startY;
     
     ctx.rotate(Math.PI/6);
     drawHexagon(ctx,
