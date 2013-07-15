@@ -10,7 +10,9 @@ class Tile(models.Model):
 class Vertex(models.Model):
     building = models.IntegerField
     team = models.IntegerField
+    tiles = models.ManyToManyField(Tile)
 
 class Edge:
     road = models.BooleanField
     team = models.IntegerField
+    vertices = models.ManyToManyField(Vertex)
