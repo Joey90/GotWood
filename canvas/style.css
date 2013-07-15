@@ -1,0 +1,11 @@
+@import("reset.css");
+
+body  {
+    background: url('bg.png') repeat;
+}
+
+#container {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
