@@ -1,0 +1,76 @@
+#content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 480px;
+	width: 480px;
+	margin-top: -245px;
+	margin-left: -245px;
+	font-family: sans-serif;
+	border-radius: 15px;
+	border: 1px solid #000000;
+	padding: 10px;
+	background-color: #ffefd5;
+}
+
+#subcontent {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+}
+
+header {
+	font-family: 'Denk One';
+	font-size: 45pt;
+	padding-bottom: 15px;
+	text-align: center;
+}
+
+p {
+	line-height: 14pt;
+	margin-bottom: 10pt;
+}
+
+#startGameButton {
+	height: 25px;
+	width: 200px;
+	padding: 10px;
+
+	position: absolute;
+	bottom: 100px;
+	left: 50%;
+
+	margin-left: -106px;
+	margin-right: auto;
+	border-radius: 5px;
+	border: 1px solid #000000;	
+	
+	cursor: pointer;
+	
+	font-size: x-large;
+	font-weight: bold;
+	font-family: 'Denk One';
+	text-align: center;
+
+	box-shadow: 1px 1px 0px #888;
+}
+
+#startGameButton.loading {
+	background: #fcfff4; /* Old browsers */
+	background: linear-gradient(to bottom, #fcfff4 0%,#e9e9ce 100%); /* W3C */
+}
+
+#startGameButton.unloaded, #startGameButton.ready {
+	background: #e5e696;
+	background: linear-gradient(to bottom, #e5e696 0%,#d1d360 100%); /* W3C */
+	content: 'Start New Game';
+}
+
+#startGameButton.unloaded:hover {
+	background: #d1d360;
+	background: linear-gradient(to top, #e5e696 0%, #d1d360 100%);
+}
+
+#startGameButton.unloaded:active {
+	box-shadow: 1px 1px 0px #888 inset;
+}

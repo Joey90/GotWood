@@ -7,7 +7,6 @@ TileEnums = {
     ORE: 5
 }
 
-
 Config = {
     Graphics: {
         xOffsets: [

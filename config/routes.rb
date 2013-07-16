@@ -1,5 +1,6 @@
 GotWood::Application.routes.draw do
   get "client/index"
+  get "client/game_board"
   get "game/init"
   get "game/tiles"
 
