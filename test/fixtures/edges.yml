@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  edge_id: 1
+  road: false
+  team: 1
+
+two:
+  edge_id: 1
+  road: false
+  team: 1

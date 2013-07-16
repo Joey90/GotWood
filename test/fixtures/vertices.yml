@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  vertex_id: 1
+  building: 1
+  team: 1
+
+two:
+  vertex_id: 1
+  building: 1
+  team: 1

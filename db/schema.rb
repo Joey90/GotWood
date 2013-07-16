@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715211230) do
+ActiveRecord::Schema.define(:version => 20130716085413) do
+
+  create_table "edges", :force => true do |t|
+    t.integer  "edge_id"
+    t.boolean  "road"
+    t.integer  "team"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "edges_vertices", :id => false, :force => true do |t|
+    t.integer "edge_id"
+    t.integer "vertex_id"
+  end
 
   create_table "tiles", :force => true do |t|
     t.integer  "tile_id"
@@ -20,6 +33,19 @@ ActiveRecord::Schema.define(:version => 20130715211230) do
     t.boolean  "robber"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "tiles_vertices", :id => false, :force => true do |t|
+    t.integer "tile_id"
+    t.integer "vertex_id"
+  end
+
+  create_table "vertices", :force => true do |t|
+    t.integer  "vertex_id"
+    t.integer  "building"
+    t.integer  "team"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
