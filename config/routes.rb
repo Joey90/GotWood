@@ -3,6 +3,7 @@ GotWood::Application.routes.draw do
   get "game/init"
   get "game/tiles"
   get "game/vertices"
+  get "game/edges"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
