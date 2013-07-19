@@ -32,7 +32,8 @@ Game = {
 	},
 	State: [StateEnum.IDLE],
 	TileLayer: [],
-	BuildingLayer: []
+	BuildingLayer: [],
+	UiLayer: [InfoWindow],
 }
 
 Config = {
@@ -67,17 +68,24 @@ Config = {
         citySize: 15,
         buildingShade: 'rgba(0,0,0,0.1)',
     },
-    Resources: []
+    Resources: [],
+    LoadingLines: [
+    	"\"Randomising\" the distribution of brick...",
+    	"Performing questionable acts with sheep...",
+    	"Collecting gratuitous amounts of wood...",
+    	"Phone off the hook, shirt off, pants off, time to Catan!"
+    ]
 }
 
 Config.Graphics.tiles[TileEnums.SEA]    = { fill: 'RoyalBlue', label: '' };
-Config.Graphics.tiles[TileEnums.DESERT] = { fill: 'LightGoldenrodYellow', label: 'DESERT' };
-Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'DarkGreen', label: 'FOREST' };
-Config.Graphics.tiles[TileEnums.BRICK]  = { fill: 'FireBrick', label: 'HILL' };
-Config.Graphics.tiles[TileEnums.WHEAT]  = { fill: 'Wheat', label: 'FIELD' };
-Config.Graphics.tiles[TileEnums.WOOL]   = { fill: 'PaleGreen', label: 'PASTURE' };
-Config.Graphics.tiles[TileEnums.ORE]    = { fill: 'Silver', label: 'MOUNTAIN' };
+Config.Graphics.tiles[TileEnums.DESERT] = { fill: 'LightGoldenrodYellow', label: 'Desert' };
+Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'DarkGreen', label: 'Forest' };
+Config.Graphics.tiles[TileEnums.BRICK]  = { fill: 'FireBrick', label: 'Hill' };
+Config.Graphics.tiles[TileEnums.WHEAT]  = { fill: 'Wheat', label: 'Field' };
+Config.Graphics.tiles[TileEnums.WOOL]   = { fill: 'PaleGreen', label: 'Pasture' };
+Config.Graphics.tiles[TileEnums.ORE]    = { fill: 'Silver', label: 'Mountain' };
 
+Config.Resources[TileEnums.DESERT] = {name: 'Nothing' };
 Config.Resources[TileEnums.WOOD]  = { name: 'Wood' };
 Config.Resources[TileEnums.BRICK] = { name: 'Brick' };
 Config.Resources[TileEnums.WHEAT] = { name: 'Wheat' };

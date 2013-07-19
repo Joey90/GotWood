@@ -190,30 +190,9 @@ function drawPorts(ctx, portData) {
         ctx.fillStyle = Config.Graphics.fontColor;
         ctx.textAlign = 'center';
         
-        var tradeRate = '2:1';
-        var resource = '';
-        switch(portData[i].resource) {
-            case TileEnums.DESERT:
-                resource = 'ANY';
-                tradeRate = '3:1';
-                break;
-            case TileEnums.WOOD:
-                resource = 'WOOD';
-                break;
-            case TileEnums.BRICK:
-                resource = 'BRICK';
-                break;
-            case TileEnums.WHEAT:
-                resource = 'WHEAT';
-                break;
-            case TileEnums.WOOL:
-                resource = 'WOOL';
-                break;
-            case TileEnums.ORE:
-                resource = 'ORE';
-                break;
-        }
-
+        var tradeRate = (portData[i].resource == TileEnums.DESERT) ? '3:1' : '2:1';
+        var resource = (portData[i].resource == TileEnums.DESERT) ? 'Any' : Config.Resources[portData[i].resource].name;
+        
         ctx.font = Config.Graphics.font;
         ctx.fillStyle = Config.Graphics.fontColor;
         ctx.textAlign = 'center';

@@ -40,7 +40,18 @@ function init() {
 function continue_loading() {
 	if ( Game.LoadedStatus.vertices && Game.LoadedStatus.edges && Game.LoadedStatus.tiles ) {
 		window.onresize = updateCanvas;
+		registerMouseHandlers();
 		updateCanvas();
+		
+		(function loopDraw() {
+			setTimeout(function() {
+				var ctx = document.getElementById('mapCanvas').getContext('2d');
+				console.debug("Redrawing");
+				redrawCanvas(ctx)
+				
+				loopDraw();
+			}, 30);
+		})();
 	}
 }
 
@@ -61,6 +72,8 @@ function updateCanvas() {
 		Game.TileLayer.push(hex);
 	}
 	
+	Game.BuildingLayer = new Array();
+	
 	// Do similarly for roads
 	for(var i = 0; i < Game.edgesData; i++) {
 		if(Game.edgesData[i].road) {
@@ -76,7 +89,10 @@ function updateCanvas() {
 		}
 	}
 	
-	var ctx = document.getElementById('mapCanvas').getContext('2d');
+	
+	// Add the info window
+	Game.UiLayer = new Array();
+	Game.UiLayer.push(InfoWindow);
 	redrawCanvas(ctx);
 }
 
@@ -89,9 +105,62 @@ function resizeCanvas() {
 	Config.Graphics.startY = canvas.height/ 2;
 }
 
+function clearCanvas() {
+	var canvas = document.getElementById('mapCanvas');
+	var ctx = canvas.getContext('2d');
+	
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
 function redrawCanvas(ctx) {
+	clearCanvas();
 	redrawMap(ctx);
 	redrawBuildings(ctx);
+	redrawUi(ctx);
+}
+
+function redrawUi(ctx) {
+	for(var i = 0; i < Game.UiLayer.length; i++ ) {
+		Game.UiLayer[i].draw(ctx);
+	}
+}
+
+function registerMouseHandlers() {
+	var canvas = document.getElementById('mapCanvas');
+	
+	canvas.addEventListener('mousemove', function(e) {
+		var mouse = trueMouse(e);
+		
+		// Check for hit detection in the tile layer
+		var hitIndex = -1;
+		for(var i = 0; i < Game.TileLayer.length; i++) {
+			if(Game.TileLayer[i].isWithin(mouse.x, mouse.y)) {
+				hitIndex = i;
+				break;
+			}
+		}
+		if(hitIndex >= 0)
+		{
+			InfoWindow.currentTile = hitIndex;
+		}
+	});
+}
+
+function trueMouse(e) {
+	var canvas = document.getElementById('mapCanvas');
+	var offsetX = 0, offsetY = 0, mx, my;
+	
+	if(canvas.offsetParent !== undefined) {
+		do {
+			offsetX += canvas.offsetLeft;
+			offsetY += canvas.offsetTop;
+		} while ((canvas = canvas.offsetParent));
+		
+		mx = e.pageX - offsetX;
+		my = e.pageY - offsetY;
+		
+		return {x: mx, y: my};
+	}
 }
 
 // Loading screen
@@ -105,6 +174,10 @@ function drawLoadingScreen(ctx) {
 	ctx.save();
 	ctx.translate(0, 50);
 	
+	var randNum = Math.round( Math.random() * Config.LoadingLines.length + 1 ) - 1;
+	var textLine = Config.LoadingLines[randNum];
+	console.log(textLine);
+	
 	ctx.font = '16pt Denk One';
-	ctx.fillText('"Randomising" the distribution of brick...', Config.Graphics.startX, Config.Graphics.startY);
+	ctx.fillText(textLine, Config.Graphics.startX, Config.Graphics.startY);
 }
