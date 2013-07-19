@@ -8,7 +8,7 @@ class Vertex < ActiveRecord::Base
   has_and_belongs_to_many :edges
   
   has_many :port_connections
-  has_many :ports, :through => :port_connections, :order => "port_connections.created_at ASC"
+  has_many :ports, :through => :port_connections, :order => "port_connections.id ASC"
 
   before_destroy { destroy_associations }
 
