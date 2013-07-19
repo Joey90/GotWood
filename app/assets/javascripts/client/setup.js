@@ -34,11 +34,22 @@ function init() {
 		},
 		complete: continue_loading
 	})
+	
+	$.ajax({
+		url: '/game/ports',
+		success: function(data) {
+			Game.portData = data;
+			Game.LoadedStatus.ports = true;
+			console.log("Game ports data updated.");
+		},
+		complete: continue_loading
+	})
 }
 
 // See if we have all the data, and start drawing the game if we have
 function continue_loading() {
-	if ( Game.LoadedStatus.vertices && Game.LoadedStatus.edges && Game.LoadedStatus.tiles ) {
+	if ( Game.LoadedStatus.vertices && Game.LoadedStatus.edges
+	  && Game.LoadedStatus.tiles && Game.LoadedStatus.ports ) {
 		window.onresize = updateCanvas;
 		updateCanvas();
 	}

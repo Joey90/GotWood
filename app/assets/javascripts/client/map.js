@@ -1,7 +1,7 @@
 function redrawMap(ctx) {
 	drawMap(ctx);
     console.log("Redrawing ports.");
-    drawPorts(ctx, TestingData.portData);
+    drawPorts(ctx, Game.portData);
 
 }
 
@@ -153,8 +153,8 @@ function drawPorts(ctx, portData) {
     
     for(var i = 0; i < portData.length; i++) {
         
-        var coordsA = vertexCoordinates(portData[i].startVertex);
-        var coordsB = vertexCoordinates(portData[i].endVertex);
+        var coordsA = vertexCoordinates(portData[i].start_vertex);
+        var coordsB = vertexCoordinates(portData[i].end_vertex);
         var angle = Math.acos((coordsB.y - coordsA.y)/Config.Graphics.length);
         angle = (coordsB.x - coordsA.x > 0) ? -angle : angle;
         

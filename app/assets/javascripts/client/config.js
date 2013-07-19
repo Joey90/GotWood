@@ -28,7 +28,8 @@ Game = {
 	LoadedStatus: {
 		tiles: false,
 		edges: false,
-		vertices: false
+		vertices: false,
+		ports: false
 	},
 	State: [StateEnum.IDLE],
 	TileLayer: [],
