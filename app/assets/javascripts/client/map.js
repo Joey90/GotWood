@@ -1,6 +1,9 @@
-function draw(ctx) {
-    drawMap(ctx, TestingData.tileData);
+function redrawMap(ctx) {
+	console.log("Redrawing game board.");
+    drawMap(ctx, Game.tileData);
+    console.log("Redrawing ports.");
     drawPorts(ctx, TestingData.portData);
+
 }
 
 function vertexCoordinates(vertexId) {
