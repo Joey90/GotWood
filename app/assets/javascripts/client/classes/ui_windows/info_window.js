@@ -1,10 +1,10 @@
-var InfoWindow = new UiWindow(10, 10, 400, 40);
+var InfoWindow = new UiWindow(10, 10, 400, 27, false);
 
 InfoWindow.currentTile = -1;
 
 InfoWindow.drawContent = function(ctx) {
 	ctx.fillStyle = 'Black';
-	ctx.font = '14pt Helvetica';
+	ctx.font = '12pt Arial';
 	ctx.textAlign = 'left';
 	ctx.textBaseline = 'top';
 	

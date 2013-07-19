@@ -141,7 +141,11 @@ function registerMouseHandlers() {
 		}
 		if(hitIndex >= 0)
 		{
+			InfoWindow.visible = true;
 			InfoWindow.currentTile = hitIndex;
+		} else {
+			InfoWindow.visible = false;
+			InfoWindow.currentTile = -1;
 		}
 	});
 }

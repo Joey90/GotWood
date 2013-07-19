@@ -1,23 +1,26 @@
-var UiWindow = function(x, y, width, height) {
+var UiWindow = function(x, y, width, height, visible) {
 	this.x = x;
 	this.y = y;
 	this.width = width;
 	this.height = height;
+	this.visible = visible;
 }
 
 UiWindow.prototype.draw = function(ctx) {
-	ctx.fillStyle = 'rgba(250, 250, 250, 0.4)';
-	roundedRect(ctx, this.x, this.y, this.width, this.height, 5 );
-	ctx.fill();
+	if(this.visible) {
+		ctx.fillStyle = 'rgba(250, 250, 250, 0.4)';
+		roundedRect(ctx, this.x, this.y, this.width, this.height, 5 );
+		ctx.fill();
 	
-	ctx.fillStyle = 'rgba(250, 250, 250, 0.8)';
-	roundedRect(ctx, this.x + 3, this.y + 3, this.width - 6, this.height - 6, 5);
-	ctx.fill();
+		ctx.fillStyle = 'rgba(250, 250, 250, 0.8)';
+		roundedRect(ctx, this.x + 3, this.y + 3, this.width - 6, this.height - 6, 5);
+		ctx.fill();
 	
-	ctx.save();
-	ctx.translate(this.x + 6, this.y + 6);
-	this.drawContent(ctx);
-	ctx.restore();
+		ctx.save();
+		ctx.translate(this.x + 6, this.y + 6);
+		this.drawContent(ctx);
+		ctx.restore();
+	}
 }
 
 UiWindow.prototype.drawContent = function(ctx) {
