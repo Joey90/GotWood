@@ -40,7 +40,10 @@ Config = {
         lineWidth  : 1,
         font       : '20px Denk One',
         fontColor  : 'Black',
-        textAlign  : 'center'
+        textAlign  : 'center',
+        teamColours: ['White', 'Red', 'Blue', 'Orange'],
+        villageSize: 15,
+        buildingShade: 'rgba(0,0,0,0.1)',
     },
     Resources: []
 }

@@ -1,6 +1,7 @@
-function draw(ctx) {
+function redrawMap(ctx) {
     drawMap(ctx, TestingData.tileData);
     drawPorts(ctx, TestingData.portData);
+
 }
 
 function vertexCoordinates(vertexId) {

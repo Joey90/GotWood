@@ -4,11 +4,11 @@ function init() {
 	window.onresize = function(event) {
 		console.log("Window resized: Redrawing canvas."); 
 		resizeCanvas();
-		draw(ctx);
+		redrawCanvas(ctx);
 	}
 
 	resizeCanvas();
-	draw(ctx);
+	redrawCanvas(ctx);
 }
 
 function resizeCanvas() {
@@ -18,4 +18,11 @@ function resizeCanvas() {
 	
 	Config.Graphics.startX = canvas.width / 2;
 	Config.Graphics.startY = canvas.height/ 2;
+}
+
+function redrawCanvas(ctx) {
+	
+	redrawMap(ctx);
+	redrawBuildings(ctx);
+	
 }
