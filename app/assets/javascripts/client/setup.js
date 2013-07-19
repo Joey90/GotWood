@@ -3,6 +3,7 @@ function init() {
 	var ctx = canvas.getContext('2d');
 	
 	resizeCanvas();
+	drawLoadingScreen(ctx);
 
 	$.ajax({
 		url: '/game/tiles',

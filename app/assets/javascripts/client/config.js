@@ -13,6 +13,12 @@ BuildingEnums = {
 	CITY: 2
 }
 
+RoadOrientationEnums = {
+	Vertical: 0,
+	Rising: 1,
+	Declining: 2
+}
+
 Game = {
 	LoadedStatus: {
 		tiles: false,
@@ -51,6 +57,7 @@ Config = {
         textAlign  : 'center',
         teamColours: ['White', 'Red', 'Blue', 'Orange'],
         villageSize: 15,
+        citySize: 15,
         buildingShade: 'rgba(0,0,0,0.1)',
     },
     Resources: []
@@ -70,27 +77,6 @@ Config.Resources[TileEnums.WOOL]  = { name: 'Wool' };
 Config.Resources[TileEnums.ORE]   = { name: 'Ore' };
 
 TestingData = {
-    tileData : [
-        { resource: TileEnums.WOOD, number: 11 },
-        { resource: TileEnums.WOOL, number: 12 },
-        { resource: TileEnums.WHEAT, number: 9 },
-        { resource: TileEnums.BRICK, number: 4 },
-        { resource: TileEnums.ORE, number: 6 },
-        { resource: TileEnums.BRICK, number: 5 },
-        { resource: TileEnums.WOOL, number: 10 },
-        { resource: TileEnums.DESERT, number: false },
-        { resource: TileEnums.WOOD, number: 3 },
-        { resource: TileEnums.WHEAT, number: 11 },
-        { resource: TileEnums.WOOD, number: 4 },
-        { resource: TileEnums.WHEAT, number: 8 },
-        { resource: TileEnums.BRICK, number: 8 },
-        { resource: TileEnums.WOOL, number: 10 },
-        { resource: TileEnums.WOOL, number: 9 },
-        { resource: TileEnums.ORE, number: 3 },
-        { resource: TileEnums.ORE, number: 5 },
-        { resource: TileEnums.WHEAT, number: 2 },
-        { resource: TileEnums.WOOD, number: 6 }
-    ],
     portData : [
         { startVertex: 0, endVertex: 1,   resource: TileEnums.DESERT },
         { startVertex: 3, endVertex: 4,   resource: TileEnums.WOOL },
