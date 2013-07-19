@@ -1,10 +1,60 @@
 function draw() {
-var canvas = document.getElementById('mapCanvas');
+    var canvas = document.getElementById('mapCanvas');
     if (canvas.getContext) {
         var ctx = canvas.getContext('2d');
         drawMap(ctx, TestingData.tileData);
         drawPorts(ctx, TestingData.portData);
     }
+    
+}
+
+function vertexCoordinates(vertexId) {
+	var spaceX = Config.Graphics.length * Math.sqrt(3);
+	var offsetX = -Config.Graphics.length * Math.sqrt(3) / 2;
+	var offsetY = 3 * Config.Graphics.length / 2;
+
+	var spacing;
+	var tileIndex;
+	var jaggedBool;
+	
+	// If we can deduce what row the vertex is on we can easily deduce its coordinates
+	// Thankfully we've agreed to use a sensible vertex numbering scheme.
+	if(vertexId < 7) {
+		spacing = Math.floor(vertexId / 2);
+		tileIndex = 0;
+		jaggedBool = vertexId % 2 == 0;
+	} else if(vertexId < 16) {
+		spacing = Math.floor( (vertexId - 7)/2 );
+		tileIndex = 3;
+		jaggedBool = vertexId %2 == 1;
+	} else if(vertexId < 27) {
+		spacing = Math.floor( (vertexId - 16)/2 );
+		tileIndex = 7;
+		jaggedBool = vertexId % 2 == 0;
+	} else if(vertexId < 38) {
+		spacing = Math.floor( (vertexId - 27)/2 );
+		tileIndex = 7;
+		jaggedBool = vertexId % 2 == 1;
+	} else if(vertexId < 47) {
+		spacing = Math.floor( (vertexId - 38)/2 );
+		tileIndex = 12;
+		jaggedBool = vertexId % 2 == 0;
+	} else {
+		spacing = Math.floor( (vertexId - 47)/2 );
+		tileIndex = 16;
+		jaggedBool = vertexId % 2 == 1
+	}
+	
+	var sgn = (vertexId - 26.5 ) < 0 ? -1 : 1
+	
+	var baseY = sgn*((jaggedBool) ? (1/2) : 1) * Config.Graphics.length;
+	var baseX = (jaggedBool) ? offsetX : 0;
+	var x = Config.Graphics.startX + offsetX * Config.Graphics.xOffsets[tileIndex]
+		    + spacing * spaceX + baseX;
+	var y = Config.Graphics.startY + offsetY * Config.Graphics.yOffsets[tileIndex]
+		    + baseY;
+	
+	return {x: x, y: y};
 }
 
 function drawMap(ctx, tileData) {
@@ -42,7 +92,7 @@ function drawMap(ctx, tileData) {
             yPos,
             Config.Graphics.length,
             tileInfo.fill,
-            Config.Graphics.strokeStyle,
+            Config.Graphics.strokeStyle, 
             Config.Graphics.lineWidth);
         
         // Draw the text label
