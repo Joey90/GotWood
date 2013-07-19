@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719125453) do
+ActiveRecord::Schema.define(:version => 20130719134801) do
 
   create_table "edges", :force => true do |t|
     t.integer  "edge_id"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(:version => 20130719125453) do
   create_table "edges_vertices", :id => false, :force => true do |t|
     t.integer "edge_id"
     t.integer "vertex_id"
+  end
+
+  create_table "players", :force => true do |t|
+    t.integer  "player_id"
+    t.integer  "wood"
+    t.integer  "brick"
+    t.integer  "wheat"
+    t.integer  "wool"
+    t.integer  "ore"
+    t.string   "passcode",   :limit => 6
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "ports", :force => true do |t|

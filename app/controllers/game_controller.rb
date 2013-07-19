@@ -50,6 +50,19 @@ class GameController < ApplicationController
       port.save()
     end
 
+    Player.delete_all
+    1.upto(4) do |i|
+      player = Player.new()
+      player.player_id = i
+      player.wood = 0
+      player.brick = 0
+      player.wheat = 0
+      player.wool = 0
+      player.ore = 0
+      player.passcode = generate_activation_code
+      player.save()
+    end
+
     associate_tiles_and_vertices
     associate_edges_and_vertices
     associate_ports_and_vertices
@@ -77,10 +90,31 @@ class GameController < ApplicationController
       hash.delete('id')
       hash.delete('created_at')
       hash.delete('updated_at')
-      hash["start_vertex"] = port.vertices[0].vertex_id
-      hash["end_vertex"] = port.vertices[1].vertex_id
+      hash['start_vertex'] = port.vertices[0].vertex_id
+      hash['end_vertex'] = port.vertices[1].vertex_id
       array << hash
     end
+    render :json => array
+  end
+
+  def players
+    players = Player.all.sort_by {|player| player.player_id}
+    array = []
+    if params[:password] == 'test'
+      players.each do |player|
+        hash = player.attributes
+        hash.delete('id')
+        hash.delete('created_at')
+        hash.delete('updated_at')
+        array << hash
+      end
+    else
+      players.each do |player|
+        hash = { 'player_id' => player.player_id, 'cards' => player.cards }
+        array << hash
+      end
+    end
+
     render :json => array
   end
 
@@ -154,5 +188,10 @@ class GameController < ApplicationController
     ports[7].vertices << vertices[15]
     ports[8].vertices << vertices[3]
     ports[8].vertices << vertices[4]
+  end
+
+  def generate_activation_code(size = 6)
+    charset = %w{ 2 3 4 6 7 9 A C D E F G H J K M N P Q R T V W X Y Z}
+    (0...size).map{ charset.sample }.join
   end
 end
