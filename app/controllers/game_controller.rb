@@ -70,6 +70,16 @@ class GameController < ApplicationController
     render text: 'initialised'
   end
 
+  def set_cookie
+    player = Player.find_by_passcode(params[:passcode])
+    if !player.nil?
+      cookies[:passcode] = { :value => player.passcode, :expires => 7.days.from_now }
+      render :text => 'cookie set'
+    else
+      render :text => 'invalid passcode'
+    end
+  end
+
   def tiles
     render :json => Tile.all.sort_by {|tile| tile.tile_id}, :except => [:id, :tile_id, :created_at, :updated_at]
   end
@@ -95,6 +105,13 @@ class GameController < ApplicationController
       array << hash
     end
     render :json => array
+  end
+
+  def player
+    puts cookies[:passcode]+'lalala'
+    passcode = cookies[:passcode]
+    player = Player.find_by_passcode(passcode)
+    render :json => player, :except => [:id, :created_at, :updated_at]
   end
 
   def players

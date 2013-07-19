@@ -7,6 +7,8 @@ GotWood::Application.routes.draw do
   get "game/edges"
   get "game/ports"
   get "game/players"
+  get "game/set_cookie"
+  get "game/player"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
