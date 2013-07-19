@@ -7,6 +7,12 @@ TileEnums = {
     ORE: 5
 }
 
+BuildingEnums = {
+	EMPTY: 0,
+	VILLAGE: 1,
+	CITY: 2
+}
+
 Config = {
     Graphics: {
         xOffsets: [
@@ -36,10 +42,6 @@ Config = {
         fontColor  : 'Black',
         textAlign  : 'center'
     },
-    Ports: {
-        locations : [0, 1, 3, 6, 11, 12, 15, 16, 17],
-        anchor    : [5, 0, 4, 0, 1, 4, 2, 3, 2]
-    }, 
     Resources: []
 }
 
@@ -79,14 +81,15 @@ TestingData = {
         { resource: TileEnums.WOOD, number: 6 }
     ],
     portData : [
-        { resource: TileEnums.DESERT },
-        { resource: TileEnums.WOOL },
-        { resource: TileEnums.ORE },
-        { resource: TileEnums.DESERT },
-        { resource: TileEnums.DESERT },
-        { resource: TileEnums.WHEAT },
-        { resource: TileEnums.BRICK },
-        { resource: TileEnums.DESERT },
-        { resource: TileEnums.WOOD }
+        { startVertex: 0, endVertex: 1,   resource: TileEnums.DESERT },
+        { startVertex: 3, endVertex: 4,   resource: TileEnums.WOOL },
+        { startVertex: 17, endVertex: 7,  resource: TileEnums.ORE },
+        { startVertex: 14, endVertex: 15, resource: TileEnums.DESERT },
+        { startVertex: 26, endVertex: 37, resource: TileEnums.DESERT },
+        { startVertex: 38, endVertex: 28, resource: TileEnums.WHEAT },
+        { startVertex: 46, endVertex: 45, resource: TileEnums.BRICK },
+        { startVertex: 48, endVertex: 47, resource: TileEnums.DESERT },
+        { startVertex: 51, endVertex: 50, resource: TileEnums.WOOD },
+        
     ]
 }
