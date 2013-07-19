@@ -1,6 +1,6 @@
 class Tile < ActiveRecord::Base
   attr_accessible :dice_number, :resource, :robber, :tile_id
-  validates :dice_number, :numericality => { :greater_than_or_equal_to => 2, :less_than_or_equal_to => 12 }
+  validates :dice_number, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 12 }
   validates :resource, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5 }
   validates :tile_id, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 18 }
 

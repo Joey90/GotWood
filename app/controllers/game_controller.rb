@@ -1,12 +1,23 @@
 class GameController < ApplicationController
 
+  TILE_ORDER = [0,3,7,12,16,17,18,15,11,6,2,1,4,8,13,14,10,5,9]
+  DICE_ORDER = [5,2,6,3,8,10,9,12,11,4,8,10,9,4,5,6,3,11]
+
   def init
     Tile.delete_all
+    tile_pool = [0,1,1,1,1,2,2,2,3,3,3,3,4,4,4,4,5,5,5]
+    desert_used = 0
+
     0.upto(18) do |i|
       tile = Tile.new()
-      tile.tile_id = i
-      tile.resource = 1 + rand(5)
-      tile.dice_number = 2 + rand(11)
+      tile.tile_id = TILE_ORDER[i]
+      tile.resource = tile_pool.delete_at(rand(tile_pool.length))
+      if tile.resource == 0
+        tile.dice_number = 0
+        desert_used = desert_used + 1
+      else
+        tile.dice_number = DICE_ORDER[i - desert_used]
+      end
       tile.robber = false
       tile.save()
     end
@@ -15,8 +26,8 @@ class GameController < ApplicationController
     0.upto(53) do |i|
       vertex = Vertex.new()
       vertex.vertex_id = i
-      vertex.building = rand(3)
-      vertex.team = rand(5)
+      vertex.building = 0
+      vertex.team = 0
       vertex.save()
     end
 
@@ -25,7 +36,7 @@ class GameController < ApplicationController
       edge = Edge.new()
       edge.edge_id = i
       edge.road = false
-      edge.team = rand(5)
+      edge.team = 0
       edge.save()
     end
 
