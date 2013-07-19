@@ -13,6 +13,14 @@ BuildingEnums = {
 	CITY: 2
 }
 
+Game = {
+	LoadedStatus: {
+		tiles: false,
+		edges: false,
+		vertices: false
+	}
+}
+
 Config = {
     Graphics: {
         xOffsets: [

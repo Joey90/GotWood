@@ -1,5 +1,10 @@
 function redrawBuildings(ctx) {
-	// TODO: Get data, do stuff with data, ???, profit.
+	console.log("Redrawing all buildings.");
+	for(var i = 0; i < Game.verticesData.length; i++) {
+		if(Game.verticesData[i].building == BuildingEnums.VILLAGE) {
+			drawVillage(ctx, Game.verticesData[i].team, i);
+		}
+	}
 }
 
 function drawVillage(ctx, team, vertexId) {
