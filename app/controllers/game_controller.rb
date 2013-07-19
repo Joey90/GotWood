@@ -14,11 +14,12 @@ class GameController < ApplicationController
       tile.resource = tile_pool.delete_at(rand(tile_pool.length))
       if tile.resource == 0
         tile.dice_number = 0
+        tile.robber = true
         desert_used = desert_used + 1
       else
         tile.dice_number = DICE_ORDER[i - desert_used]
+        tile.robber = false
       end
-      tile.robber = false
       tile.save()
     end
 
