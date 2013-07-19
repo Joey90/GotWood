@@ -7,8 +7,8 @@ Road.prototype.victoryPoints = 0;
 
 Road.prototype.draw = function(ctx) {
 	
-	var orientation = edgeOrientation(edgeId);
-	var coords = edgeCoordinates(edgeId);
+	var orientation = edgeOrientation(this.edge);
+	var coords = edgeCoordinates(this.edge);
 	
 	ctx.save();
 	ctx.translate(coords.x, coords.y);
@@ -32,7 +32,7 @@ Road.prototype.draw = function(ctx) {
 	ctx.lineTo( Config.Graphics.length / 3, - Config.Graphics.villageSize/2 );
 	ctx.closePath();
 	
-	ctx.fillStyle = Config.Graphics.teamColours[team];
+	ctx.fillStyle = Config.Graphics.teamColours[this.team];
 	ctx.strokeStyle = Config.Graphics.strokeStyle;
 	ctx.lineWidth = Config.Graphics.lineWidth;
 	ctx.fill();
