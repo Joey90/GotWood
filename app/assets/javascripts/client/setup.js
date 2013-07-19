@@ -67,7 +67,8 @@ function updateCanvas() {
 		var pos = tileCoordinates(i);
 		var hex = new Hexagon(Config.Graphics.length,
 			pos.x, pos.y,
-			Game.tileData[i].resource);
+			Game.tileData[i].resource,
+			Game.tileData[i].dice_number);
 			
 		Game.TileLayer.push(hex);
 	}

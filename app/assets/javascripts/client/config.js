@@ -67,6 +67,10 @@ Config = {
         villageSize: 15,
         citySize: 15,
         buildingShade: 'rgba(0,0,0,0.1)',
+        diceNumCircleRadius: 25,
+        diceNumCircleFill: 'SteelBlue',
+        diceNumFont: '14pt Denk One',
+        diceNumFontFill : 'Black',
     },
     Resources: [],
     LoadingLines: [

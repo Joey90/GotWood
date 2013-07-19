@@ -196,6 +196,7 @@ function drawPorts(ctx, portData) {
         ctx.font = Config.Graphics.font;
         ctx.fillStyle = Config.Graphics.fontColor;
         ctx.textAlign = 'center';
+        ctx.textBaseline = 'alphabetic';
         
         // The ports with a positive angle need their text rotating to be legible.
         if( angle % Math.PI > 0 ) {

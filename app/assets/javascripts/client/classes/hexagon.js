@@ -1,8 +1,9 @@
-var Hexagon = function(length, centreX, centreY, resource ) {
+var Hexagon = function(length, centreX, centreY, resource, dice ) {
 	this.length   = length;
 	this.centreX  = centreX;
 	this.centreY  = centreY;
 	this.resource = resource;
+	this.dice     = dice;
 }
 
 Hexagon.prototype.draw = function(ctx) {
@@ -29,10 +30,21 @@ Hexagon.prototype.draw = function(ctx) {
     ctx.stroke();
     ctx.fill();
     
-    ctx.font = Config.Graphics.font;
-    ctx.fillStyle = Config.Graphics.fontColor;
-    ctx.textAlign = Config.Graphics.textAlign;
-    ctx.fillText(Config.Graphics.tiles[this.resource].label, this.centreX, this.centreY);
+    if(this.dice == 0)
+    	return;
+    
+    // Draw the dice number circle
+    ctx.beginPath();
+    ctx.arc(this.centreX, this.centreY, Config.Graphics.diceNumCircleRadius, 0, 2*Math.PI, false);
+    ctx.fillStyle = Config.Graphics.diceNumCircleFill;
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.font = Config.Graphics.diceNumFont;
+    ctx.fillStyle = Config.Graphics.diceNumFontFill;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(this.dice, this.centreX, this.centreY);
 }
 
 Hexagon.prototype.isWithin = function(x,y) {
