@@ -6,10 +6,12 @@ class Vertex < ActiveRecord::Base
 
   has_and_belongs_to_many :tiles
   has_and_belongs_to_many :edges
-  before_destroy :destroy_associations
+  has_and_belongs_to_many :ports
+  before_destroy { destroy_associations }
 
   def destroy_associations
     self.tiles.clear
     self.edges.clear
+    self.ports.clear
   end
 end

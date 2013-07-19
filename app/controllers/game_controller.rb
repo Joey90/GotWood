@@ -2,6 +2,7 @@ class GameController < ApplicationController
 
   TILE_ORDER = [0,3,7,12,16,17,18,15,11,6,2,1,4,8,13,14,10,5,9]
   DICE_ORDER = [5,2,6,3,8,10,9,12,11,4,8,10,9,4,5,6,3,11]
+  PORT_RESOURCES = [0,5,3,0,1,2,0,0,4]
 
   def init
     Tile.delete_all
@@ -41,8 +42,17 @@ class GameController < ApplicationController
       edge.save()
     end
 
-    associate_tiles_and_vertices()
-    associate_edges_and_vertices()
+    Port.delete_all
+    0.upto(8) do |i|
+      port = Port.new()
+      port.port_id = i
+      port.resource = PORT_RESOURCES[i]
+      port.save()
+    end
+
+    associate_tiles_and_vertices
+    associate_edges_and_vertices
+    associate_ports_and_vertices
 
     render text: 'initialised'
   end
@@ -59,7 +69,24 @@ class GameController < ApplicationController
     render :json => Edge.all.sort_by {|edge| edge.edge_id}, :except => [:id, :edge_id, :created_at, :updated_at]
   end
 
+  def ports
+    ports = Port.all.sort_by {|port| port.port_id}
+    array = []
+    ports.each do |port|
+      hash = port.attributes
+      hash.delete('id')
+      hash.delete('created_at')
+      hash.delete('updated_at')
+      hash["start_vertex"] = port.vertices[0].vertex_id
+      hash["end_vertex"] = port.vertices[1].vertex_id
+      array << hash
+    end
+    render :json => array
+  end
+
   def associate_tiles_and_vertices
+    ActiveRecord::Base.connection.execute("TRUNCATE #{'tiles_vertices'}")
+
     tiles = Tile.all.sort_by {|tile| tile.tile_id}
     vertices = Vertex.all.sort_by {|vertex| vertex.vertex_id}
 
@@ -80,6 +107,8 @@ class GameController < ApplicationController
   end
 
   def associate_edges_and_vertices
+    ActiveRecord::Base.connection.execute("TRUNCATE #{'edges_vertices'}")
+
     edges = Edge.all.sort_by{|edge| edge.edge_id}
     vertices = Vertex.all.sort_by {|vertex| vertex.vertex_id}
 
@@ -99,5 +128,31 @@ class GameController < ApplicationController
   def associate_edge_and_vertices(edge, first_offset, second_offset, vertices)
     edge.vertices << vertices[first_offset]
     edge.vertices << vertices[second_offset]
+  end
+
+  def associate_ports_and_vertices
+    ActiveRecord::Base.connection.execute("TRUNCATE #{'ports_vertices'}")
+
+    ports = Port.all.sort_by{|port| port.port_id}
+    vertices = Vertex.all.sort_by {|vertex| vertex.vertex_id}
+
+    ports[0].vertices << vertices[0]
+    ports[0].vertices << vertices[1]
+    ports[1].vertices << vertices[17]
+    ports[1].vertices << vertices[7]
+    ports[2].vertices << vertices[38]
+    ports[2].vertices << vertices[28]
+    ports[3].vertices << vertices[48]
+    ports[3].vertices << vertices[47]
+    ports[4].vertices << vertices[51]
+    ports[4].vertices << vertices[50]
+    ports[5].vertices << vertices[46]
+    ports[5].vertices << vertices[45]
+    ports[6].vertices << vertices[26]
+    ports[6].vertices << vertices[37]
+    ports[7].vertices << vertices[14]
+    ports[7].vertices << vertices[15]
+    ports[8].vertices << vertices[3]
+    ports[8].vertices << vertices[4]
   end
 end
