@@ -45,8 +45,38 @@ function continue_loading() {
 }
 
 function updateCanvas() {
-	var ctx = document.getElementById('mapCanvas').getContext('2d');
+	
 	resizeCanvas();
+		
+	Game.TileLayer = new Array();
+	// Add the Sea hexagon to the tile layer
+	Game.TileLayer.push(new SeaHexagon());
+	// Process the tiles into hexagons
+	for(var i = 0; i < Game.tileData.length; i++) {
+		var pos = tileCoordinates(i);
+		var hex = new Hexagon(Config.Graphics.length,
+			pos.x, pos.y,
+			Game.tileData[i].resource);
+			
+		Game.TileLayer.push(hex);
+	}
+	
+	// Do similarly for roads
+	for(var i = 0; i < Game.edgesData; i++) {
+		if(Game.edgesData[i].road) {
+			Game.BuildingLayer.push(new Road(i, Game.edgesData[i].team));
+		}
+	}
+	// And for settlements/cities
+	for(var i = 0; i < Game.verticesData; i++) {
+		if(Game.verticesData[i].building == BuildingEnums.VILLAGE) {
+			Game.BuildingLayer.push(new Settlement(i, Game.verticesData[i].team));
+		} else if(Game.verticesData[i].building == BuildingEnums.CITY) {
+			Game.BuildingLayer.push(new City(i, Game.verticesData[i].team));
+		}
+	}
+	
+	var ctx = document.getElementById('mapCanvas').getContext('2d');
 	redrawCanvas(ctx);
 }
 

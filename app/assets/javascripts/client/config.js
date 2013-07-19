@@ -1,4 +1,5 @@
 TileEnums = {
+	SEA: -1,
     DESERT: 0,
     WOOD: 1,
     BRICK: 2,
@@ -19,12 +20,19 @@ RoadOrientationEnums = {
 	Declining: 2
 }
 
+StateEnum = {
+	IDLE: 0
+}
+
 Game = {
 	LoadedStatus: {
 		tiles: false,
 		edges: false,
 		vertices: false
-	}
+	},
+	State: [StateEnum.IDLE],
+	TileLayer: [],
+	BuildingLayer: []
 }
 
 Config = {
@@ -48,7 +56,6 @@ Config = {
         length  : 80,
         portLength: 30,
         tiles   : [],
-        oceanFill  : 'RoyalBlue',
         portFill   : 'Gold',
         strokeStyle: 'Black',
         lineWidth  : 1,
@@ -63,6 +70,7 @@ Config = {
     Resources: []
 }
 
+Config.Graphics.tiles[TileEnums.SEA]    = { fill: 'RoyalBlue', label: '' };
 Config.Graphics.tiles[TileEnums.DESERT] = { fill: 'LightGoldenrodYellow', label: 'DESERT' };
 Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'DarkGreen', label: 'FOREST' };
 Config.Graphics.tiles[TileEnums.BRICK]  = { fill: 'FireBrick', label: 'HILL' };
