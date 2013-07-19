@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  port_id: 1
+  resource: 1
+
+two:
+  port_id: 1
+  resource: 1
