@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  player_id: 1
+  wood: 1
+  brick: 1
+  wheat: 1
+  wool: 1
+  ore: 1
+  passcode: MyString
+
+two:
+  player_id: 1
+  wood: 1
+  brick: 1
+  wheat: 1
+  wool: 1
+  ore: 1
+  passcode: MyString
