@@ -1,11 +1,6 @@
-function draw() {
-    var canvas = document.getElementById('mapCanvas');
-    if (canvas.getContext) {
-        var ctx = canvas.getContext('2d');
-        drawMap(ctx, TestingData.tileData);
-        drawPorts(ctx, TestingData.portData);
-    }
-    
+function draw(ctx) {
+    drawMap(ctx, TestingData.tileData);
+    drawPorts(ctx, TestingData.portData);
 }
 
 function vertexCoordinates(vertexId) {
@@ -132,58 +127,18 @@ function drawPorts(ctx, portData) {
     var cosPi6  = Math.cos(Math.PI/6);
     var sinPi6  = 0.5;
     
-    for(var i = 0; i < Config.Ports.locations.length; i++) {
+    for(var i = 0; i < portData.length; i++) {
         
-        var xMod = 0;
-        var yMod = 0;
-        var angle = 0;
+        var coordsA = vertexCoordinates(portData[i].startVertex);
+        var coordsB = vertexCoordinates(portData[i].endVertex);
+        var angle = Math.acos((coordsB.y - coordsA.y)/Config.Graphics.length);
+        angle = (coordsB.x - coordsA.x > 0) ? -angle : angle;
         
-        switch(Config.Ports.anchor[i]) {
-            case 0:
-                xMod = 0;
-                yMod = - Config.Graphics.length;
-                angle = - Math.PI / 3;
-                break;
-            case 1:
-                xMod = Config.Graphics.length * cosPi6;
-                yMod = - Config.Graphics.length / 2;
-                angle = 0;
-                break;
-            case 2:
-                xMod = Config.Graphics.length * cosPi6;
-                yMod = Config.Graphics.length / 2;
-                angle = Math.PI / 3;
-                break;
-            case 3:
-                xMod = 0;
-                yMod = Config.Graphics.length;
-                angle = 2 * Math.PI / 3;
-                break;
-            case 4:
-                xMod = - Config.Graphics.length * cosPi6;
-                yMod = Config.Graphics.length / 2;
-                angle = Math.PI;
-                break;
-            case 5:
-                xMod = - Config.Graphics.length * cosPi6;
-                yMod = - Config.Graphics.length / 2;
-                angle = -2 * Math.PI / 3;
-                break;
-        }
-    
-        var xPos = Config.Graphics.startX
-                    + offsetX * Config.Graphics.xOffsets[ Config.Ports.locations[i] ]
-                    + spaceX  * Config.Graphics.spaces[ Config.Ports.locations[i] ]
-                    + xMod;
-        var yPos = Config.Graphics.startY
-                    + offsetY * Config.Graphics.yOffsets[ Config.Ports.locations[i] ]
-                    + yMod;
-                    
         // Save the context state
         ctx.save();
         
         // Transform the context so that the port edge is aligned with the y-axis
-        ctx.translate(xPos, yPos);
+        ctx.translate(coordsA.x, coordsA.y);
         ctx.rotate(angle);
         
         // Draw the port trapezium
@@ -239,19 +194,21 @@ function drawPorts(ctx, portData) {
         ctx.fillStyle = Config.Graphics.fontColor;
         ctx.textAlign = 'center';
         
-        // If the anchor is 2 or 3, we rotate the context once more
-        // and rotate to make the text render the right way up
-        if( Config.Ports.anchor[i] == 2 || Config.Ports.anchor[i] == 3 ) {
-            ctx.save();
-            ctx.rotate(Math.PI);
-            
+        // The ports with a positive angle need their text rotating to be legible.
+        if( angle > 0 ) {
+        	// Rotate the frame a half circle to make the text legible
+        	ctx.save();
+        	ctx.rotate(Math.PI);
+        	
             ctx.fillText(tradeRate, -Config.Graphics.length/2,20);
             ctx.fillText(resource, -Config.Graphics.length/2, 50);
+            
             ctx.restore();
         } else {
             ctx.fillText(tradeRate, Config.Graphics.length/2, -5);
             ctx.fillText(resource, Config.Graphics.length/2, -30);
         }
+        
         // Fully restore the context
         ctx.restore();
         ctx.restore();
