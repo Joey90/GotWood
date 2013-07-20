@@ -13,13 +13,10 @@ var ForestHexagon = function(length, centreX, centreY, dice, robber) {
 }
 
 ForestHexagon.prototype.draw = function(ctx) {
-    this.tilehex.hex.draw(ctx);
+    this.tilehex.hex.drawFill(ctx);
     this.drawArt(ctx);
     this.tilehex.drawDiceNumber(ctx);
-
-    if(this.robber) {
-        this.tilehex.drawRobber(ctx);
-    }
+    this.tilehex.hex.drawStroke(ctx);
 }
 
 ForestHexagon.prototype.isWithin = function(x,y) {

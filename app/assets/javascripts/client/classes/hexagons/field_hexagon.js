@@ -13,13 +13,10 @@ var FieldHexagon = function(length, centreX, centreY, dice, robber) {
 }
 
 FieldHexagon.prototype.draw = function(ctx) {
-    this.tilehex.hex.draw(ctx);
+    this.tilehex.hex.drawFill(ctx);
     this.drawArt(ctx);
     this.tilehex.drawDiceNumber(ctx);
-
-    if(this.robber) {
-        this.tilehex.drawRobber(ctx);
-    }
+    this.tilehex.hex.drawStroke(ctx);
 }
 
 FieldHexagon.prototype.isWithin = function(x,y) {
