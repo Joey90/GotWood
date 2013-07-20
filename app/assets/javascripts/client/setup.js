@@ -68,7 +68,8 @@ function updateCanvas() {
 			pos.x,
 			pos.y,
 			Game.tileData[i].resource,
-			Game.tileData[i].dice_number
+			Game.tileData[i].dice_number,
+			Game.tileData[i].robber
 		);
 			
 		Game.TileLayer.push(hex);

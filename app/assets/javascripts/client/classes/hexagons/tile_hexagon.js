@@ -1,4 +1,4 @@
-var TileHexagon = function(length, centreX, centreY, resource, dice) {
+var TileHexagon = function(length, centreX, centreY, resource, dice, robber) {
 	this.hex = new Hexagon(length,
 		centreX,
 		centreY,
@@ -7,7 +7,7 @@ var TileHexagon = function(length, centreX, centreY, resource, dice) {
 		Config.Graphics.lineWidth);
 	this.resource = resource;
 	this.dice = dice;
-	this.robber = (resource == TileEnums.DESERT) ? true : false;
+	this.robber = robber;
 }
 
 TileHexagon.prototype.draw = function(ctx) {
