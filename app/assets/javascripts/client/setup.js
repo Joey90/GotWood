@@ -46,9 +46,7 @@ function continue_loading() {
 		(function loopDraw() {
 			setTimeout(function() {
 				var ctx = document.getElementById('mapCanvas').getContext('2d');
-				console.debug("Redrawing");
-				redrawCanvas(ctx)
-				
+				redrawCanvas(ctx)				
 				loopDraw();
 			}, 30);
 		})();
@@ -65,10 +63,13 @@ function updateCanvas() {
 	// Process the tiles into hexagons
 	for(var i = 0; i < Game.tileData.length; i++) {
 		var pos = tileCoordinates(i);
-		var hex = new Hexagon(Config.Graphics.length,
-			pos.x, pos.y,
+		var hex = new TileHexagon(
+			Config.Graphics.length,
+			pos.x,
+			pos.y,
 			Game.tileData[i].resource,
-			Game.tileData[i].dice_number);
+			Game.tileData[i].dice_number
+		);
 			
 		Game.TileLayer.push(hex);
 	}
@@ -117,54 +118,13 @@ function redrawCanvas(ctx) {
 	clearCanvas();
 	redrawMap(ctx);
 	redrawBuildings(ctx);
+	redrawOverlay(ctx);
 	redrawUi(ctx);
 }
 
 function redrawUi(ctx) {
 	for(var i = 0; i < Game.UiLayer.length; i++ ) {
 		Game.UiLayer[i].draw(ctx);
-	}
-}
-
-function registerMouseHandlers() {
-	var canvas = document.getElementById('mapCanvas');
-	
-	canvas.addEventListener('mousemove', function(e) {
-		var mouse = trueMouse(e);
-		
-		// Check for hit detection in the tile layer
-		var hitIndex = -1;
-		for(var i = 0; i < Game.TileLayer.length; i++) {
-			if(Game.TileLayer[i].isWithin(mouse.x, mouse.y)) {
-				hitIndex = i;
-				break;
-			}
-		}
-		if(hitIndex >= 0)
-		{
-			InfoWindow.visible = true;
-			InfoWindow.currentTile = hitIndex;
-		} else {
-			InfoWindow.visible = false;
-			InfoWindow.currentTile = -1;
-		}
-	});
-}
-
-function trueMouse(e) {
-	var canvas = document.getElementById('mapCanvas');
-	var offsetX = 0, offsetY = 0, mx, my;
-	
-	if(canvas.offsetParent !== undefined) {
-		do {
-			offsetX += canvas.offsetLeft;
-			offsetY += canvas.offsetTop;
-		} while ((canvas = canvas.offsetParent));
-		
-		mx = e.pageX - offsetX;
-		my = e.pageY - offsetY;
-		
-		return {x: mx, y: my};
 	}
 }
 

@@ -18,3 +18,21 @@ function addRoad(edge, team) {
 	var index = Game.BuildingLayer.push(new Road(edge, team));
 	Game.BuildingLayer[index-1].draw(ctx);
 }
+
+function showBuildingOverlay(team) {
+	Game.State.push(StateEnum.OVERLAY_ACTIVE);
+	Game.OverlayLayer = new Array();
+	
+	for(var i = 0; i < Config.Graphics.numVertices; i++) {
+		var coords = vertexCoordinates(i);
+		var settlement = new Settlement(i, team);
+		
+		Game.OverlayLayer.push(
+			new OverlayHexagon(settlement)
+		);
+	}
+}
+
+function toggleOverlayDebug() {
+	Config.Graphics.overlayDebug = !Config.Graphics.overlayDebug;
+}

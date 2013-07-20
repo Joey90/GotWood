@@ -21,7 +21,8 @@ RoadOrientationEnums = {
 }
 
 StateEnum = {
-	IDLE: 0
+	IDLE: 0,
+	OVERLAY_ACTIVE: 1,
 }
 
 Game = {
@@ -33,11 +34,14 @@ Game = {
 	State: [StateEnum.IDLE],
 	TileLayer: [],
 	BuildingLayer: [],
+	OverlayLayer: [],
 	UiLayer: [InfoWindow],
 }
 
 Config = {
     Graphics: {
+    	numVertices: 54,
+    	numEdges   : 66, 
         xOffsets: [
         	2, 2, 2,
         	3, 3, 3, 3,
@@ -64,6 +68,7 @@ Config = {
         fontColor  : 'Black',
         textAlign  : 'center',
         teamColours: ['White', 'Red', 'Blue', 'Orange'],
+        oceanFill  : 'RoyalBlue',
         villageSize: 15,
         citySize: 15,
         buildingShade: 'rgba(0,0,0,0.1)',
@@ -71,6 +76,10 @@ Config = {
         diceNumCircleFill: 'SteelBlue',
         diceNumFont: '14pt Denk One',
         diceNumFontFill : 'Black',
+        testPlacementAlpha: 0.5,
+        overlayDebug: false,
+        overlayDebugFill: 'rgba(100,0,0,0.4)',
+        overlayDebugStroke: 'rgba(200,0,0,0.4)',
     },
     Resources: [],
     LoadingLines: [
@@ -81,7 +90,6 @@ Config = {
     ]
 }
 
-Config.Graphics.tiles[TileEnums.SEA]    = { fill: 'RoyalBlue', label: '' };
 Config.Graphics.tiles[TileEnums.DESERT] = { fill: 'LightGoldenrodYellow', label: 'Desert' };
 Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'DarkGreen', label: 'Forest' };
 Config.Graphics.tiles[TileEnums.BRICK]  = { fill: 'FireBrick', label: 'Hill' };
