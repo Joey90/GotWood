@@ -133,8 +133,8 @@ function redrawBuildings() {
 	var ctx = document.getElementById(name).getContext('2d');
 	clearCanvas(name);
 	
-	for(var i = 0; i < Game.BuildingsLayer; i++) {
-		Game.BuildingLayer[i].draw();
+	for(var i = 0; i < Game.BuildingLayer.length; i++) {
+		Game.BuildingLayer[i].draw(ctx);
 	}
 }
 
@@ -143,8 +143,8 @@ function redrawOverlay() {
 	var ctx = document.getElementById(name).getContext('2d');
 	clearCanvas(name);
 	
-	for(var i = 0; i < Game.BuildingsLayer; i++) {
-		Game.BuildingLayer[i].draw();
+	for(var i = 0; i < Game.OverlayLayer.length; i++) {
+		Game.OverlayLayer[i].draw(ctx);
 	}
 }
 
