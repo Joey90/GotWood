@@ -12,7 +12,6 @@ function _handleMouseMove(event) {
 		for(var i = 0; i < Game.OverlayLayer.length; i++) {
 			if(Game.OverlayLayer[i].isWithin(mouse.x, mouse.y)) {
 				Game.OverlayLayer[i].highlighted = true;
-				break;
 			} else {
 				Game.OverlayLayer[i].highlighted = false;
 			}

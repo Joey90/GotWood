@@ -41,7 +41,7 @@ Game = {
 Config = {
     Graphics: {
     	numVertices: 54,
-    	numEdges   : 66, 
+    	numEdges   : 72, 
         xOffsets: [
         	2, 2, 2,
         	3, 3, 3, 3,
