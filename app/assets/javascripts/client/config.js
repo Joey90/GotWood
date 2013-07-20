@@ -61,6 +61,7 @@ Config = {
         startX  : 315,
         startY  : 155,
         length  : 80,
+        seaLength: 450,
         portLength: 30,
         tiles   : [],
         portFill   : 'Gold',
@@ -108,7 +109,12 @@ Config = {
         mountainCircleCount: 50,
         mountainCircleMinSize: 3,
         mountainCircleSizeRange: 10,
-        mountainCircleAlpha: 0.5
+        mountainCircleAlpha: 0.5,
+        seaWaveAlpha: 0.1,
+        seaWaveMinWidth: 5,
+        seaWaveWidthRange: 30,
+        seaWaveLength: 100,
+        seaWaveCount: 70
     },
     Resources: [],
     LoadingLines: [
