@@ -89,6 +89,24 @@ function updateGameData() {
                     Game.tileData[i].robber
                 );
                 break;
+            case TileEnums.WHEAT:
+                var hex = new FieldHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].dice_number,
+                    Game.tileData[i].robber
+                );
+                break;
+            case TileEnums.ORE:
+                var hex = new MountainHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].dice_number,
+                    Game.tileData[i].robber
+                );
+                break;
             default:
                 var hex = new TileHexagon(
                     Config.Graphics.length,
