@@ -1,7 +1,3 @@
-function redrawMap(ctx) {
-	drawMap(ctx);
-    drawPorts(ctx, TestingData.portData);
-}
 
 function tileCoordinates(tileId) {
 	// Spacing and offset constants

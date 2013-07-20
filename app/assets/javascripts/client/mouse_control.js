@@ -1,5 +1,5 @@
 function registerMouseHandlers() {
-	var canvas = document.getElementById('mapCanvas');
+	var canvas = document.getElementById('uiCanvas');
 	canvas.addEventListener('mousemove', _handleMouseMove);
 	canvas.addEventListener('mousedown', _handleMouseClick);
 }
@@ -16,6 +16,8 @@ function _handleMouseMove(event) {
 				Game.OverlayLayer[i].highlighted = false;
 			}
 		}
+		
+		redrawOverlay();
 	}
 	
 	// Info window calculation.
@@ -29,6 +31,7 @@ function _handleMouseMove(event) {
 			break;
 		}
 	}
+	redrawUi();
 }
 
 function _handleMouseClick(event) {

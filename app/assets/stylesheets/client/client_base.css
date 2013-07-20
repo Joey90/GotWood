@@ -1,3 +1,30 @@
 body  {
     background: url('/assets/client_bg.png') repeat;
 }
+
+#mapCanvas, #buildingsCanvas, #robberCanvas, #overlayCanvas, #uiCanvas
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+#mapCanvas {
+	z-index: 1;
+}
+
+#buildingsCanvas {
+	z-index: 2;
+}
+
+#robberCanvas {
+	z-index: 3;
+}
+
+#overlayCanvas {
+	z-index: 4;
+}
+
+#uiCanvas {
+	z-index: 5;
+}

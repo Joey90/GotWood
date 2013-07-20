@@ -2,7 +2,7 @@ function init() {
 	var canvas = document.getElementById('mapCanvas');
 	var ctx = canvas.getContext('2d');
 	
-	resizeCanvas();
+	resizeCanvases();
 	drawLoadingScreen(ctx);
 
 	$.ajax({
@@ -39,24 +39,21 @@ function init() {
 // See if we have all the data, and start drawing the game if we have
 function continue_loading() {
 	if ( Game.LoadedStatus.vertices && Game.LoadedStatus.edges && Game.LoadedStatus.tiles ) {
-		window.onresize = updateCanvas;
-		registerMouseHandlers();
-		updateCanvas();
+		window.onresize = function() {
+			updateCanvases();
+			redrawAll();
+		};
 		
-		(function loopDraw() {
-			setTimeout(function() {
-				var ctx = document.getElementById('mapCanvas').getContext('2d');
-				redrawCanvas(ctx)				
-				loopDraw();
-			}, 30);
-		})();
+		resizeCanvases();
+		registerMouseHandlers();
+		updateGameData();
+		
+		// Draw the various layers
+		redrawAll();
 	}
 }
 
-function updateCanvas() {
-	
-	resizeCanvas();
-		
+function updateGameData() {
 	Game.TileLayer = new Array();
 	// Add the Sea hexagon to the tile layer
 	Game.TileLayer.push(new SeaHexagon());
@@ -96,34 +93,66 @@ function updateCanvas() {
 	// Add the info window
 	Game.UiLayer = new Array();
 	Game.UiLayer.push(InfoWindow);
-	redrawCanvas(ctx);
 }
 
-function resizeCanvas() {
-	var canvas = document.getElementById('mapCanvas');
-	canvas.width = document.documentElement.clientWidth;
-	canvas.height = document.documentElement.clientHeight - 2;
-	
-	Config.Graphics.startX = canvas.width / 2;
-	Config.Graphics.startY = canvas.height/ 2;
+function resizeCanvases() {
+	for(var k in Config.Graphics.canvasNames) {
+		var canvas = document.getElementById(Config.Graphics.canvasNames[k]);
+		canvas.width = document.documentElement.clientWidth;
+		canvas.height = document.documentElement.clientHeight - 2;
+	}
+	Config.Graphics.startX = document.documentElement.clientWidth / 2;
+	Config.Graphics.startY = document.documentElement.clientHeight / 2 - 1;
 }
 
-function clearCanvas() {
-	var canvas = document.getElementById('mapCanvas');
+function clearCanvas(name) {
+	var canvas = document.getElementById(name);
 	var ctx = canvas.getContext('2d');
 	
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function redrawCanvas(ctx) {
-	clearCanvas();
-	redrawMap(ctx);
-	redrawBuildings(ctx);
-	redrawOverlay(ctx);
-	redrawUi(ctx);
+function redrawAll() {
+	redrawMap();
+	redrawBuildings();
+	redrawOverlay();
+	redrawUi();
+}
+
+function redrawMap() {
+	var name = Config.Graphics.canvasNames.map;
+	var ctx = document.getElementById(name).getContext('2d');
+	clearCanvas(name);
+	
+	drawMap(ctx);
+	drawPorts(ctx, TestingData.portData);
+}
+
+function redrawBuildings() {
+	var name = Config.Graphics.canvasNames.buildings;
+	var ctx = document.getElementById(name).getContext('2d');
+	clearCanvas(name);
+	
+	for(var i = 0; i < Game.BuildingsLayer; i++) {
+		Game.BuildingLayer[i].draw();
+	}
+}
+
+function redrawOverlay() {
+	var name = Config.Graphics.canvasNames.overlay;
+	var ctx = document.getElementById(name).getContext('2d');
+	clearCanvas(name);
+	
+	for(var i = 0; i < Game.BuildingsLayer; i++) {
+		Game.BuildingLayer[i].draw();
+	}
 }
 
 function redrawUi(ctx) {
+	var name = Config.Graphics.canvasNames.ui;
+	var ctx = document.getElementById(name).getContext('2d');
+	clearCanvas(name);
+	
 	for(var i = 0; i < Game.UiLayer.length; i++ ) {
 		Game.UiLayer[i].draw(ctx);
 	}

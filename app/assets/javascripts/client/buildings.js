@@ -1,10 +1,3 @@
-function redrawBuildings(ctx) {
-	for(var i = 0; i < Game.BuildingsLayer; i++) {
-		Game.BuildingLayer[i].draw();
-	}
-
-}
-
 /** Road functions **/
 
 function drawShadow(ctx, startX, startY, major, minor) {
