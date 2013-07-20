@@ -13,13 +13,10 @@ var MountainHexagon = function(length, centreX, centreY, dice, robber) {
 }
 
 MountainHexagon.prototype.draw = function(ctx) {
-    this.tilehex.hex.draw(ctx);
+    this.tilehex.hex.drawFill(ctx);
     this.drawArt(ctx);
     this.tilehex.drawDiceNumber(ctx);
-
-    if(this.robber) {
-        this.tilehex.drawRobber(ctx);
-    }
+    this.tilehex.hex.drawStroke(ctx);
 }
 
 MountainHexagon.prototype.isWithin = function(x,y) {

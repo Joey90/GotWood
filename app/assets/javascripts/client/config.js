@@ -64,8 +64,8 @@ Config = {
         tiles   : [],
         portFill   : 'Gold',
         strokeStyle: 'Black',
-        lineWidth  : 1,
-        font       : '20px Denk One',
+        lineWidth  : 2,
+        font       : '14pt Denk One',
         fontColor  : 'Black',
         textAlign  : 'center',
         teamColours: ['White', 'Red', 'Blue', 'Orange'],
@@ -80,7 +80,7 @@ Config = {
         testPlacementAlpha: 0.5,
         overlayDebug: false,
         overlayDebugFill: 'rgba(100,0,0,0.4)',
-        overlayDebugStroke: 'rgba(200,0,0,0.4)',
+        overlayDebugStroke: 'rgba(200,0,0,0.4)'
     },
     Resources: [],
     LoadingLines: [
