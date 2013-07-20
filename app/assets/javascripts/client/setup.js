@@ -136,13 +136,13 @@ function updateGameData() {
     Game.BuildingLayer = [];
 
     // Do similarly for roads
-    for(var i = 0; i < Game.edgesData; i++) {
+    for(var i = 0; i < Game.edgesData.length; i++) {
         if(Game.edgesData[i].road) {
             Game.BuildingLayer.push(new Road(i, Game.edgesData[i].team));
         }
     }
     // And for settlements/cities
-    for(var i = 0; i < Game.verticesData; i++) {
+    for(var i = 0; i < Game.verticesData.length; i++) {
         if(Game.verticesData[i].building == BuildingEnums.VILLAGE) {
             Game.BuildingLayer.push(new Settlement(i, Game.verticesData[i].team));
         } else if(Game.verticesData[i].building == BuildingEnums.CITY) {
