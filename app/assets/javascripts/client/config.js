@@ -25,6 +25,17 @@ StateEnum = {
 	OVERLAY_ACTIVE: 1,
 }
 
+WindowTabLocationEnum = {
+    TOP_LEFT: 0,
+    TOP_RIGHT: 1,
+    LEFT_TOP: 2,
+    LEFT_BOTTOM: 3,
+    RIGHT_TOP: 4,
+    RIGHT_BOTTOM: 5,
+    BOTTOM_LEFT: 6,
+    BOTTOM_RIGHT: 7,
+}
+
 Game = {
 	LoadedStatus: {
 		tiles: false,
@@ -36,7 +47,7 @@ Game = {
 	BuildingLayer: [],
 	OverlayLayer: [],
 	RobberLayer: [],
-	UiLayer: [InfoWindow],
+	UiLayer: { },
 }
 
 Config = {

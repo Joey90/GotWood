@@ -1,8 +1,24 @@
-var InfoWindow = new UiWindow(10, 10, 600, 27, false);
+var InfoWindow = function() {
+    UiWindow.call(this,
+        20,
+        20,
+        600,
+        27,
+        false,
+        true,
+        'Tab Title',
+        WindowTabLocationEnum.TOP_LEFT
+    );
+}
 
-InfoWindow.currentTile = -1;
+// Subclassing UiWindow
+InfoWindow.prototype = new UiWindow;
+InfoWindow.constructor = InfoWindow;
 
-InfoWindow.drawContent = function(ctx) {
+InfoWindow.prototype.currentTile = -1;
+
+InfoWindow.prototype.drawContent = function(ctx) {
+    
 	ctx.fillStyle = 'Black';
 	ctx.font = '12pt Arial';
 	ctx.textAlign = 'left';

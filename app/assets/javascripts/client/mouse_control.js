@@ -21,13 +21,13 @@ function _handleMouseMove(event) {
 	}
 	
 	// Info window calculation.
-	InfoWindow.visible = false;
-	InfoWindow.currentTile = -1;
+	Game.UiLayer.infoWindow.visible = false;
+	Game.UiLayer.infoWindow.currentTile = -1;
 	
 	for(var i = 0; i < Game.TileLayer.length; i++) {
 		if(Game.TileLayer[i].isWithin(mouse.x, mouse.y)) {
-			InfoWindow.visible = true;
-			InfoWindow.currentTile = i;
+			Game.UiLayer.infoWindow.visible = true;
+			Game.UiLayer.infoWindow.currentTile = i;
 			break;
 		}
 	}

@@ -1,9 +1,12 @@
-var UiWindow = function(x, y, width, height, visible) {
+var UiWindow = function(x, y, width, height, visible, showTab, tabTitle, tabPosition) {
 	this.x = x;
 	this.y = y;
 	this.width = width;
 	this.height = height;
 	this.visible = visible;
+	this.showTab = showTab;
+	this.tabTitle = tabTitle;
+	this.tabPosition = tabPosition;
 }
 
 UiWindow.prototype.draw = function(ctx) {
@@ -31,6 +34,11 @@ UiWindow.prototype.draw = function(ctx) {
 
 UiWindow.prototype.drawContent = function(ctx) {
 	
+}
+
+UiWindow.prototype.isWithin = function(x,y) {
+    var mainBox = (this.x - x <= this.width && this.y - y <= this.height);
+    return mainBox;
 }
 
 function roundedRect(ctx, x, y, w, h, r) {

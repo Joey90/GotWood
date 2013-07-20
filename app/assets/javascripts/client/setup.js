@@ -144,8 +144,7 @@ function updateGameData() {
 	
 	
 	// Add the info window
-	Game.UiLayer = new Array();
-	Game.UiLayer.push(InfoWindow);
+	Game.UiLayer.infoWindow = new InfoWindow();
 }
 
 function resizeCanvases() {
@@ -217,8 +216,8 @@ function redrawUi() {
 	var ctx = document.getElementById(name).getContext('2d');
 	clearCanvas(name);
 	
-	for(var i = 0; i < Game.UiLayer.length; i++ ) {
-		Game.UiLayer[i].draw(ctx);
+	for(var x in Game.UiLayer ) {
+		Game.UiLayer[x].draw(ctx);
 	}
 }
 
