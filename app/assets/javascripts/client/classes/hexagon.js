@@ -7,22 +7,26 @@ var Hexagon = function(length, centreX, centreY, fill, stroke, width ) {
 	this.width    = width;   // Canvas LineWidth
 }
 
-Hexagon.prototype.draw = function(ctx) {
-	ctx.beginPath();
-    
+Hexagon.prototype.drawPath = function(ctx) {
+    ctx.beginPath();
+
     // Assuming point-up hexagons
     ctx.moveTo(this.centreX, this.centreY - this.length);
     ctx.lineTo(this.centreX + this.length * Math.cos(Math.PI/6),
-    	this.centreY - (this.length / 2));
+        this.centreY - (this.length / 2));
     ctx.lineTo(this.centreX + this.length * Math.cos(Math.PI/6),
-    	this.centreY + (this.length / 2));
+        this.centreY + (this.length / 2));
     ctx.lineTo(this.centreX, this.centreY + this.length);
     ctx.lineTo(this.centreX - this.length * Math.cos(Math.PI/6),
-    	this.centreY + (this.length / 2));
+        this.centreY + (this.length / 2));
     ctx.lineTo(this.centreX - this.length * Math.cos(Math.PI/6),
-    	this.centreY - (this.length / 2));
-    	
+        this.centreY - (this.length / 2));
+
     ctx.closePath();
+}
+
+Hexagon.prototype.draw = function(ctx) {
+	this.drawPath(ctx)
     
     // Stroke that hexagon ;)
     ctx.lineWidth = this.width;

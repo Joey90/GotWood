@@ -60,14 +60,25 @@ function updateGameData() {
 	// Process the tiles into hexagons
 	for(var i = 0; i < Game.tileData.length; i++) {
 		var pos = tileCoordinates(i);
-		var hex = new TileHexagon(
-			Config.Graphics.length,
-			pos.x,
-			pos.y,
-			Game.tileData[i].resource,
-			Game.tileData[i].dice_number,
-			Game.tileData[i].robber
-		);
+
+        if (Game.tileData[i].resource == TileEnums.WOOD) {
+            var hex = new ForestHexagon(
+                Config.Graphics.length,
+                pos.x,
+                pos.y,
+                Game.tileData[i].dice_number,
+                Game.tileData[i].robber
+            );
+        } else {
+		    var hex = new TileHexagon(
+		    	Config.Graphics.length,
+		    	pos.x,
+			    pos.y,
+			    Game.tileData[i].resource,
+			    Game.tileData[i].dice_number,
+                Game.tileData[i].robber
+		    );
+        }
 			
 		Game.TileLayer.push(hex);
 	}
