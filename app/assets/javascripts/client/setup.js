@@ -153,8 +153,21 @@ function resizeCanvases() {
 		canvas.width = document.documentElement.clientWidth;
 		canvas.height = document.documentElement.clientHeight - 2;
 	}
-	Config.Graphics.startX = document.documentElement.clientWidth / 2;
-	Config.Graphics.startY = document.documentElement.clientHeight / 2 - 1;
+	
+	if(
+	    document.documentElement.clientWidth < 946
+	 || document.documentElement.clientHeight < 920
+	) {
+	    Config.Graphics.scale = Math.min(
+	        document.documentElement.clientWidth / 946,
+	        document.documentElement.clientHeight / 920 );
+	} else {
+	    Config.Graphics.scale = 1;
+	}
+	
+	Config.Graphics.startX = (document.documentElement.clientWidth / 2) / Config.Graphics.scale;
+    Config.Graphics.startY = (document.documentElement.clientHeight / 2 - 1) / Config.Graphics.scale;
+    
 }
 
 function clearCanvas(name) {
@@ -177,6 +190,8 @@ function redrawMap() {
 	var ctx = document.getElementById(name).getContext('2d');
 	clearCanvas(name);
 	
+	ctx.scale(Config.Graphics.scale, Config.Graphics.scale);
+	
 	drawMap(ctx);
 	drawPorts(ctx, TestingData.portData);
 }
@@ -186,9 +201,13 @@ function redrawBuildings() {
 	var ctx = document.getElementById(name).getContext('2d');
 	clearCanvas(name);
 	
+	ctx.save();
+	ctx.scale(Config.Graphics.scale, Config.Graphics.scale);
+	
 	for(var i = 0; i < Game.BuildingLayer.length; i++) {
 		Game.BuildingLayer[i].draw(ctx);
 	}
+	ctx.restore();
 }
 
 function redrawOverlay() {
@@ -196,9 +215,14 @@ function redrawOverlay() {
 	var ctx = document.getElementById(name).getContext('2d');
 	clearCanvas(name);
 	
+	ctx.save();
+	ctx.scale(Config.Graphics.scale, Config.Graphics.scale);
+	
 	for(var i = 0; i < Game.OverlayLayer.length; i++) {
 		Game.OverlayLayer[i].draw(ctx);
 	}
+	
+	ctx.restore();
 }
 
 function redrawRobber() {
@@ -206,9 +230,14 @@ function redrawRobber() {
     var ctx = document.getElementById(name).getContext('2d');
     clearCanvas(name);
     
+    ctx.save();
+    ctx.scale(Config.Graphics.scale, Config.Graphics.scale);
+    
     for(var i = 0; i < Game.RobberLayer.length; i++) {
         Game.RobberLayer[i].draw(ctx);
     }
+    
+    ctx.restore();
 }
 
 function redrawUi() {
@@ -216,9 +245,14 @@ function redrawUi() {
 	var ctx = document.getElementById(name).getContext('2d');
 	clearCanvas(name);
 	
+	ctx.save();
+	ctx.scale(Config.Graphics.scale, Config.Graphics.scale);
+	
 	for(var x in Game.UiLayer ) {
 		Game.UiLayer[x].draw(ctx);
 	}
+	
+	ctx.restore();
 }
 
 // Loading screen

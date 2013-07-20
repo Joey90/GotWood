@@ -49,8 +49,8 @@ function trueMouse(e) {
 			offsetY += canvas.offsetTop;
 		} while ((canvas = canvas.offsetParent));
 		
-		mx = e.pageX - offsetX;
-		my = e.pageY - offsetY;
+		mx = (e.pageX - offsetX) / Config.Graphics.scale;
+		my = (e.pageY - offsetY) / Config.Graphics.scale;
 		
 		return {x: mx, y: my};
 	}

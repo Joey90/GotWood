@@ -52,6 +52,7 @@ Game = {
 
 Config = {
     Graphics: {
+        scale: 1,
     	canvasNames: {map: 'mapCanvas', buildings: 'buildingsCanvas', robber: 'robberCanvas', overlay: 'overlayCanvas', ui: 'uiCanvas'},
     	numVertices: 54,
     	numEdges   : 72, 
