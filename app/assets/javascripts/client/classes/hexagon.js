@@ -26,15 +26,21 @@ Hexagon.prototype.drawPath = function(ctx) {
 }
 
 Hexagon.prototype.draw = function(ctx) {
-	this.drawPath(ctx)
-    
-    // Stroke that hexagon ;)
+    this.drawFill(ctx);
+    this.drawStroke(ctx);
+}
+
+Hexagon.prototype.drawFill = function(ctx) {
+    this.drawPath(ctx);
+    ctx.fillStyle = this.fill;
+    ctx.fill();
+}
+
+Hexagon.prototype.drawStroke = function(ctx) {
+    this.drawPath(ctx);
     ctx.lineWidth = this.width;
     ctx.strokeStyle = this.stroke;
-    ctx.fillStyle = this.fill;
     ctx.stroke();
-    ctx.fill();
-
 }
 
 Hexagon.prototype.isWithin = function(x,y) {
