@@ -120,23 +120,23 @@ Config = {
 }
 
 Config.Graphics.tiles[TileEnums.DESERT] = { fill: 'LightGoldenrodYellow', label: 'Desert' };
-Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'DarkGreen', label: 'Forest' };
-Config.Graphics.tiles[TileEnums.BRICK]  = { fill: 'FireBrick', label: 'Hill' };
-Config.Graphics.tiles[TileEnums.WHEAT]  = { fill: 'Wheat', label: 'Field' };
-Config.Graphics.tiles[TileEnums.WOOL]   = { fill: 'PaleGreen', label: 'Pasture' };
-Config.Graphics.tiles[TileEnums.ORE]    = { fill: 'Silver', label: 'Mountain' };
+Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'DarkGreen',            label: 'Forest' };
+Config.Graphics.tiles[TileEnums.BRICK]  = { fill: 'FireBrick',            label: 'Hill' };
+Config.Graphics.tiles[TileEnums.WHEAT]  = { fill: 'Wheat',                label: 'Field' };
+Config.Graphics.tiles[TileEnums.WOOL]   = { fill: 'PaleGreen',            label: 'Pasture' };
+Config.Graphics.tiles[TileEnums.ORE]    = { fill: 'Silver',               label: 'Mountain' };
 
-Config.Resources[TileEnums.DESERT] = {name: 'Nothing' };
-Config.Resources[TileEnums.WOOD]  = { name: 'Wood' };
-Config.Resources[TileEnums.BRICK] = { name: 'Brick' };
-Config.Resources[TileEnums.WHEAT] = { name: 'Wheat' };
-Config.Resources[TileEnums.WOOL]  = { name: 'Wool' };
-Config.Resources[TileEnums.ORE]   = { name: 'Ore' };
+Config.Resources[TileEnums.DESERT] = { name: 'Nothing' };
+Config.Resources[TileEnums.WOOD]   = { name: 'Wood' };
+Config.Resources[TileEnums.BRICK]  = { name: 'Brick' };
+Config.Resources[TileEnums.WHEAT]  = { name: 'Wheat' };
+Config.Resources[TileEnums.WOOL]   = { name: 'Wool' };
+Config.Resources[TileEnums.ORE]    = { name: 'Ore' };
 
 TestingData = {
     portData : [
-        { startVertex: 0, endVertex: 1,   resource: TileEnums.DESERT },
-        { startVertex: 3, endVertex: 4,   resource: TileEnums.WOOL },
+        { startVertex: 0,  endVertex: 1,  resource: TileEnums.DESERT },
+        { startVertex: 3,  endVertex: 4,  resource: TileEnums.WOOL },
         { startVertex: 17, endVertex: 7,  resource: TileEnums.ORE },
         { startVertex: 14, endVertex: 15, resource: TileEnums.DESERT },
         { startVertex: 26, endVertex: 37, resource: TileEnums.DESERT },
