@@ -1,20 +1,20 @@
 var TileHexagon = function(length, centreX, centreY, resource, dice) {
-	this.hex = new Hexagon(length,
-		centreX,
-		centreY,
-		Config.Graphics.tiles[resource].fill,
-		Config.Graphics.strokeStyle,
-		Config.Graphics.lineWidth);
-	this.resource = resource;
-	this.dice = dice;
+    this.hex = new Hexagon(length,
+        centreX,
+        centreY,
+        Config.Graphics.tiles[resource].fill,
+        Config.Graphics.strokeStyle,
+        Config.Graphics.lineWidth);
+    this.resource = resource;
+    this.dice = dice;
 };
 
 TileHexagon.prototype.draw = function(ctx) {
-	this.hex.draw(ctx);
-	
-	if(this.resource != TileEnums.DESERT) {
+    this.hex.draw(ctx);
+
+    if(this.resource != TileEnums.DESERT) {
         this.drawDiceNumber(ctx);
-	}
+    }
 };
 
 TileHexagon.prototype.drawDiceNumber = function(ctx) {
@@ -42,5 +42,5 @@ TileHexagon.prototype.drawDiceNumber = function(ctx) {
 };
 
 TileHexagon.prototype.isWithin = function(x,y) {
-	return this.hex.isWithin(x,y);
+    return this.hex.isWithin(x,y);
 };

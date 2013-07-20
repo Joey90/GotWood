@@ -1,17 +1,17 @@
 var SeaHexagon = function() {
-	this.hex = new Hexagon(Config.Graphics.seaLength,
-		0,
-		0,
-		Config.Graphics.oceanFill,
-		Config.Graphics.strokeStyle,
-		Config.Graphics.lineWidth
-	);
+    this.hex = new Hexagon(Config.Graphics.seaLength,
+        0,
+        0,
+        Config.Graphics.oceanFill,
+        Config.Graphics.strokeStyle,
+        Config.Graphics.lineWidth
+    );
 };
 
 SeaHexagon.prototype.draw = function(ctx) {
-	ctx.save();
+    ctx.save();
 
-	ctx.translate(Config.Graphics.startX, Config.Graphics.startY);
+    ctx.translate(Config.Graphics.startX, Config.Graphics.startY);
     ctx.rotate(Math.PI/6);
 
     this.hex.drawFill(ctx);

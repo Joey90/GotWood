@@ -1,67 +1,67 @@
 var UiWindow = function(x, y, width, height, padding, visible, showTab, tabTitle, tabPosition) {
-	this.x = x;
-	this.y = y;
-	this.width = width;
-	this.height = height;
-	this.padding = padding;
-	this.visible = visible;
-	this.showTab = showTab;
-	this.tabTitle = tabTitle;
-	this.tabPosition = tabPosition;
-}
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.padding = padding;
+    this.visible = visible;
+    this.showTab = showTab;
+    this.tabTitle = tabTitle;
+    this.tabPosition = tabPosition;
+};
 
 UiWindow.prototype.draw = function(ctx) {
-	if(this.visible) {
-	    
-	    if(this.showTab)
-	       this.drawTab(ctx);
-	    
-	    // Draw outer frame
-		ctx.fillStyle = Config.Graphics.uiWindowFillLite;
+    if(this.visible) {
+
+        if(this.showTab)
+           this.drawTab(ctx);
+
+        // Draw outer frame
+        ctx.fillStyle = Config.Graphics.uiWindowFillLite;
         ctx.strokeStyle = Config.Graphics.uiWindowStroke;
         ctx.lineWidth = Config.Graphics.uiWindowLineWidth;
-		roundedRect(ctx,
-		    this.x - this.padding,
-		    this.y - this.padding,
-		    this.width + 2*this.padding,
-		    this.height + 2*this.padding,
-		    Config.Graphics.uiWindowBorderRadius
-		);
-		ctx.fill();
-		ctx.stroke();
-		
-		// Draw the inner frame	
-		ctx.fillStyle = Config.Graphics.uiWindowFill;
-		ctx.strokeStyle = Config.Graphics.uiWindowStroke;
+        roundedRect(ctx,
+            this.x - this.padding,
+            this.y - this.padding,
+            this.width + 2*this.padding,
+            this.height + 2*this.padding,
+            Config.Graphics.uiWindowBorderRadius
+        );
+        ctx.fill();
+        ctx.stroke();
+
+        // Draw the inner frame
+        ctx.fillStyle = Config.Graphics.uiWindowFill;
+        ctx.strokeStyle = Config.Graphics.uiWindowStroke;
         ctx.lineWidth = Config.Graphics.uiWindowLineWidth;
-		roundedRect(ctx,
-		    this.x,
-		    this.y,
-		    this.width,
-		    this.height,
-		    Config.Graphics.uiWindowBorderRadius
-		);
-		ctx.fill();
-	    ctx.stroke();
-	    
-	    // Set the clipping region for the actual content and draw it
-		ctx.save();
-		roundedRect(ctx, this.x, this.y, this.width, this.height, 5);
-		ctx.clip();
-		ctx.translate(this.x + 5, this.y + 5);
-		this.drawContent(ctx);
-		
-		ctx.restore();
-	}
-}
+        roundedRect(ctx,
+            this.x,
+            this.y,
+            this.width,
+            this.height,
+            Config.Graphics.uiWindowBorderRadius
+        );
+        ctx.fill();
+        ctx.stroke();
+
+        // Set the clipping region for the actual content and draw it
+        ctx.save();
+        roundedRect(ctx, this.x, this.y, this.width, this.height, 5);
+        ctx.clip();
+        ctx.translate(this.x + 5, this.y + 5);
+        this.drawContent(ctx);
+
+        ctx.restore();
+    }
+};
 
 UiWindow.prototype.drawContent = function(ctx) {
-	
-}
+
+};
 
 UiWindow.prototype.drawTab = function(ctx) {
     var radius = Config.Graphics.uiWindowBorderRadius;
-    
+
     ctx.font = Config.Graphics.uiWindowFontSize.toString() + 'px ' + Config.Graphics.uiWindowFont;
     ctx.fillStyle = Config.Graphics.uiWindowFontFill;
     ctx.textAlign = 'left';
@@ -104,7 +104,7 @@ UiWindow.prototype.drawTab = function(ctx) {
             ctx.rotate(Math.PI);
             break;
     }
-    
+
     // Draw the outline
     ctx.beginPath();
     ctx.moveTo(0, 0);
@@ -113,18 +113,18 @@ UiWindow.prototype.drawTab = function(ctx) {
     ctx.lineTo(width - radius, height);
     ctx.quadraticCurveTo(width, height, width, height + radius);
     ctx.lineTo(width, 0);
-    
+
     // Fill and stroke the outline
     ctx.fillStyle = 'rgba(250, 250, 250, 0.8)';
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 1;
     ctx.fill();
     ctx.stroke();
-    
-    
+
+
     // Write the text
     ctx.fillStyle = 'Black';
-    
+
     if(
         this.tabPosition == WindowTabLocationEnum.BOTTOM_LEFT
      || this.tabPosition == WindowTabLocationEnum.BOTTOM_RIGHT )
@@ -137,24 +137,23 @@ UiWindow.prototype.drawTab = function(ctx) {
      } else {
         ctx.fillText(this.tabTitle, this.padding, -this.padding);
      }
-    
+
     ctx.restore();
-}
+};
 
 UiWindow.prototype.isWithin = function(x,y) {
-    var mainBox = (this.x - x <= this.width && this.y - y <= this.height);
-    return mainBox;
-}
+    return (this.x - x <= this.width && this.y - y <= this.height);
+};
 
 function roundedRect(ctx, x, y, w, h, r) {
-	ctx.beginPath();
-	ctx.moveTo(x, y + r);
-	ctx.lineTo(x, y + h - r);
-	ctx.quadraticCurveTo(x, y + h, x + r, y + h);
-	ctx.lineTo(x + w - r, y + h);
-	ctx.quadraticCurveTo(x + w, y + h, x + w, y + h - r);
-	ctx.lineTo(x + w, y + r);
-	ctx.quadraticCurveTo(x + w, y, x + w - r, y);
-	ctx.lineTo(x + r, y);
-	ctx.quadraticCurveTo(x,y,x,y+r);
+    ctx.beginPath();
+    ctx.moveTo(x, y + r);
+    ctx.lineTo(x, y + h - r);
+    ctx.quadraticCurveTo(x, y + h, x + r, y + h);
+    ctx.lineTo(x + w - r, y + h);
+    ctx.quadraticCurveTo(x + w, y + h, x + w, y + h - r);
+    ctx.lineTo(x + w, y + r);
+    ctx.quadraticCurveTo(x + w, y, x + w - r, y);
+    ctx.lineTo(x + r, y);
+    ctx.quadraticCurveTo(x,y,x,y+r);
 }

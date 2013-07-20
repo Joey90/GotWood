@@ -1,5 +1,5 @@
 TileEnums = {
-	SEA: -1,
+    SEA: -1,
     DESERT: 0,
     WOOD: 1,
     BRICK: 2,
@@ -9,20 +9,20 @@ TileEnums = {
 };
 
 BuildingEnums = {
-	EMPTY: 0,
-	VILLAGE: 1,
-	CITY: 2
+    EMPTY: 0,
+    VILLAGE: 1,
+    CITY: 2
 };
 
 RoadOrientationEnums = {
-	Vertical: 0,
-	Rising: 1,
-	Declining: 2
+    Vertical: 0,
+    Rising: 1,
+    Declining: 2
 };
 
 StateEnum = {
-	IDLE: 0,
-	OVERLAY_ACTIVE: 1
+    IDLE: 0,
+    OVERLAY_ACTIVE: 1
 };
 
 WindowTabLocationEnum = {
@@ -37,38 +37,38 @@ WindowTabLocationEnum = {
 };
 
 Game = {
-	LoadedStatus: {
-		tiles: false,
-		edges: false,
-		vertices: false
-	},
-	State: [StateEnum.IDLE],
-	TileLayer: [],
-	BuildingLayer: [],
-	OverlayLayer: [],
-	RobberLayer: [],
-	UiLayer: { }
+    LoadedStatus: {
+        tiles: false,
+        edges: false,
+        vertices: false
+    },
+    State: [StateEnum.IDLE],
+    TileLayer: [],
+    BuildingLayer: [],
+    OverlayLayer: [],
+    RobberLayer: [],
+    UiLayer: { }
 };
 
 Config = {
     Graphics: {
         scale: 1,
-    	canvasNames: {map: 'mapCanvas', buildings: 'buildingsCanvas', robber: 'robberCanvas', overlay: 'overlayCanvas', ui: 'uiCanvas'},
-    	numVertices: 54,
-    	numEdges   : 72, 
+        canvasNames: {map: 'mapCanvas', buildings: 'buildingsCanvas', robber: 'robberCanvas', overlay: 'overlayCanvas', ui: 'uiCanvas'},
+        numVertices: 54,
+        numEdges   : 72,
         xOffsets: [
-        	2, 2, 2,
-        	3, 3, 3, 3,
-        	4, 4, 4, 4, 4,
-        	3, 3, 3, 3, 
-        	2, 2, 2
+            2, 2, 2,
+            3, 3, 3, 3,
+            4, 4, 4, 4, 4,
+            3, 3, 3, 3,
+            2, 2, 2
         ],
         yOffsets: [
-        	-2, -2, -2,
-        	-1, -1, -1, -1,
-        	0, 0, 0, 0, 0,
-        	1, 1, 1, 1,
-        	2, 2, 2],
+            -2, -2, -2,
+            -1, -1, -1, -1,
+            0, 0, 0, 0, 0,
+            1, 1, 1, 1,
+            2, 2, 2],
         spaces  : [0,1,2,0,1,2,3,0,1,2,3,4,0,1,2,3,0,1,2],
         startX  : 315,
         startY  : 155,
@@ -143,10 +143,10 @@ Config = {
     },
     Resources: [],
     LoadingLines: [
-    	"\"Randomising\" the distribution of brick...",
-    	"Performing questionable acts with sheep...",
-    	"Collecting gratuitous amounts of wood...",
-    	"Phone off the hook, shirt off, pants off, time to Catan!"
+        "\"Randomising\" the distribution of brick...",
+        "Performing questionable acts with sheep...",
+        "Collecting gratuitous amounts of wood...",
+        "Phone off the hook, shirt off, pants off, time to Catan!"
     ]
 };
 
@@ -175,6 +175,6 @@ TestingData = {
         { startVertex: 46, endVertex: 45, resource: TileEnums.BRICK },
         { startVertex: 48, endVertex: 47, resource: TileEnums.DESERT },
         { startVertex: 51, endVertex: 50, resource: TileEnums.WOOD }
-        
+
     ]
 };
