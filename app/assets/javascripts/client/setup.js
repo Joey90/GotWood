@@ -61,23 +61,34 @@ function updateGameData() {
 	for(var i = 0; i < Game.tileData.length; i++) {
 		var pos = tileCoordinates(i);
 
-        if (Game.tileData[i].resource == TileEnums.WOOD) {
-            var hex = new ForestHexagon(
-                Config.Graphics.length,
-                pos.x,
-                pos.y,
-                Game.tileData[i].dice_number,
-                Game.tileData[i].robber
-            );
-        } else {
-		    var hex = new TileHexagon(
-		    	Config.Graphics.length,
-		    	pos.x,
-			    pos.y,
-			    Game.tileData[i].resource,
-			    Game.tileData[i].dice_number,
-                Game.tileData[i].robber
-		    );
+        switch (Game.tileData[i].resource) {
+            case TileEnums.WOOD:
+                var hex = new ForestHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].dice_number,
+                    Game.tileData[i].robber
+                );
+                break;
+            case TileEnums.BRICK:
+                var hex = new BrickHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].dice_number,
+                    Game.tileData[i].robber
+                );
+                break;
+            default:
+                var hex = new TileHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].resource,
+                    Game.tileData[i].dice_number,
+                    Game.tileData[i].robber
+                );
         }
 			
 		Game.TileLayer.push(hex);

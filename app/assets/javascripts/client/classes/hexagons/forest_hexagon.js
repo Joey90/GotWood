@@ -27,10 +27,10 @@ ForestHexagon.prototype.isWithin = function(x,y) {
 }
 
 ForestHexagon.prototype.drawArt = function(ctx) {
-    this.tilehex.hex.drawPath(ctx);
     ctx.save();
+    this.tilehex.hex.drawPath(ctx);
     ctx.clip();
-    for (var i=0; i<10; i++)
+    for (var i=0; i<15; i++)
     {
         this.drawForestCircle(ctx);
     }
@@ -41,7 +41,7 @@ ForestHexagon.prototype.drawForestCircle = function(ctx) {
     var colour = "rgba(0, "+Math.floor(Math.random()*256).toString()+", 0, 0.5)";
     var xpos = Math.floor(Math.random()*200-100);
     var ypos = Math.floor(Math.random()*200-100);
-    var radius = Math.floor(Math.random()*30+30);
+    var radius = Math.floor(Math.random()*35+20);
     ctx.beginPath();
     ctx.arc(xpos + this.centreX, ypos + this.centreY, radius, 0, 2 * Math.PI, false);
     ctx.fillStyle = colour;
