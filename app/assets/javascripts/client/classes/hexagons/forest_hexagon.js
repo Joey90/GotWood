@@ -13,7 +13,6 @@ var ForestHexagon = function(length, centreX, centreY, dice, robber) {
 }
 
 ForestHexagon.prototype.draw = function(ctx) {
-    console.log("drawinghex"); //qq
     this.tilehex.hex.draw(ctx);
     this.drawArt(ctx);
     this.tilehex.drawDiceNumber(ctx);
@@ -21,8 +20,6 @@ ForestHexagon.prototype.draw = function(ctx) {
     if(this.robber) {
         this.tilehex.drawRobber(ctx);
     }
-
-    console.log("drewhex"); //qq
 }
 
 ForestHexagon.prototype.isWithin = function(x,y) {
@@ -31,6 +28,7 @@ ForestHexagon.prototype.isWithin = function(x,y) {
 
 ForestHexagon.prototype.drawArt = function(ctx) {
     this.tilehex.hex.drawPath(ctx);
+    ctx.save();
     ctx.clip();
     for (var i=0; i<10; i++)
     {
@@ -40,7 +38,7 @@ ForestHexagon.prototype.drawArt = function(ctx) {
 }
 
 ForestHexagon.prototype.drawForestCircle = function(ctx) {
-    var colour = "rgba(0, "+Math.floor(Math.random()*256).toString+", 0, 0.5)";
+    var colour = "rgba(0, "+Math.floor(Math.random()*256).toString()+", 0, 0.5)";
     var xpos = Math.floor(Math.random()*200-100);
     var ypos = Math.floor(Math.random()*200-100);
     var radius = Math.floor(Math.random()*30+30);
@@ -48,5 +46,4 @@ ForestHexagon.prototype.drawForestCircle = function(ctx) {
     ctx.arc(xpos + this.centreX, ypos + this.centreY, radius, 0, 2 * Math.PI, false);
     ctx.fillStyle = colour;
     ctx.fill();
-    console.log("drew a circle???"); //qq
 }
