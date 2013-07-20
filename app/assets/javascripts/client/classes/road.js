@@ -1,7 +1,7 @@
 var Road = function(edge, team) {
 	this.edge = edge;
 	this.team = team;
-}
+};
 
 Road.prototype.victoryPoints = 0;
 
@@ -21,7 +21,7 @@ Road.prototype.draw = function(ctx) {
 			ctx.rotate(-Math.PI/6);
 			break;
 		case RoadOrientationEnums.Vertical:
-			ctx.rotate(Math.PI/2)
+			ctx.rotate(Math.PI/2);
 			break;
 	}
 	
@@ -39,12 +39,12 @@ Road.prototype.draw = function(ctx) {
 	ctx.stroke();
 	
 	ctx.restore();
-}
+};
 
 Road.prototype.centre = function() {
 	return edgeCoordinates(this.edge);
-}
+};
 
 Road.prototype.orientation = function() {
 	return edgeOrientation(this.edge);
-}
+};

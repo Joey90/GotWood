@@ -1,27 +1,25 @@
-var MountainHexagon = function(length, centreX, centreY, dice, robber) {
+var MountainHexagon = function(length, centreX, centreY, dice) {
     this.tilehex = new TileHexagon(length,
         centreX,
         centreY,
         TileEnums.ORE,
-        dice,
-        robber)
+        dice);
     this.centreX  = centreX;
     this.centreY  = centreY;
     this.resource = TileEnums.ORE;
     this.dice = dice;
-    this.robber = robber;
-}
+};
 
 MountainHexagon.prototype.draw = function(ctx) {
     this.tilehex.hex.drawFill(ctx);
     this.drawArt(ctx);
     this.tilehex.drawDiceNumber(ctx);
     this.tilehex.hex.drawStroke(ctx);
-}
+};
 
 MountainHexagon.prototype.isWithin = function(x,y) {
     return this.tilehex.hex.isWithin(x,y);
-}
+};
 
 MountainHexagon.prototype.drawArt = function(ctx) {
     ctx.save();
@@ -32,7 +30,7 @@ MountainHexagon.prototype.drawArt = function(ctx) {
         this.drawMountainCircle(ctx);
     }
     ctx.restore();
-}
+};
 
 MountainHexagon.prototype.drawMountainCircle = function(ctx) {
     var colour = "rgba(156, 156, "+Math.floor(Math.random()*156+100).toString()+", "+Config.Graphics.mountainCircleAlpha+")";
@@ -43,4 +41,4 @@ MountainHexagon.prototype.drawMountainCircle = function(ctx) {
     ctx.arc(xpos + this.centreX, ypos + this.centreY, radius, 0, 2 * Math.PI, false);
     ctx.fillStyle = colour;
     ctx.fill();
-}
+};

@@ -5,7 +5,7 @@ var Hexagon = function(length, centreX, centreY, fill, stroke, width ) {
 	this.fill	  = fill;    // Canvas FillStyle
 	this.stroke	  = stroke;  // Canvas StrokeStyle
 	this.width    = width;   // Canvas LineWidth
-}
+};
 
 Hexagon.prototype.drawPath = function(ctx) {
     ctx.beginPath();
@@ -23,25 +23,25 @@ Hexagon.prototype.drawPath = function(ctx) {
         this.centreY - (this.length / 2));
 
     ctx.closePath();
-}
+};
 
 Hexagon.prototype.draw = function(ctx) {
     this.drawFill(ctx);
     this.drawStroke(ctx);
-}
+};
 
 Hexagon.prototype.drawFill = function(ctx) {
     this.drawPath(ctx);
     ctx.fillStyle = this.fill;
     ctx.fill();
-}
+};
 
 Hexagon.prototype.drawStroke = function(ctx) {
     this.drawPath(ctx);
     ctx.lineWidth = this.width;
     ctx.strokeStyle = this.stroke;
     ctx.stroke();
-}
+};
 
 Hexagon.prototype.isWithin = function(x,y) {
 	
@@ -59,4 +59,4 @@ Hexagon.prototype.isWithin = function(x,y) {
 		return false;
 	else
 		return vert * horiz - vert * xHex /2 - horiz * yHex >= 0;
-}
+};

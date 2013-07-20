@@ -1,6 +1,6 @@
 var Robber = function(tile) {
     this.tile = tile;
-}
+};
 
 Robber.prototype.draw = function(ctx) {
     var coords = tileCoordinates(this.tile);
@@ -40,4 +40,4 @@ Robber.prototype.draw = function(ctx) {
     ctx.fill();
     
     ctx.restore();
-}
+};

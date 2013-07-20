@@ -10,11 +10,7 @@ function _handleMouseMove(event) {
 	// If the overlay is active, calculate any hits for it
 	if(Game.State[Game.State.length - 1] == StateEnum.OVERLAY_ACTIVE) {
 		for(var i = 0; i < Game.OverlayLayer.length; i++) {
-			if(Game.OverlayLayer[i].isWithin(mouse.x, mouse.y)) {
-				Game.OverlayLayer[i].highlighted = true;
-			} else {
-				Game.OverlayLayer[i].highlighted = false;
-			}
+			Game.OverlayLayer[i].highlighted = Game.OverlayLayer[i].isWithin(mouse.x, mouse.y);
 		}
 		
 		redrawOverlay();

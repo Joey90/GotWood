@@ -6,24 +6,24 @@ TileEnums = {
     WHEAT: 3,
     WOOL: 4,
     ORE: 5
-}
+};
 
 BuildingEnums = {
 	EMPTY: 0,
 	VILLAGE: 1,
 	CITY: 2
-}
+};
 
 RoadOrientationEnums = {
 	Vertical: 0,
 	Rising: 1,
 	Declining: 2
-}
+};
 
 StateEnum = {
 	IDLE: 0,
-	OVERLAY_ACTIVE: 1,
-}
+	OVERLAY_ACTIVE: 1
+};
 
 Game = {
 	LoadedStatus: {
@@ -36,8 +36,8 @@ Game = {
 	BuildingLayer: [],
 	OverlayLayer: [],
 	RobberLayer: [],
-	UiLayer: [InfoWindow],
-}
+	UiLayer: [InfoWindow]
+};
 
 Config = {
     Graphics: {
@@ -128,7 +128,7 @@ Config = {
     	"Collecting gratuitous amounts of wood...",
     	"Phone off the hook, shirt off, pants off, time to Catan!"
     ]
-}
+};
 
 Config.Graphics.tiles[TileEnums.DESERT] = { fill: 'LightGoldenrodYellow', label: 'Desert' };
 Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'DarkGreen',            label: 'Forest' };
@@ -154,7 +154,7 @@ TestingData = {
         { startVertex: 38, endVertex: 28, resource: TileEnums.WHEAT },
         { startVertex: 46, endVertex: 45, resource: TileEnums.BRICK },
         { startVertex: 48, endVertex: 47, resource: TileEnums.DESERT },
-        { startVertex: 51, endVertex: 50, resource: TileEnums.WOOD },
+        { startVertex: 51, endVertex: 50, resource: TileEnums.WOOD }
         
     ]
-}
+};

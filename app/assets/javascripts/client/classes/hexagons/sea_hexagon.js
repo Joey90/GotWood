@@ -21,7 +21,7 @@ SeaHexagon.prototype.draw = function(ctx) {
     ctx.restore();
 };
 
-SeaHexagon.prototype.isWithin = function(x,y) { return false; }
+SeaHexagon.prototype.isWithin = function(x,y) { return false; };
 
 SeaHexagon.prototype.drawArt = function(ctx) {
     ctx.save();
@@ -33,7 +33,7 @@ SeaHexagon.prototype.drawArt = function(ctx) {
         this.drawWave(ctx);
     }
     ctx.restore();
-}
+};
 
 SeaHexagon.prototype.drawWave = function(ctx) {
     var colour = "rgba(0, 0, "+Math.floor(Math.random()*156+100).toString()+", "+Config.Graphics.seaWaveAlpha+")";

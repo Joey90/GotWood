@@ -1,4 +1,4 @@
-var TileHexagon = function(length, centreX, centreY, resource, dice, robber) {
+var TileHexagon = function(length, centreX, centreY, resource, dice) {
 	this.hex = new Hexagon(length,
 		centreX,
 		centreY,
@@ -7,8 +7,7 @@ var TileHexagon = function(length, centreX, centreY, resource, dice, robber) {
 		Config.Graphics.lineWidth);
 	this.resource = resource;
 	this.dice = dice;
-	this.robber = robber;
-}
+};
 
 TileHexagon.prototype.draw = function(ctx) {
 	this.hex.draw(ctx);
@@ -16,7 +15,7 @@ TileHexagon.prototype.draw = function(ctx) {
 	if(this.resource != TileEnums.DESERT) {
         this.drawDiceNumber(ctx);
 	}
-}
+};
 
 TileHexagon.prototype.drawDiceNumber = function(ctx) {
     ctx.beginPath();
@@ -40,8 +39,8 @@ TileHexagon.prototype.drawDiceNumber = function(ctx) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(this.dice, this.hex.centreX, this.hex.centreY);
-}
+};
 
 TileHexagon.prototype.isWithin = function(x,y) {
 	return this.hex.isWithin(x,y);
-}
+};

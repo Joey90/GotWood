@@ -1,17 +1,17 @@
 var City = function(vertex, team) {
 	this.team = team;
 	this.vertex = vertex;
-}
+};
 
 City.prototype.victoryPoints = 2;
 
 City.prototype.draw = function(ctx) {
 	drawCity(ctx, this.team, this.vertex);
-}
+};
 
 City.prototype.centre = function() {
 	return vertexCoordinates(this.vertex);
-}
+};
 
 function drawCity(ctx, team, vertexId) {
 	var xy = vertexCoordinates(vertexId);

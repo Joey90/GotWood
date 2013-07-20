@@ -10,7 +10,7 @@ var OverlayHexagon = function(structure) {
 	);
 	this.struct = structure;
 	this.highlighted = false;
-}
+};
 
 OverlayHexagon.prototype.draw = function(ctx) {
 
@@ -24,8 +24,8 @@ OverlayHexagon.prototype.draw = function(ctx) {
 		this.struct.draw(ctx);
 		ctx.restore();
 	}
-}
+};
 
 OverlayHexagon.prototype.isWithin = function(x,y) {
 	return this.hex.isWithin(x,y);
-}
+};

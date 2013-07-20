@@ -10,7 +10,7 @@ function init() {
 			success: function(data) {
 				console.log(data);
 				if(data == "initialised") {
-					button.innerHTML = "Game Ready!"
+					button.innerHTML = "Game Ready!";
 					button.className = "ready";
 					window.location.replace('/client/game_board');
 				}

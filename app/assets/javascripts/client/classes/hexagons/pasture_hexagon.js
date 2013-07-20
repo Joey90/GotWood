@@ -1,27 +1,25 @@
-var PastureHexagon = function(length, centreX, centreY, dice, robber) {
+var PastureHexagon = function(length, centreX, centreY, dice) {
     this.tilehex = new TileHexagon(length,
         centreX,
         centreY,
         TileEnums.WOOL,
-        dice,
-        robber)
+        dice);
     this.centreX  = centreX;
     this.centreY  = centreY;
     this.resource = TileEnums.WOOL;
     this.dice = dice;
-    this.robber = robber;
-}
+};
 
 PastureHexagon.prototype.draw = function(ctx) {
     this.tilehex.hex.drawFill(ctx);
     this.drawArt(ctx);
     this.tilehex.drawDiceNumber(ctx);
     this.tilehex.hex.drawStroke(ctx);
-}
+};
 
 PastureHexagon.prototype.isWithin = function(x,y) {
     return this.tilehex.hex.isWithin(x,y);
-}
+};
 
 PastureHexagon.prototype.drawArt = function(ctx) {
     ctx.save();
@@ -32,7 +30,7 @@ PastureHexagon.prototype.drawArt = function(ctx) {
         this.drawPastureArc(ctx);
     }
     ctx.restore();
-}
+};
 
 PastureHexagon.prototype.drawPastureArc = function(ctx) {
     var colour = "rgba(0, "+Math.floor(Math.random()*256).toString()+", 0, "+Config.Graphics.pastureCircleAlpha+")";
@@ -45,4 +43,4 @@ PastureHexagon.prototype.drawPastureArc = function(ctx) {
     ctx.lineWidth = strokewidth;
     ctx.strokeStyle = colour;
     ctx.stroke();
-}
+};

@@ -46,7 +46,7 @@ function vertexCoordinates(vertexId) {
 		jaggedBool = vertexId % 2 == 1
 	}
 	
-	var sgn = (vertexId - 26.5 ) < 0 ? -1 : 1
+	var sgn = (vertexId - 26.5 ) < 0 ? -1 : 1;
 	
 	var baseY = sgn*((jaggedBool) ? (1/2) : 1) * Config.Graphics.length;
 	var baseX = (jaggedBool) ? offsetX : 0;
