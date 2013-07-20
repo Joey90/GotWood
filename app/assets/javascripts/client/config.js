@@ -25,6 +25,17 @@ StateEnum = {
 	OVERLAY_ACTIVE: 1
 };
 
+WindowTabLocationEnum = {
+    TOP_LEFT: 0,
+    TOP_RIGHT: 1,
+    LEFT_TOP: 2,
+    LEFT_BOTTOM: 3,
+    RIGHT_TOP: 4,
+    RIGHT_BOTTOM: 5,
+    BOTTOM_LEFT: 6,
+    BOTTOM_RIGHT: 7
+};
+
 Game = {
 	LoadedStatus: {
 		tiles: false,
@@ -36,11 +47,12 @@ Game = {
 	BuildingLayer: [],
 	OverlayLayer: [],
 	RobberLayer: [],
-	UiLayer: [InfoWindow]
+	UiLayer: { }
 };
 
 Config = {
     Graphics: {
+        scale: 1,
     	canvasNames: {map: 'mapCanvas', buildings: 'buildingsCanvas', robber: 'robberCanvas', overlay: 'overlayCanvas', ui: 'uiCanvas'},
     	numVertices: 54,
     	numEdges   : 72, 
@@ -119,7 +131,15 @@ Config = {
         desertWaveMinWidth: 3,
         desertWaveWidthRange: 10,
         desertWaveLength: 50,
-        desertWaveCount: 30
+        desertWaveCount: 30,
+        uiWindowFontSize: 14, //px
+        uiWindowFont    : 'Arial',
+        uiWindowFontFill: 'Black',
+        uiWindowLineWidth: 1,
+        uiWindowStroke: 'black',
+        uiWindowBorderRadius: 5,
+        uiWindowFill: 'rgba(250,250,250,0.8)',
+        uiWindowFillLite: 'rgba(250,250,250,0.4)'
     },
     Resources: [],
     LoadingLines: [

@@ -36,8 +36,9 @@ Robber.prototype.draw = function(ctx) {
     ctx.fillStyle = grad;
     ctx.strokeStyle = Config.Graphics.strokeStyle;
     ctx.lineWidth = Config.Graphics.lineWidth;
-    ctx.stroke();
     ctx.fill();
+    ctx.stroke();
+    
     
     ctx.restore();
 };
