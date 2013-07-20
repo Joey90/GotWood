@@ -120,7 +120,15 @@ Config = {
         mountainCircleCount: 50,
         mountainCircleMinSize: 3,
         mountainCircleSizeRange: 10,
-        mountainCircleAlpha: 0.5
+        mountainCircleAlpha: 0.5,
+        uiWindowFontSize: 14, //px
+        uiWindowFont    : 'Arial',
+        uiWindowFontFill: 'Black',
+        uiWindowLineWidth: 1,
+        uiWindowStroke: 'black',
+        uiWindowBorderRadius: 5,
+        uiWindowFill: 'rgba(250,250,250,0.8)',
+        uiWindowFillLite: 'rgba(250,250,250,0.4)'
     },
     Resources: [],
     LoadingLines: [

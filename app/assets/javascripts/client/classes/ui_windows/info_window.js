@@ -1,13 +1,14 @@
 var InfoWindow = function() {
     UiWindow.call(this,
-        20,
-        20,
-        600,
-        27,
+        10,
+        10,
+        400,
+        24,
+        5,
         false,
         true,
-        'Tab Title',
-        WindowTabLocationEnum.TOP_LEFT
+        'Tile Info',
+        WindowTabLocationEnum.BOTTOM_LEFT
     );
 }
 
@@ -18,9 +19,8 @@ InfoWindow.constructor = InfoWindow;
 InfoWindow.prototype.currentTile = -1;
 
 InfoWindow.prototype.drawContent = function(ctx) {
-    
-	ctx.fillStyle = 'Black';
-	ctx.font = '12pt Arial';
+	ctx.font = Config.Graphics.uiWindowFontSize.toString() + 'px ' + Config.Graphics.uiWindowFont;
+    ctx.fillStyle = Config.Graphics.uiWindowFontFill;
 	ctx.textAlign = 'left';
 	ctx.textBaseline = 'top';
 	
