@@ -76,8 +76,8 @@ Config = {
         tiles   : [],
         portFill   : 'Gold',
         strokeStyle: 'Black',
-        lineWidth  : 1,
-        font       : '20px Denk One',
+        lineWidth  : 2,
+        font       : '14pt Denk One',
         fontColor  : 'Black',
         textAlign  : 'center',
         teamColours: ['White', 'Red', 'Blue', 'Orange'],
@@ -98,6 +98,28 @@ Config = {
         robberHeight: 30,
         robberShadowMin: 5,
         robberShadowMax: 15,
+        forestCircleCount: 15,
+        forestCircleMinSize: 20,
+        forestCircleSizeRange: 30,
+        forestCircleAlpha: 0.5,
+        hillStripeCount: 10,
+        hillStripeMinWidth: 10,
+        hillStripeWidthRange: 40,
+        hillStripeAlpha: 0.5,
+        pastureCircleCount: 15,
+        pastureCircleMinSize: 20,
+        pastureCircleSizeRange: 35,
+        pastureCircleMinWidth: 5,
+        pastureCircleWidthRange: 5,
+        pastureCircleAlpha: 0.3,
+        fieldStripeCount: 10,
+        fieldStripeMinWidth: 10,
+        fieldStripeWidthRange: 50,
+        fieldStripeAlpha: 0.25,
+        mountainCircleCount: 50,
+        mountainCircleMinSize: 3,
+        mountainCircleSizeRange: 10,
+        mountainCircleAlpha: 0.5
     },
     Resources: [],
     LoadingLines: [
@@ -109,23 +131,23 @@ Config = {
 }
 
 Config.Graphics.tiles[TileEnums.DESERT] = { fill: 'LightGoldenrodYellow', label: 'Desert' };
-Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'DarkGreen', label: 'Forest' };
-Config.Graphics.tiles[TileEnums.BRICK]  = { fill: 'FireBrick', label: 'Hill' };
-Config.Graphics.tiles[TileEnums.WHEAT]  = { fill: 'Wheat', label: 'Field' };
-Config.Graphics.tiles[TileEnums.WOOL]   = { fill: 'PaleGreen', label: 'Pasture' };
-Config.Graphics.tiles[TileEnums.ORE]    = { fill: 'Silver', label: 'Mountain' };
+Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'DarkGreen',            label: 'Forest' };
+Config.Graphics.tiles[TileEnums.BRICK]  = { fill: 'FireBrick',            label: 'Hill' };
+Config.Graphics.tiles[TileEnums.WHEAT]  = { fill: 'Wheat',                label: 'Field' };
+Config.Graphics.tiles[TileEnums.WOOL]   = { fill: 'PaleGreen',            label: 'Pasture' };
+Config.Graphics.tiles[TileEnums.ORE]    = { fill: 'Silver',               label: 'Mountain' };
 
-Config.Resources[TileEnums.DESERT] = {name: 'Nothing' };
-Config.Resources[TileEnums.WOOD]  = { name: 'Wood' };
-Config.Resources[TileEnums.BRICK] = { name: 'Brick' };
-Config.Resources[TileEnums.WHEAT] = { name: 'Wheat' };
-Config.Resources[TileEnums.WOOL]  = { name: 'Wool' };
-Config.Resources[TileEnums.ORE]   = { name: 'Ore' };
+Config.Resources[TileEnums.DESERT] = { name: 'Nothing' };
+Config.Resources[TileEnums.WOOD]   = { name: 'Wood' };
+Config.Resources[TileEnums.BRICK]  = { name: 'Brick' };
+Config.Resources[TileEnums.WHEAT]  = { name: 'Wheat' };
+Config.Resources[TileEnums.WOOL]   = { name: 'Wool' };
+Config.Resources[TileEnums.ORE]    = { name: 'Ore' };
 
 TestingData = {
     portData : [
-        { startVertex: 0, endVertex: 1,   resource: TileEnums.DESERT },
-        { startVertex: 3, endVertex: 4,   resource: TileEnums.WOOL },
+        { startVertex: 0,  endVertex: 1,  resource: TileEnums.DESERT },
+        { startVertex: 3,  endVertex: 4,  resource: TileEnums.WOOL },
         { startVertex: 17, endVertex: 7,  resource: TileEnums.ORE },
         { startVertex: 14, endVertex: 15, resource: TileEnums.DESERT },
         { startVertex: 26, endVertex: 37, resource: TileEnums.DESERT },

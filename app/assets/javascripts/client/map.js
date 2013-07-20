@@ -171,8 +171,8 @@ function drawPorts(ctx, portData) {
         ctx.lineWidth = Config.Graphics.lineWidth;
         ctx.strokeStyle = Config.Graphics.strokeStyle;
         ctx.fillStyle = Config.Graphics.portFill;
-        ctx.stroke();
         ctx.fill();
+        ctx.stroke();
         
         // Save the context
         ctx.save();
