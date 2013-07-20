@@ -1,8 +1,6 @@
 function redrawMap(ctx) {
 	drawMap(ctx);
-    console.log("Redrawing ports.");
     drawPorts(ctx, TestingData.portData);
-
 }
 
 function tileCoordinates(tileId) {
@@ -136,7 +134,6 @@ function edgeOrientation(edgeId) {
 }
 
 function drawMap(ctx) {
-	console.log("Redrawing the game board.");
     // Iterate over the tile data and draw the map!
     for(var i = 0; i < Game.TileLayer.length; i++) {
     	Game.TileLayer[i].draw(ctx);

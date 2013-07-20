@@ -1,6 +1,4 @@
 function redrawBuildings(ctx) {
-	console.log("Redrawing all buildings.");
-	
 	for(var i = 0; i < Game.BuildingsLayer; i++) {
 		Game.BuildingLayer[i].draw();
 	}

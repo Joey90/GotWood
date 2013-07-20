@@ -10,7 +10,6 @@ InfoWindow.drawContent = function(ctx) {
 	
 	if(this.currentTile >= 0) {
 		var tile = Game.tileData[this.currentTile - 1];
-		console.log(this.currentTile);
 		ctx.fillText(Config.Graphics.tiles[tile.resource].label + ", produces " + Config.Resources[tile.resource].name.toLowerCase() + ".", 0, 0);
 	}
 	
