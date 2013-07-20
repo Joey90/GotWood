@@ -1,4 +1,4 @@
-var InfoWindow = new UiWindow(10, 10, 400, 27, false);
+var InfoWindow = new UiWindow(10, 10, 600, 27, false);
 
 InfoWindow.currentTile = -1;
 
@@ -9,8 +9,22 @@ InfoWindow.drawContent = function(ctx) {
 	ctx.textBaseline = 'top';
 	
 	if(this.currentTile >= 0) {
+		// Need to subtract 1 to compensate for the sea hexagon.
 		var tile = Game.tileData[this.currentTile - 1];
-		ctx.fillText(Config.Graphics.tiles[tile.resource].label + ", produces " + Config.Resources[tile.resource].name.toLowerCase() + ".", 0, 0);
+		var text = "";
+		if(tile.resource == TileEnums.DESERT) {
+			text = "Desert. Produces nothing. ";
+		} else {
+			text = Config.Graphics.tiles[tile.resource].label + ". Produces "
+					+ Config.Resources[tile.resource].name.toLowerCase() + " on a "
+					+ tile.dice_number + ". ";
+		}
+		
+		if(tile.robber && tile.resource != TileEnums.DESERT) {
+			text += "The robber is here, blocking resource production.";
+		}
+		
+		ctx.fillText(text, 0, 0);
 	}
 	
 }

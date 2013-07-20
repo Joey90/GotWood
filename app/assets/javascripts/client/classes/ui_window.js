@@ -10,15 +10,21 @@ UiWindow.prototype.draw = function(ctx) {
 	if(this.visible) {
 		ctx.fillStyle = 'rgba(250, 250, 250, 0.4)';
 		roundedRect(ctx, this.x, this.y, this.width, this.height, 5 );
+		ctx.stroke();
 		ctx.fill();
 	
 		ctx.fillStyle = 'rgba(250, 250, 250, 0.8)';
 		roundedRect(ctx, this.x + 3, this.y + 3, this.width - 6, this.height - 6, 5);
+		ctx.stroke();
 		ctx.fill();
 	
 		ctx.save();
+		roundedRect(ctx, this.x + 3, this.y + 3, this.width - 6, this.height - 6, 5);
+		ctx.clip();
 		ctx.translate(this.x + 6, this.y + 6);
+		
 		this.drawContent(ctx);
+		
 		ctx.restore();
 	}
 }
@@ -38,5 +44,4 @@ function roundedRect(ctx, x, y, w, h, r) {
 	ctx.quadraticCurveTo(x + w, y, x + w - r, y);
 	ctx.lineTo(x + r, y);
 	ctx.quadraticCurveTo(x,y,x,y+r);
-	ctx.stroke();
 }
