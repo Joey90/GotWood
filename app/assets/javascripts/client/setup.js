@@ -40,7 +40,7 @@ function init() {
 function continue_loading() {
 	if ( Game.LoadedStatus.vertices && Game.LoadedStatus.edges && Game.LoadedStatus.tiles ) {
 		window.onresize = function() {
-			updateCanvases();
+			updateGameData();
 			redrawAll();
 		};
 		
@@ -55,6 +55,7 @@ function continue_loading() {
 
 function updateGameData() {
 	Game.TileLayer = new Array();
+	Game.RobberLayer = new Array();
 	// Add the Sea hexagon to the tile layer
 	Game.TileLayer.push(new SeaHexagon());
 	// Process the tiles into hexagons
@@ -117,7 +118,9 @@ function updateGameData() {
                     Game.tileData[i].robber
                 );
         }
-			
+		if(Game.tileData[i].robber) {
+		    Game.RobberLayer.push(new Robber(i));
+		}
 		Game.TileLayer.push(hex);
 	}
 	
@@ -165,6 +168,7 @@ function redrawAll() {
 	redrawMap();
 	redrawBuildings();
 	redrawOverlay();
+	redrawRobber();
 	redrawUi();
 }
 
@@ -197,7 +201,17 @@ function redrawOverlay() {
 	}
 }
 
-function redrawUi(ctx) {
+function redrawRobber() {
+    var name = Config.Graphics.canvasNames.robber;
+    var ctx = document.getElementById(name).getContext('2d');
+    clearCanvas(name);
+    
+    for(var i = 0; i < Game.RobberLayer.length; i++) {
+        Game.RobberLayer[i].draw(ctx);
+    }
+}
+
+function redrawUi() {
 	var name = Config.Graphics.canvasNames.ui;
 	var ctx = document.getElementById(name).getContext('2d');
 	clearCanvas(name);
@@ -218,7 +232,7 @@ function drawLoadingScreen(ctx) {
 	ctx.save();
 	ctx.translate(0, 50);
 	
-	var randNum = Math.round( Math.random() * Config.LoadingLines.length + 1 ) - 1;
+	var randNum = Math.floor(Math.random() * Config.LoadingLines.length);
 	var textLine = Config.LoadingLines[randNum];
 	console.log(textLine);
 	
