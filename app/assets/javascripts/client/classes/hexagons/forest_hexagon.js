@@ -27,7 +27,7 @@ ForestHexagon.prototype.drawArt = function(ctx) {
     ctx.save();
     this.tilehex.hex.drawPath(ctx);
     ctx.clip();
-    for (var i=0; i<15; i++)
+    for (var i=0; i<Config.Graphics.forestCircleCount; i++)
     {
         this.drawForestCircle(ctx);
     }
@@ -35,10 +35,10 @@ ForestHexagon.prototype.drawArt = function(ctx) {
 }
 
 ForestHexagon.prototype.drawForestCircle = function(ctx) {
-    var colour = "rgba(0, "+Math.floor(Math.random()*256).toString()+", 0, 0.5)";
-    var xpos = Math.floor(Math.random()*200-100);
-    var ypos = Math.floor(Math.random()*200-100);
-    var radius = Math.floor(Math.random()*35+20);
+    var colour = "rgba(0, "+Math.floor(Math.random()*256).toString()+", 0, "+Config.Graphics.forestCircleAlpha+")";
+    var xpos = Math.floor(Math.random()*2*Config.Graphics.length-Config.Graphics.length);
+    var ypos = Math.floor(Math.random()*2*Config.Graphics.length-Config.Graphics.length);
+    var radius = Math.floor(Math.random()*Config.Graphics.forestCircleSizeRange+Config.Graphics.forestCircleMinSize);
     ctx.beginPath();
     ctx.arc(xpos + this.centreX, ypos + this.centreY, radius, 0, 2 * Math.PI, false);
     ctx.fillStyle = colour;
