@@ -35,6 +35,7 @@ Game = {
 	TileLayer: [],
 	BuildingLayer: [],
 	OverlayLayer: [],
+	RobberLayer: [],
 	UiLayer: [InfoWindow],
 }
 
@@ -81,6 +82,11 @@ Config = {
         overlayDebug: false,
         overlayDebugFill: 'rgba(100,0,0,0.4)',
         overlayDebugStroke: 'rgba(200,0,0,0.4)',
+        robberRadius: 10,
+        robberWidth: 15,
+        robberHeight: 30,
+        robberShadowMin: 5,
+        robberShadowMax: 15,
     },
     Resources: [],
     LoadingLines: [
