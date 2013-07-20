@@ -1,10 +1,26 @@
-var InfoWindow = new UiWindow(10, 10, 600, 27, false);
+var InfoWindow = function() {
+    UiWindow.call(this,
+        10,
+        10,
+        400,
+        24,
+        5,
+        false,
+        true,
+        'Tile Info',
+        WindowTabLocationEnum.BOTTOM_LEFT
+    );
+}
 
-InfoWindow.currentTile = -1;
+// Subclassing UiWindow
+InfoWindow.prototype = new UiWindow;
+InfoWindow.constructor = InfoWindow;
 
-InfoWindow.drawContent = function(ctx) {
-	ctx.fillStyle = 'Black';
-	ctx.font = '12pt Arial';
+InfoWindow.prototype.currentTile = -1;
+
+InfoWindow.prototype.drawContent = function(ctx) {
+	ctx.font = Config.Graphics.uiWindowFontSize.toString() + 'px ' + Config.Graphics.uiWindowFont;
+    ctx.fillStyle = Config.Graphics.uiWindowFontFill;
 	ctx.textAlign = 'left';
 	ctx.textBaseline = 'top';
 	

@@ -21,13 +21,13 @@ function _handleMouseMove(event) {
 	}
 	
 	// Info window calculation.
-	InfoWindow.visible = false;
-	InfoWindow.currentTile = -1;
+	Game.UiLayer.infoWindow.visible = false;
+	Game.UiLayer.infoWindow.currentTile = -1;
 	
 	for(var i = 0; i < Game.TileLayer.length; i++) {
 		if(Game.TileLayer[i].isWithin(mouse.x, mouse.y)) {
-			InfoWindow.visible = true;
-			InfoWindow.currentTile = i;
+			Game.UiLayer.infoWindow.visible = true;
+			Game.UiLayer.infoWindow.currentTile = i;
 			break;
 		}
 	}
@@ -49,8 +49,8 @@ function trueMouse(e) {
 			offsetY += canvas.offsetTop;
 		} while ((canvas = canvas.offsetParent));
 		
-		mx = e.pageX - offsetX;
-		my = e.pageY - offsetY;
+		mx = (e.pageX - offsetX) / Config.Graphics.scale;
+		my = (e.pageY - offsetY) / Config.Graphics.scale;
 		
 		return {x: mx, y: my};
 	}
