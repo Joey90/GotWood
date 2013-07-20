@@ -183,7 +183,7 @@ function drawLoadingScreen(ctx) {
 	ctx.save();
 	ctx.translate(0, 50);
 	
-	var randNum = Math.round( Math.random() * Config.LoadingLines.length + 1 ) - 1;
+	var randNum = Math.floor(Math.random() * Config.LoadingLines.length);
 	var textLine = Config.LoadingLines[randNum];
 	console.log(textLine);
 	
