@@ -40,6 +40,7 @@ function init() {
 function continue_loading() {
 	if ( Game.LoadedStatus.vertices && Game.LoadedStatus.edges && Game.LoadedStatus.tiles ) {
 		window.onresize = function() {
+		    resizeCanvases();
 			updateGameData();
 			redrawAll();
 		};
