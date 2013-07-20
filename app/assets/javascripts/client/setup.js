@@ -62,14 +62,63 @@ function updateGameData() {
 	// Process the tiles into hexagons
 	for(var i = 0; i < Game.tileData.length; i++) {
 		var pos = tileCoordinates(i);
-		var hex = new TileHexagon(
-			Config.Graphics.length,
-			pos.x,
-			pos.y,
-			Game.tileData[i].resource,
-			Game.tileData[i].dice_number,
-			Game.tileData[i].robber
-		);
+
+        switch (Game.tileData[i].resource) {
+            case TileEnums.WOOD:
+                var hex = new ForestHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].dice_number,
+                    Game.tileData[i].robber
+                );
+                break;
+            case TileEnums.BRICK:
+                var hex = new HillHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].dice_number,
+                    Game.tileData[i].robber
+                );
+                break;
+            case TileEnums.WOOL:
+                var hex = new PastureHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].dice_number,
+                    Game.tileData[i].robber
+                );
+                break;
+            case TileEnums.WHEAT:
+                var hex = new FieldHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].dice_number,
+                    Game.tileData[i].robber
+                );
+                break;
+            case TileEnums.ORE:
+                var hex = new MountainHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].dice_number,
+                    Game.tileData[i].robber
+                );
+                break;
+            default:
+                var hex = new TileHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].resource,
+                    Game.tileData[i].dice_number,
+                    Game.tileData[i].robber
+                );
+        }
 		if(Game.tileData[i].robber) {
 		    Game.RobberLayer.push(new Robber(i));
 		}
