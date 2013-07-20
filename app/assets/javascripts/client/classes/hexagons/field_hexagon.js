@@ -27,17 +27,17 @@ FieldHexagon.prototype.drawArt = function(ctx) {
     ctx.save();
     this.tilehex.hex.drawPath(ctx);
     ctx.clip();
-    for (var i=0; i<10; i++)
+    for (var i=0; i<Config.Graphics.fieldStripeCount; i++)
     {
-        this.drawFieldCircle(ctx);
+        this.drawFieldStripe(ctx);
     }
     ctx.restore();
 }
 
-FieldHexagon.prototype.drawFieldCircle = function(ctx) {
-    var colour = "rgba(156, 156, "+Math.floor(Math.random()*156).toString()+", 0.5)";
+FieldHexagon.prototype.drawFieldStripe = function(ctx) {
+    var colour = "rgba(156, 156, "+Math.floor(Math.random()*156).toString()+", "+Config.Graphics.fieldStripeAlpha+")";
     var pos = Math.floor(Math.random()*Config.Graphics.length*2-Config.Graphics.length);
-    var height = Math.floor(Math.random()*50+10);
+    var height = Math.floor(Math.random()*Config.Graphics.fieldStripeWidthRange+Config.Graphics.fieldStripeMinWidth);
     ctx.save()
     ctx.translate(this.centreX, this.centreY);
     ctx.rotate(Math.floor(Math.random()*2+1)*Math.PI/6 + Math.PI/4);

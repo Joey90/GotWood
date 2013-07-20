@@ -27,7 +27,7 @@ HillHexagon.prototype.drawArt = function(ctx) {
     ctx.save();
     this.tilehex.hex.drawPath(ctx);
     ctx.clip();
-    for (var i=0; i<10; i++)
+    for (var i=0; i<Config.Graphics.hillStripeCount; i++)
     {
         this.drawHillStripe(ctx);
     }
@@ -35,9 +35,9 @@ HillHexagon.prototype.drawArt = function(ctx) {
 }
 
 HillHexagon.prototype.drawHillStripe = function(ctx) {
-    var colour = "rgba("+Math.floor(Math.random()*256).toString()+",0 , 0, 0.5)";
+    var colour = "rgba("+Math.floor(Math.random()*256).toString()+",0 , 0, "+Config.Graphics.hillStripeAlpha+")";
     var pos = Math.floor(Math.random()*Config.Graphics.length*2-Config.Graphics.length);
-    var height = Math.floor(Math.random()*50+10);
+    var height = Math.floor(Math.random()*Config.Graphics.hillStripeWidthRange+Config.Graphics.hillStripeMinWidth);
     ctx.beginPath();
     ctx.rect(this.centreX - Config.Graphics.length*2, pos + this.centreY, Config.Graphics.length*4, height);
     ctx.fillStyle = colour;
