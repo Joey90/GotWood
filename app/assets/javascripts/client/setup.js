@@ -108,6 +108,14 @@ function updateGameData() {
                     Game.tileData[i].robber
                 );
                 break;
+            case TileEnums.DESERT:
+                var hex = new DesertHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].robber
+                );
+                break;
             default:
                 var hex = new TileHexagon(
                     Config.Graphics.length,

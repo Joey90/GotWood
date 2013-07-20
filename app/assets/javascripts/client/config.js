@@ -114,7 +114,12 @@ Config = {
         seaWaveMinWidth: 5,
         seaWaveWidthRange: 30,
         seaWaveLength: 100,
-        seaWaveCount: 70
+        seaWaveCount: 70,
+        desertWaveAlpha: 0.2,
+        desertWaveMinWidth: 3,
+        desertWaveWidthRange: 10,
+        desertWaveLength: 50,
+        desertWaveCount: 30
     },
     Resources: [],
     LoadingLines: [
