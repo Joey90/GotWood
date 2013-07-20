@@ -1,5 +1,11 @@
 var SeaHexagon = function() {
-	this.hex = new Hexagon(450, 0, 0, TileEnums.SEA);
+	this.hex = new Hexagon(450,
+		0,
+		0,
+		Config.Graphics.oceanFill,
+		Config.Graphics.strokeStyle,
+		Config.Graphics.lineWidth
+	);
 }
 
 SeaHexagon.prototype.draw = function(ctx) {

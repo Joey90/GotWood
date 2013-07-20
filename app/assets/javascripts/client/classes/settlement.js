@@ -9,6 +9,10 @@ Settlement.prototype.draw = function(ctx) {
 	drawVillage(ctx, this.team, this.vertex);
 }
 
+Settlement.prototype.centre = function() {
+	return vertexCoordinates(this.vertex);
+}
+
 function drawVillage(ctx, team, vertexId) {
 	
 	var xy = vertexCoordinates(vertexId);

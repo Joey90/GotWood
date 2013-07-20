@@ -40,3 +40,11 @@ Road.prototype.draw = function(ctx) {
 	
 	ctx.restore();
 }
+
+Road.prototype.centre = function() {
+	return edgeCoordinates(this.edge);
+}
+
+Road.prototype.orientation = function() {
+	return edgeOrientation(this.edge);
+}

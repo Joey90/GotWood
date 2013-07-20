@@ -9,6 +9,10 @@ City.prototype.draw = function(ctx) {
 	drawCity(ctx, this.team, this.vertex);
 }
 
+City.prototype.centre = function() {
+	return vertexCoordinates(this.vertex);
+}
+
 function drawCity(ctx, team, vertexId) {
 	var xy = vertexCoordinates(vertexId);
 	var teamColour = Config.Graphics.teamColours[team];
