@@ -13,14 +13,15 @@ UiWindow.prototype.draw = function(ctx) {
 	if(this.visible) {
 		ctx.fillStyle = 'rgba(250, 250, 250, 0.4)';
 		roundedRect(ctx, this.x, this.y, this.width, this.height, 5 );
-		ctx.stroke();
 		ctx.fill();
+		ctx.stroke();
+		
 	
 		ctx.fillStyle = 'rgba(250, 250, 250, 0.8)';
 		roundedRect(ctx, this.x + 3, this.y + 3, this.width - 6, this.height - 6, 5);
-		ctx.stroke();
 		ctx.fill();
-	
+	    ctx.stroke();
+	    
 		ctx.save();
 		roundedRect(ctx, this.x + 3, this.y + 3, this.width - 6, this.height - 6, 5);
 		ctx.clip();
