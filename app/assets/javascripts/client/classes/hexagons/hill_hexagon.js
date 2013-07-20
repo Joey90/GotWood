@@ -1,4 +1,4 @@
-var BrickHexagon = function(length, centreX, centreY, dice, robber) {
+var HillHexagon = function(length, centreX, centreY, dice, robber) {
     this.tilehex = new TileHexagon(length,
         centreX,
         centreY,
@@ -12,7 +12,7 @@ var BrickHexagon = function(length, centreX, centreY, dice, robber) {
     this.robber = robber;
 }
 
-BrickHexagon.prototype.draw = function(ctx) {
+HillHexagon.prototype.draw = function(ctx) {
     this.tilehex.hex.draw(ctx);
     this.drawArt(ctx);
     this.tilehex.drawDiceNumber(ctx);
@@ -22,22 +22,22 @@ BrickHexagon.prototype.draw = function(ctx) {
     }
 }
 
-BrickHexagon.prototype.isWithin = function(x,y) {
+HillHexagon.prototype.isWithin = function(x,y) {
     return this.tilehex.hex.isWithin(x,y);
 }
 
-BrickHexagon.prototype.drawArt = function(ctx) {
+HillHexagon.prototype.drawArt = function(ctx) {
     ctx.save();
     this.tilehex.hex.drawPath(ctx);
     ctx.clip();
     for (var i=0; i<10; i++)
     {
-        this.drawBrickStripe(ctx);
+        this.drawHillStripe(ctx);
     }
     ctx.restore();
 }
 
-BrickHexagon.prototype.drawBrickStripe = function(ctx) {
+HillHexagon.prototype.drawHillStripe = function(ctx) {
     var colour = "rgba("+Math.floor(Math.random()*256).toString()+",0 , 0, 0.5)";
     var pos = Math.floor(Math.random()*Config.Graphics.length*2-Config.Graphics.length);
     var height = Math.floor(Math.random()*50+10);

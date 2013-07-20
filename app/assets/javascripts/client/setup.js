@@ -72,7 +72,16 @@ function updateGameData() {
                 );
                 break;
             case TileEnums.BRICK:
-                var hex = new BrickHexagon(
+                var hex = new HillHexagon(
+                    Config.Graphics.length,
+                    pos.x,
+                    pos.y,
+                    Game.tileData[i].dice_number,
+                    Game.tileData[i].robber
+                );
+                break;
+            case TileEnums.WOOL:
+                var hex = new PastureHexagon(
                     Config.Graphics.length,
                     pos.x,
                     pos.y,
