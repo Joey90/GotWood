@@ -24,8 +24,6 @@ function drawVillage(ctx, team, vertexId) {
     drawVillageFrontWall(ctx, teamColour, xy.x, xy.y + offset, Config.Graphics.villageSize, true);
     drawVillageFrontWall(ctx, Config.Graphics.buildingShade, xy.x, xy.y + offset, Config.Graphics.villageSize, false);
     drawVillageSideWall(ctx, teamColour, xy.x, xy.y + offset, Config.Graphics.villageSize);
-    drawVillageRoofFront(ctx, teamColour, xy.x, xy.y + offset, Config.Graphics.villageSize, true);
-    drawVillageRoofFront(ctx, Config.Graphics.buildingShade, xy.x, xy.y + offset, Config.Graphics.villageSize, false);
     drawVillageRoofSide(ctx, teamColour, xy.x, xy.y + offset, Config.Graphics.villageSize);
 }
 
@@ -35,8 +33,9 @@ function drawVillageFrontWall(ctx, fill, startX, startY, size, stroke) {
     // Draw the front-facing wall
     ctx.moveTo(startX, startY + size/2);
     ctx.lineTo(startX, startY - size/2);
-    ctx.lineTo(startX + size*Math.cos(Math.PI/9), startY - size*Math.sin(Math.PI/9) - size/2);
-    ctx.lineTo(startX + size*Math.cos(Math.PI/9), startY - size*Math.sin(Math.PI/9) + size/2);
+    ctx.lineTo(startX + size * Math.cos(Math.PI/9)/2, startY - size * Math.sin(Math.PI/9) - size);
+    ctx.lineTo(startX + size * Math.cos(Math.PI/9), startY - size * Math.sin(Math.PI/9) - size/2);
+    ctx.lineTo(startX + size * Math.cos(Math.PI/9), startY - size * Math.sin(Math.PI/9) + size/2);
     ctx.closePath();
 
     ctx.fillStyle = fill;
@@ -63,23 +62,6 @@ function drawVillageSideWall(ctx, fill, startX, startY, size) {
     ctx.strokeStyle = Config.Graphics.strokeStyle;
     ctx.fill();
     ctx.stroke();
-}
-
-function drawVillageRoofFront(ctx, fill, startX, startY, size, stroke) {
-    ctx.beginPath();
-
-    ctx.moveTo(startX, startY - size/2);
-    ctx.lineTo(startX + size * Math.cos(Math.PI/9)/2, startY - size * Math.sin(Math.PI/9) - size);
-    ctx.lineTo(startX + size * Math.cos(Math.PI/9), startY - size * Math.sin(Math.PI/9) - size/2);
-    ctx.closePath();
-
-    ctx.fillStyle = fill;
-    ctx.lineWidth = Config.Graphics.buildingLineWidth;
-    ctx.strokeStyle = Config.Graphics.strokeStyle;
-    ctx.fill();
-    if (stroke) {
-        ctx.stroke();
-    }
 }
 
 function drawVillageRoofSide(ctx,fill, startX, startY, size, stroke) {
