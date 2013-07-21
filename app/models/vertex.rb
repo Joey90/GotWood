@@ -7,11 +7,16 @@ class Vertex < ActiveRecord::Base
   has_and_belongs_to_many :tiles
   has_and_belongs_to_many :edges
   has_and_belongs_to_many :ports
+  
   before_destroy { destroy_associations }
 
   def destroy_associations
     self.tiles.clear
     self.edges.clear
     self.ports.clear
+  end
+  
+  def neighbours
+    self.edges.flat_map {|edge| edge.vertices.find {|vertex| vertex != self}}
   end
 end

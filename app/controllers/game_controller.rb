@@ -168,8 +168,8 @@ class GameController < ApplicationController
     10.upto(17) {|i| associate_edge_and_vertices(edges[i], i-3, i-2, vertices)}
     18.upto(22) {|i| associate_edge_and_vertices(edges[i], 2*i-29, 2*i-19, vertices)}
     23.upto(32) {|i| associate_edge_and_vertices(edges[i], i-7, i-6, vertices)}
-    33.upto(38) {|i| associate_edge_and_vertices(edges[i], 2*i-50, 2*i-38, vertices)}
-    39.upto(48) {|i| associate_edge_and_vertices(edges[i], i-11, i-10, vertices)}
+    33.upto(38) {|i| associate_edge_and_vertices(edges[i], 2*i-50, 2*i-39, vertices)}
+    39.upto(48) {|i| associate_edge_and_vertices(edges[i], i-12, i-11, vertices)}
     49.upto(53) {|i| associate_edge_and_vertices(edges[i], 2*i-70, 2*i-60, vertices)}
     54.upto(61) {|i| associate_edge_and_vertices(edges[i], i-16, i-15, vertices)}
     62.upto(65) {|i| associate_edge_and_vertices(edges[i], 2*i-85, 2*i-77, vertices)}
@@ -210,5 +210,46 @@ class GameController < ApplicationController
   def generate_activation_code(size = 6)
     charset = %w{ 2 3 4 6 7 9 A C D E F G H J K M N P Q R T V W X Y Z}
     (0...size).map{ charset.sample }.join
+  end
+
+  # Parmas
+  # :team     => Int,  Team number
+  # :building => Int,  Building type, see BuildingEnum for valid values
+  # :early    => Bool, Is this the early game setup? If so, we relax some restrictions on settlement placement
+  def valid_build_locations
+    
+    team = Integer(params[:team])
+    building = Integer(params[:building])
+    early = params[:early] == "1"
+    
+    case building
+    when BuildingEnums::VILLAGE # Village
+      valid = Vertex.all.select {|vertex|
+        (early || vertex.edges.any? {|edge|
+          edge.team == team && edge.road # Is this vertex connected by a road owned by the player?
+        }) &&
+        vertex.neighbours.all? {|n|
+          n.building == BuildingEnums::EMPTY
+        } &&
+        vertex.building == BuildingEnums::EMPTY
+      }.map {|v| v.vertex_id}
+    when BuildingEnums::CITY # City
+      valid = Vertex.all.select {|vertex|
+        vertex.building == BuildingEnums::VILLAGE && vertex.team == team
+      }.map {|v| v.vertex_id}
+    when BuildingEnums::ROAD # Road
+      valid = Edge.all.select {|edge|
+        !edge.road &&
+        edge.vertices.any? {|vertex|
+          (vertex.building != BuildingEnums::EMPTY && vertex.team == team) || 
+          vertex.edges.any? {|nedge|
+            nedge.road && nedge.team == team
+          }
+        }
+      }.map {|e| e.edge_id}
+    else
+      valid = []
+    end
+    render :json => valid
   end
 end
