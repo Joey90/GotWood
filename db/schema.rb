@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719134801) do
+ActiveRecord::Schema.define(:version => 20130721192701) do
 
   create_table "edges", :force => true do |t|
     t.integer  "edge_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20130719134801) do
   end
 
   create_table "players", :force => true do |t|
-    t.integer  "player_id"
+    t.integer  "team"
     t.integer  "wood"
     t.integer  "brick"
     t.integer  "wheat"

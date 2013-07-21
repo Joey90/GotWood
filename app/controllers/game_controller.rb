@@ -53,7 +53,7 @@ class GameController < ApplicationController
     Player.delete_all
     0.upto(3) do |i|
       player = Player.new()
-      player.player_id = i
+      player.team = i
       player.wood = 0
       player.brick = 0
       player.wheat = 0
@@ -117,7 +117,7 @@ class GameController < ApplicationController
   end
 
   def players
-    players = Player.all.sort_by {|player| player.player_id}
+    players = Player.all.sort_by {|player| player.team}
     array = []
     if params[:password] == 'test'
       players.each do |player|
@@ -129,7 +129,7 @@ class GameController < ApplicationController
       end
     else
       players.each do |player|
-        hash = { 'player_id' => player.player_id, 'cards' => player.cards }
+        hash = { 'team' => player.team, 'cards' => player.cards }
         array << hash
       end
     end
@@ -276,7 +276,7 @@ class GameController < ApplicationController
     early = true #check if it is early build phase qq
     player = authenticate(cookies[:passcode])
     vertex = Vertex.find_by_vertex_id(params[:vertex_id])
-    if settlement_build_is_valid?(vertex, player.player_id, early) &&
+    if settlement_build_is_valid?(vertex, player.team, early) &&
         player_has_resources?(player, 1, 1, 1, 1, 0) &&
         is_player_turn
       vertex.building = BuildingEnums::SETTLEMENT
