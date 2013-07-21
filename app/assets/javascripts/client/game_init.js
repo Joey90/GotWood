@@ -1,4 +1,9 @@
 function init() {
+    WebFontConfig = {
+        google: { families: [ 'Cantora One' ] },
+        active: function() {console.log('Loaded font');}
+    };
+
 	var button = document.getElementById('startGameButton');
 	button.onclick = function() {
 		button.innerHTML = "Preparing...";

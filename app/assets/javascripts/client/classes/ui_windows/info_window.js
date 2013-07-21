@@ -33,7 +33,7 @@ InfoWindow.prototype.drawContent = function(ctx) {
         } else {
             text = Config.Graphics.tiles[tile.resource].label + ". Produces "
                     + Config.Resources[tile.resource].name.toLowerCase() + " on a "
-                    + tile.dice_number + ". ";
+                    + tile.dice_number + " (" + DiceProbs[tile.dice_number] + "%). ";
         }
 
         if(tile.robber && tile.resource != TileEnums.DESERT) {

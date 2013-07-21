@@ -14,6 +14,7 @@ MountainHexagon.prototype.draw = function(ctx) {
     this.tilehex.hex.drawFill(ctx);
     this.drawArt(ctx);
     this.tilehex.drawDiceNumber(ctx);
+    this.tilehex.drawDiceDots(ctx);
     this.tilehex.hex.drawStroke(ctx);
 };
 

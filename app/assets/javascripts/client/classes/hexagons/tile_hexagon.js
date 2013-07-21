@@ -14,6 +14,7 @@ TileHexagon.prototype.draw = function(ctx) {
 
     if(this.resource != TileEnums.DESERT) {
         this.drawDiceNumber(ctx);
+        this.drawDiceDots(ctx);
     }
 };
 
@@ -48,6 +49,21 @@ TileHexagon.prototype.drawDiceNumber = function(ctx) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(this.dice, this.hex.centreX, this.hex.centreY);
+};
+
+TileHexagon.prototype.drawDiceDots = function(ctx) {
+    dotCount = DiceDots[this.dice];
+    for (var i = 0; i < dotCount; i++) {
+        ctx.beginPath();
+        ctx.arc(this.hex.centreX - Config.Graphics.diceDotRadius*2*(dotCount - 1 - 2*i),
+                this.hex.centreY + Config.Graphics.diceNumCircleRadius/2,
+                Config.Graphics.diceDotRadius,
+                0,
+                2 * Math.PI,
+                false);
+        ctx.fillStyle = Config.Graphics.diceDotFill;
+        ctx.fill();
+    }
 };
 
 TileHexagon.prototype.isWithin = function(x,y) {

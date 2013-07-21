@@ -138,6 +138,8 @@ Config = {
         desertWaveWidthRange: 50,
         desertWaveLength: 50,
         desertWaveCount: 15,
+        diceDotRadius: 1.3,
+        diceDotFill: 'Black',
         uiWindowFontSize: 14, //px
         uiWindowFont    : 'Arial',
         uiWindowFontFill: 'Black',
@@ -184,3 +186,6 @@ TestingData = {
 
     ]
 };
+
+DiceDots = [0,0,1,2,3,4,5,0,5,4,3,2,1];
+DiceProbs = [0,0,3,6,8,11,14,17,14,11,8,6,3];

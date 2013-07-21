@@ -31,7 +31,7 @@ DesertHexagon.prototype.drawArt = function(ctx) {
 };
 
 DesertHexagon.prototype.drawWave = function(ctx) {
-    var colour = "rgba(156, 156, "+Math.floor(Math.random()*156).toString()+", "+Config.Graphics.desertWaveAlpha+")";
+    var colour = "rgba(200, 156, "+Math.floor(Math.random()*156).toString()+", "+Config.Graphics.desertWaveAlpha+")";
     var pos = this.centreY+Math.floor(Math.random()*Config.Graphics.length*2-Config.Graphics.length);
     var width = Math.floor(Math.random()*Config.Graphics.desertWaveWidthRange+Config.Graphics.desertWaveMinWidth);
     var offset = this.centreX-(Math.floor(Math.random()*Config.Graphics.desertWaveLength*2)+Config.Graphics.length);
