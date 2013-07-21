@@ -17,14 +17,16 @@ function drawVillage(ctx, team, vertexId) {
 
     var xy = vertexCoordinates(vertexId);
     var teamColour = Config.Graphics.teamColours[team];
+    var offset = 3;
 
-    drawShadow(ctx, xy.x, xy.y, 20, 5);
-    drawVillageFrontWall(ctx, teamColour, xy.x, xy.y, Config.Graphics.villageSize, true);
-    drawVillageFrontWall(ctx, Config.Graphics.buildingShade, xy.x, xy.y, Config.Graphics.villageSize, false);
-    drawVillageSideWall(ctx, teamColour, xy.x, xy.y, Config.Graphics.villageSize);
-    drawVillageRoofFront(ctx, teamColour, xy.x, xy.y, Config.Graphics.villageSize, true);
-    drawVillageRoofFront(ctx, Config.Graphics.buildingShade, xy.x, xy.y, Config.Graphics.villageSize, false);
-    drawVillageRoofSide(ctx, teamColour, xy.x, xy.y, Config.Graphics.villageSize);
+    drawVillageBase(ctx, Config.Graphics.teamColoursLight[team], xy.x, xy.y);
+    drawShadow(ctx, xy.x, xy.y + offset, 17, 11);
+    drawVillageFrontWall(ctx, teamColour, xy.x, xy.y + offset, Config.Graphics.villageSize, true);
+    drawVillageFrontWall(ctx, Config.Graphics.buildingShade, xy.x, xy.y + offset, Config.Graphics.villageSize, false);
+    drawVillageSideWall(ctx, teamColour, xy.x, xy.y + offset, Config.Graphics.villageSize);
+    drawVillageRoofFront(ctx, teamColour, xy.x, xy.y + offset, Config.Graphics.villageSize, true);
+    drawVillageRoofFront(ctx, Config.Graphics.buildingShade, xy.x, xy.y + offset, Config.Graphics.villageSize, false);
+    drawVillageRoofSide(ctx, teamColour, xy.x, xy.y + offset, Config.Graphics.villageSize);
 }
 
 function drawVillageFrontWall(ctx, fill, startX, startY, size, stroke) {
@@ -38,7 +40,7 @@ function drawVillageFrontWall(ctx, fill, startX, startY, size, stroke) {
     ctx.closePath();
 
     ctx.fillStyle = fill;
-    ctx.lineWidth = Config.Graphics.lineWidth;
+    ctx.lineWidth = Config.Graphics.buildingLineWidth;
     ctx.strokeStyle = Config.Graphics.strokeStyle;
     ctx.fill();
 
@@ -57,7 +59,7 @@ function drawVillageSideWall(ctx, fill, startX, startY, size) {
     ctx.closePath();
 
     ctx.fillStyle = fill;
-    ctx.lineWidth = Config.Graphics.lineWidth;
+    ctx.lineWidth = Config.Graphics.buildingLineWidth;
     ctx.strokeStyle = Config.Graphics.strokeStyle;
     ctx.fill();
     ctx.stroke();
@@ -72,7 +74,7 @@ function drawVillageRoofFront(ctx, fill, startX, startY, size, stroke) {
     ctx.closePath();
 
     ctx.fillStyle = fill;
-    ctx.lineWidth = Config.Graphics.lineWidth;
+    ctx.lineWidth = Config.Graphics.buildingLineWidth;
     ctx.strokeStyle = Config.Graphics.strokeStyle;
     ctx.fill();
     if (stroke) {
@@ -90,8 +92,21 @@ function drawVillageRoofSide(ctx,fill, startX, startY, size, stroke) {
     ctx.closePath();
 
     ctx.fillStyle = fill;
-    ctx.lineWidth = Config.Graphics.lineWidth;
+    ctx.lineWidth = Config.Graphics.buildingLineWidth;
     ctx.strokeStyle = Config.Graphics.strokeStyle;
+    ctx.fill();
+    ctx.stroke();
+}
+
+function drawVillageBase(ctx, fill, x, y) {
+    ctx.beginPath();
+    ctx.arc(x, y, Config.Graphics.buildingBaseRadius,
+        0,
+        2 * Math.PI,
+        false);
+    ctx.fillStyle = fill;
+    ctx.strokeStyle = Config.Graphics.strokeStyle;
+    ctx.lineWidth = Config.Graphics.buildingLineWidth;
     ctx.fill();
     ctx.stroke();
 }

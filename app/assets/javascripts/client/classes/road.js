@@ -34,7 +34,7 @@ Road.prototype.draw = function(ctx) {
 
     ctx.fillStyle = Config.Graphics.teamColours[this.team];
     ctx.strokeStyle = Config.Graphics.strokeStyle;
-    ctx.lineWidth = Config.Graphics.lineWidth;
+    ctx.lineWidth = Config.Graphics.buildingLineWidth;
     ctx.fill();
     ctx.stroke();
 

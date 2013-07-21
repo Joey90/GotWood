@@ -16,12 +16,14 @@ City.prototype.centre = function() {
 function drawCity(ctx, team, vertexId) {
     var xy = vertexCoordinates(vertexId);
     var teamColour = Config.Graphics.teamColours[team];
+    var offset = 3;
 
-    drawShadow(ctx, xy.x, xy.y + 5, Config.Graphics.citySize, 5);
-    drawCityFrontWall(ctx, teamColour, xy.x, xy.y, Config.Graphics.citySize, true);
-    drawCityFrontWall(ctx, Config.Graphics.buildingShade, xy.x, xy.y, Config.Graphics.citySize, false);
-    drawCitySideWall(ctx, teamColour, xy.x, xy.y, Config.Graphics.citySize, true);
-    drawCitySideRoof(ctx, teamColour, xy.x, xy.y, Config.Graphics.citySize, true);
+    drawCityBase(ctx, Config.Graphics.teamColoursLight[team], xy.x, xy.y)
+    drawShadow(ctx, xy.x, xy.y + offset, 17, 11);
+    drawCityFrontWall(ctx, teamColour, xy.x, xy.y + offset, Config.Graphics.citySize, true);
+    drawCityFrontWall(ctx, Config.Graphics.buildingShade, xy.x, xy.y + offset, Config.Graphics.citySize, false);
+    drawCitySideWall(ctx, teamColour, xy.x, xy.y + offset, Config.Graphics.citySize, true);
+    drawCitySideRoof(ctx, teamColour, xy.x, xy.y + offset, Config.Graphics.citySize, true);
 }
 
 function drawCityFrontWall(ctx, fill, startX, startY, size, stroke) {
@@ -37,7 +39,7 @@ function drawCityFrontWall(ctx, fill, startX, startY, size, stroke) {
     ctx.closePath();
 
     ctx.fillStyle = fill;
-    ctx.lineWidth = Config.Graphics.lineWidth;
+    ctx.lineWidth = Config.Graphics.buildingLineWidth;
     ctx.strokeStyle = Config.Graphics.strokeStyle;
     ctx.fill();
 
@@ -56,7 +58,7 @@ function drawCitySideWall(ctx, fill, startX, startY, size, stroke) {
     ctx.closePath();
 
     ctx.fillStyle = fill;
-    ctx.lineWidth = Config.Graphics.lineWidth;
+    ctx.lineWidth = Config.Graphics.buildingLineWidth;
     ctx.strokeStyle = Config.Graphics.strokeStyle;
     ctx.fill();
 
@@ -79,7 +81,7 @@ function drawCitySideRoof(ctx, fill, startX, startY, size, stroke) {
     ctx.closePath();
 
     ctx.fillStyle = fill;
-    ctx.lineWidth = Config.Graphics.lineWidth;
+    ctx.lineWidth = Config.Graphics.buildingLineWidth;
     ctx.strokeStyle = Config.Graphics.strokeStyle;
     ctx.fill();
 
@@ -92,5 +94,18 @@ function drawCitySideRoof(ctx, fill, startX, startY, size, stroke) {
     ctx.lineTo(startX - 1.10 * size *Math.cos(Math.PI/6) + 0.25 * size * Math.cos(Math.PI/9), startY - 0.75 * size - 0.25 * size * Math.sin(Math.PI/9) - 1.1 * size * Math.sin(Math.PI/6));
     ctx.closePath();
 
+    ctx.stroke();
+}
+
+function drawCityBase(ctx, fill, x, y) {
+    ctx.beginPath();
+    ctx.arc(x, y, Config.Graphics.buildingBaseRadius,
+        0,
+        2 * Math.PI,
+        false);
+    ctx.fillStyle = fill;
+    ctx.strokeStyle = Config.Graphics.strokeStyle;
+    ctx.lineWidth = Config.Graphics.buildingLineWidth;
+    ctx.fill();
     ctx.stroke();
 }
