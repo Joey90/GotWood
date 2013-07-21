@@ -11,6 +11,8 @@ GotWood::Application.routes.draw do
   get "game/player"
   get "game/valid_build_locations/:team/:building/:early" => 'game#valid_build_locations'
   get "game/build_settlement"
+  get "game/build_city"
+  get "game/build_road"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
