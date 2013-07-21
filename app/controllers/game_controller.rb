@@ -168,8 +168,8 @@ class GameController < ApplicationController
     10.upto(17) {|i| associate_edge_and_vertices(edges[i], i-3, i-2, vertices)}
     18.upto(22) {|i| associate_edge_and_vertices(edges[i], 2*i-29, 2*i-19, vertices)}
     23.upto(32) {|i| associate_edge_and_vertices(edges[i], i-7, i-6, vertices)}
-    33.upto(38) {|i| associate_edge_and_vertices(edges[i], 2*i-50, 2*i-38, vertices)}
-    39.upto(48) {|i| associate_edge_and_vertices(edges[i], i-11, i-10, vertices)}
+    33.upto(38) {|i| associate_edge_and_vertices(edges[i], 2*i-50, 2*i-39, vertices)}
+    39.upto(48) {|i| associate_edge_and_vertices(edges[i], i-12, i-11, vertices)}
     49.upto(53) {|i| associate_edge_and_vertices(edges[i], 2*i-70, 2*i-60, vertices)}
     54.upto(61) {|i| associate_edge_and_vertices(edges[i], i-16, i-15, vertices)}
     62.upto(65) {|i| associate_edge_and_vertices(edges[i], 2*i-85, 2*i-77, vertices)}
