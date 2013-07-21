@@ -49,13 +49,16 @@ Game = {
     BuildingLayer: [],
     OverlayLayer: [],
     RobberLayer: [],
-    UiLayer: { }
+    UiLayer: { },
+    OverlayCallback: function() { },
+    OverlayCallbackArgs: { }
 };
 
 Config = {
     Graphics: {
         scale: 1,
         canvasNames: {map: 'mapCanvas', buildings: 'buildingsCanvas', robber: 'robberCanvas', overlay: 'overlayCanvas', ui: 'uiCanvas'},
+        numTiles: 19,
         numVertices: 54,
         numEdges   : 72,
         xOffsets: [

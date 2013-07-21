@@ -2,6 +2,10 @@ var Robber = function(tile) {
     this.tile = tile;
 };
 
+Robber.prototype.centre = function() {
+    return tileCoordinates(this.tile);
+}
+
 Robber.prototype.draw = function(ctx) {
     var coords = tileCoordinates(this.tile);
 
