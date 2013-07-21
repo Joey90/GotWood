@@ -33,7 +33,7 @@ ForestHexagon.prototype.drawArt = function(ctx) {
 };
 
 ForestHexagon.prototype.drawForestCircle = function(ctx) {
-    var colour = "rgba(0, "+Math.floor(Math.random()*256).toString()+", 0, "+Config.Graphics.forestCircleAlpha+")";
+    var colour = "rgba(0, "+Math.floor(Math.random()*190+50).toString()+", 0, "+Config.Graphics.forestCircleAlpha+")";
     var xpos = Math.floor(Math.random()*2*Config.Graphics.length-Config.Graphics.length);
     var ypos = Math.floor(Math.random()*2*Config.Graphics.length-Config.Graphics.length);
     var radius = Math.floor(Math.random()*Config.Graphics.forestCircleSizeRange+Config.Graphics.forestCircleMinSize);

@@ -33,7 +33,7 @@ MountainHexagon.prototype.drawArt = function(ctx) {
 };
 
 MountainHexagon.prototype.drawMountainCircle = function(ctx) {
-    var colour = "rgba(156, 156, "+Math.floor(Math.random()*156+100).toString()+", "+Config.Graphics.mountainCircleAlpha+")";
+    var colour = "rgba(150, 140, "+Math.floor(Math.random()*100+140).toString()+", "+Config.Graphics.mountainCircleAlpha+")";
     var xpos = Math.floor(Math.random()*2*Config.Graphics.length-Config.Graphics.length);
     var ypos = Math.floor(Math.random()*2*Config.Graphics.length-Config.Graphics.length);
     var radius = Math.floor(Math.random()*Config.Graphics.mountainCircleSizeRange+Config.Graphics.mountainCircleMinSize);

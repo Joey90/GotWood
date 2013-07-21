@@ -33,7 +33,7 @@ HillHexagon.prototype.drawArt = function(ctx) {
 };
 
 HillHexagon.prototype.drawHillStripe = function(ctx) {
-    var colour = "rgba("+Math.floor(Math.random()*256).toString()+",0 , 0, "+Config.Graphics.hillStripeAlpha+")";
+    var colour = "rgba("+Math.floor(Math.random()*150+50).toString()+", 20, 0, "+Config.Graphics.hillStripeAlpha+")";
     var pos = Math.floor(Math.random()*Config.Graphics.length*2-Config.Graphics.length);
     var height = Math.floor(Math.random()*Config.Graphics.hillStripeWidthRange+Config.Graphics.hillStripeMinWidth);
     ctx.beginPath();

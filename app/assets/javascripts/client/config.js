@@ -105,7 +105,7 @@ Config = {
         robberShadowMax: 15,
         robberColourTop: 'rgb(128,128,128)',
         robberColourBottom: 'rgb(70,79,79)',
-        forestCircleCount: 15,
+        forestCircleCount: 18,
         forestCircleMinSize: 20,
         forestCircleSizeRange: 30,
         forestCircleAlpha: 0.5,
@@ -113,12 +113,12 @@ Config = {
         hillStripeMinWidth: 10,
         hillStripeWidthRange: 40,
         hillStripeAlpha: 0.5,
-        pastureCircleCount: 15,
+        pastureCircleCount: 10,
         pastureCircleMinSize: 20,
         pastureCircleSizeRange: 35,
         pastureCircleMinWidth: 5,
         pastureCircleWidthRange: 5,
-        pastureCircleAlpha: 0.3,
+        pastureCircleAlpha: 0.25,
         fieldStripeCount: 10,
         fieldStripeMinWidth: 10,
         fieldStripeWidthRange: 50,
@@ -129,14 +129,14 @@ Config = {
         mountainCircleAlpha: 0.5,
         seaWaveAlpha: 0.1,
         seaWaveMinWidth: 5,
-        seaWaveWidthRange: 30,
+        seaWaveWidthRange: 100,
         seaWaveLength: 100,
         seaWaveCount: 70,
         desertWaveAlpha: 0.2,
         desertWaveMinWidth: 3,
-        desertWaveWidthRange: 10,
+        desertWaveWidthRange: 50,
         desertWaveLength: 50,
-        desertWaveCount: 30,
+        desertWaveCount: 15,
         uiWindowFontSize: 14, //px
         uiWindowFont    : 'Arial',
         uiWindowFontFill: 'Black',
@@ -160,7 +160,7 @@ Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'DarkGreen',            label:
 Config.Graphics.tiles[TileEnums.BRICK]  = { fill: 'FireBrick',            label: 'Hill' };
 Config.Graphics.tiles[TileEnums.WHEAT]  = { fill: 'Wheat',                label: 'Field' };
 Config.Graphics.tiles[TileEnums.WOOL]   = { fill: 'PaleGreen',            label: 'Pasture' };
-Config.Graphics.tiles[TileEnums.ORE]    = { fill: 'Silver',               label: 'Mountain' };
+Config.Graphics.tiles[TileEnums.ORE]    = { fill: 'rgb(100,100,140)',     label: 'Mountain' };
 
 Config.Resources[TileEnums.DESERT] = { name: 'Nothing' };
 Config.Resources[TileEnums.WOOD]   = { name: 'Wood' };

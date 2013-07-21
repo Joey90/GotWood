@@ -33,7 +33,7 @@ FieldHexagon.prototype.drawArt = function(ctx) {
 };
 
 FieldHexagon.prototype.drawFieldStripe = function(ctx) {
-    var colour = "rgba(156, 156, "+Math.floor(Math.random()*156).toString()+", "+Config.Graphics.fieldStripeAlpha+")";
+    var colour = "rgba(200, 200, "+Math.floor(Math.random()*80).toString()+", "+Config.Graphics.fieldStripeAlpha+")";
     var pos = Math.floor(Math.random()*Config.Graphics.length*2-Config.Graphics.length);
     var height = Math.floor(Math.random()*Config.Graphics.fieldStripeWidthRange+Config.Graphics.fieldStripeMinWidth);
     ctx.save();

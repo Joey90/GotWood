@@ -33,7 +33,7 @@ PastureHexagon.prototype.drawArt = function(ctx) {
 };
 
 PastureHexagon.prototype.drawPastureArc = function(ctx) {
-    var colour = "rgba(0, "+Math.floor(Math.random()*256).toString()+", 0, "+Config.Graphics.pastureCircleAlpha+")";
+    var colour = "rgba(20, "+Math.floor(Math.random()*200+50).toString()+", 0, "+Config.Graphics.pastureCircleAlpha+")";
     var xpos = Math.floor(Math.random()*2*Config.Graphics.length-Config.Graphics.length);
     var ypos = Math.floor(Math.random()*2*Config.Graphics.length-Config.Graphics.length);
     var radius = Math.floor(Math.random()*Config.Graphics.pastureCircleSizeRange+Config.Graphics.pastureCircleMinSize);
