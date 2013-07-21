@@ -51,7 +51,7 @@ class GameController < ApplicationController
     end
 
     Player.delete_all
-    1.upto(4) do |i|
+    0.upto(3) do |i|
       player = Player.new()
       player.player_id = i
       player.wood = 0
@@ -238,6 +238,9 @@ class GameController < ApplicationController
   end
 
   def settlement_build_is_valid?(vertex, team, early = false)
+    puts (early || vertex.edges.any? {|edge| edge.team == team && edge.road})
+    puts (vertex.neighbours.all? {|n| n.building == BuildingEnums::EMPTY})
+    puts (vertex.building == BuildingEnums::EMPTY)
     (early || vertex.edges.any? {|edge| edge.team == team && edge.road}) &&
     (vertex.neighbours.all? {|n| n.building == BuildingEnums::EMPTY}) &&
     (vertex.building == BuildingEnums::EMPTY)
@@ -274,7 +277,7 @@ class GameController < ApplicationController
     player = authenticate(cookies[:passcode])
     vertex = Vertex.find_by_vertex_id(params[:vertex_id])
     if settlement_build_is_valid?(vertex, player.player_id, early) &&
-        player_has_resources?(player_id, 1, 1, 1, 1, 0) &&
+        player_has_resources?(player, 1, 1, 1, 1, 0) &&
         is_player_turn
       vertex.building = BuildingEnums::SETTLEMENT
       vertex.team = player.player_id

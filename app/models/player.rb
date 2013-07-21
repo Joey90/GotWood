@@ -1,6 +1,6 @@
 class Player < ActiveRecord::Base
   attr_accessible :brick, :ore, :passcode, :player_id, :wheat, :wood, :wool
-  validates :player_id, :numericality => { :greater_than_or_equal_to => 1, :less_than_or_equal_to => 4 }
+  validates :player_id, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 3 }
   validates :wood, :numericality => { :greater_than_or_equal_to => 0 }
   validates :brick, :numericality => { :greater_than_or_equal_to => 0 }
   validates :wheat, :numericality => { :greater_than_or_equal_to => 0 }
