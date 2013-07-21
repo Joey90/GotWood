@@ -280,12 +280,50 @@ class GameController < ApplicationController
         player_has_resources?(player, 1, 1, 1, 1, 0) &&
         is_player_turn
       vertex.building = BuildingEnums::SETTLEMENT
-      vertex.team = player.player_id
+      vertex.team = player.team
       vertex.save()
       player.wood -= 1
       player.brick -= 1
       player.wheat -= 1
       player.wool -= 1
+      player.save()
+      render :text => 'built'
+    else
+      render :text => 'invalid'
+    end
+  end
+
+  def build_city
+    is_player_turn = true #check whether it is the player's turn qq
+    player = authenticate(cookies[:passcode])
+    vertex = Vertex.find_by_vertex_id(params[:vertex_id])
+    if city_build_is_valid?(vertex, player.team) &&
+        player_has_resources?(player, 0, 0, 3, 0, 2) &&
+        is_player_turn
+      vertex.building = BuildingEnums::CITY
+      vertex.team = player.team
+      vertex.save()
+      player.wheat -= 3
+      player.ore -= 2
+      player.save()
+      render :text => 'built'
+    else
+      render :text => 'invalid'
+    end
+  end
+
+  def build_road
+    is_player_turn = true #check whether it is the player's turn qq
+    player = authenticate(cookies[:passcode])
+    edge = Edge.find_by_edge_id(params[:edge_id])
+    if road_build_is_valid?(edge, player.team) &&
+        player_has_resources?(player, 1, 1, 0, 0, 0) &&
+        is_player_turn
+      edge.road = true
+      edge.team = player.team
+      edge.save()
+      player.wood -= 1
+      player.brick -= 1
       player.save()
       render :text => 'built'
     else
