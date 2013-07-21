@@ -13,6 +13,7 @@ GotWood::Application.routes.draw do
   get "game/build_settlement"
   get "game/build_city"
   get "game/build_road"
+  get "game/roll_dice"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

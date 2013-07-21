@@ -11,4 +11,34 @@ class Player < ActiveRecord::Base
   def cards
     return self.wood + self.brick + self.wheat + self.wool + self.ore
   end
+
+  def get_resource(resource)
+    case resource
+      when ResourceEnums::WOOD
+        return self.wood
+      when ResourceEnums::BRICK
+        return self.brick
+      when ResourceEnums::WHEAT
+        return self.wheat
+      when ResourceEnums::WOOL
+        return self.wool
+      when ResourceEnums::ORE
+        return self.ore
+    end
+  end
+
+  def set_resource(resource, amount)
+    case resource
+      when ResourceEnums::WOOD
+        self.wood = amount
+      when ResourceEnums::BRICK
+        self.brick = amount
+      when ResourceEnums::WHEAT
+        self.wheat = amount
+      when ResourceEnums::WOOL
+        self.wool = amount
+      when ResourceEnums::ORE
+        self.ore = amount
+    end
+  end
 end

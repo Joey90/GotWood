@@ -143,10 +143,10 @@ class GameController < ApplicationController
     tiles = Tile.all.sort_by {|tile| tile.tile_id}
     vertices = Vertex.all.sort_by {|vertex| vertex.vertex_id}
 
-    0.upto(2) {|i| associate_tile_and_vertices(tiles[i], 2*i+0, 2*i+0, vertices)}
-    3.upto(6) {|i| associate_tile_and_vertices(tiles[i], 2*i+1, 2*i+3, vertices)}
+    0.upto(2) {|i| associate_tile_and_vertices(tiles[i], 2*i+0, 2*i+8, vertices)}
+    3.upto(6) {|i| associate_tile_and_vertices(tiles[i], 2*i+1, 2*i+12, vertices)}
     7.upto(11) {|i| associate_tile_and_vertices(tiles[i], 2*i+2, 2*i+13, vertices)}
-    12.upto(15) {|i| associate_tile_and_vertices(tiles[i], 2*i+3, 2*i+14, vertices)}
+    12.upto(15) {|i| associate_tile_and_vertices(tiles[i], 2*i+4, 2*i+14, vertices)}
     16.upto(18) {|i| associate_tile_and_vertices(tiles[i], 2*i+7, 2*i+15, vertices)}
   end
 
@@ -329,5 +329,39 @@ class GameController < ApplicationController
     else
       render :text => 'invalid'
     end
+  end
+
+  def roll_dice
+    is_player_turn = true #check! qq
+    if is_player_turn
+      roll_one = 1 + rand(6)
+      roll_two = 1 + rand(6)
+      process_dice_roll(roll_one+roll_two)
+      render :json => [roll_one, roll_two]
+    else
+      render :text => 'invalid'
+    end
+  end
+
+  def process_dice_roll(roll)
+    if roll == 7
+      robber_roll
+    else
+      tiles = Tile.find_all_by_dice_number(roll).find_all {|tile| !tile.robber}
+      tiles.each do |tile|
+        puts tile.tile_id
+        tile.vertices.each do |vertex|
+          if (vertex.building == BuildingEnums::SETTLEMENT) || (vertex.building == BuildingEnums::CITY)
+            player = Player.find_by_team(vertex.team)
+            player.set_resource(tile.resource, player.get_resource(tile.resource) + vertex.building)
+            player.save()
+          end
+        end
+      end
+    end
+  end
+
+  def robber_roll
+    #TODO
   end
 end
