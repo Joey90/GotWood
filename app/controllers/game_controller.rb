@@ -108,10 +108,12 @@ class GameController < ApplicationController
   end
 
   def player
-    puts cookies[:passcode]+'lalala'
-    passcode = cookies[:passcode]
-    player = Player.find_by_passcode(passcode)
-    render :json => player, :except => [:id, :created_at, :updated_at]
+    player = authenticate(cookies[:passcode])
+    if player.nil?
+      render :text => 'Unknown Player'
+    else
+      render :json => player, :except => [:id, :created_at, :updated_at]
+    end
   end
 
   def players
@@ -251,5 +253,9 @@ class GameController < ApplicationController
       valid = []
     end
     render :json => valid
+  end
+
+  def authenticate(passcode)
+    return Player.find_by_passcode(passcode)
   end
 end
