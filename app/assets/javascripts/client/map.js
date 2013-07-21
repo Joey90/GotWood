@@ -157,21 +157,18 @@ function drawPorts(ctx, portData) {
         // Transform the context so that the port edge is aligned with the y-axis
         ctx.translate(coordsA.x, coordsA.y);
         ctx.rotate(angle);
-        
-        // Draw the port trapezium
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(Config.Graphics.portLength * cosPi6, Config.Graphics.portLength * sinPi6);
-        ctx.lineTo(Config.Graphics.portLength * cosPi6,
-            Config.Graphics.length - Config.Graphics.portLength * sinPi6);
-        ctx.lineTo(0, Config.Graphics.length);
-        ctx.closePath();
-        
-        // Fill in dat trapezium
-        ctx.lineWidth = Config.Graphics.lineWidth;
-        ctx.strokeStyle = Config.Graphics.strokeStyle;
+
+        portTrapeziumPath(ctx, 1);
         ctx.fillStyle = Config.Graphics.portFill;
         ctx.fill();
+
+        portTrapeziumPath(ctx, 0.2);
+        ctx.fillStyle = Config.Graphics.portFill2;
+        ctx.fill();
+
+        portTrapeziumPath(ctx, 1);
+        ctx.lineWidth = Config.Graphics.lineWidth;
+        ctx.strokeStyle = Config.Graphics.strokeStyle;
         ctx.stroke();
         
         // Save the context
@@ -210,4 +207,16 @@ function drawPorts(ctx, portData) {
         ctx.restore();
         ctx.restore();
     }
+}
+
+function portTrapeziumPath(ctx, scale) {
+    var cosPi6  = Math.cos(Math.PI/6);
+    var sinPi6  = 0.5;
+
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(Config.Graphics.portLength * cosPi6 * scale, Config.Graphics.portLength * sinPi6 * scale);
+    ctx.lineTo(Config.Graphics.portLength * cosPi6 * scale, Config.Graphics.length - Config.Graphics.portLength * sinPi6 * scale);
+    ctx.lineTo(0, Config.Graphics.length);
+    ctx.closePath();
 }

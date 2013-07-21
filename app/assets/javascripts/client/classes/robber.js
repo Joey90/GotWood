@@ -25,13 +25,13 @@ Robber.prototype.draw = function(ctx) {
     ctx.moveTo(w/2, -h/2);
     ctx.arc(0, -h/2 - r * Math.cos(theta/2), r, phi, theta + phi, true);
     ctx.quadraticCurveTo(-w, h/3, -w/2, h/2);
-    ctx.quadraticCurveTo(0, 2*h/3, w/2, h/2);
+    ctx.quadraticCurveTo(0, h/2 + 2.5, w/2, h/2);
     ctx.quadraticCurveTo(w, h/3, w/2, -h/2);
 
     // Construct the radial gradient
     var grad = ctx.createRadialGradient(0, -h/2 - 1.5 * r * Math.cos(theta/2), 3, 0, -h/2 - 1.5 * r * Math.cos(theta/2), 2*w);
-    grad.addColorStop(0, 'Grey');
-    grad.addColorStop(1, 'DarkSlateGrey');
+    grad.addColorStop(0, Config.Graphics.robberColourTop);
+    grad.addColorStop(1, Config.Graphics.robberColourBottom);
 
     ctx.fillStyle = grad;
     ctx.strokeStyle = Config.Graphics.strokeStyle;

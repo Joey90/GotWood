@@ -26,12 +26,21 @@ TileHexagon.prototype.drawDiceNumber = function(ctx) {
         2 * Math.PI,
         false);
 
-    // Draw the circle
     ctx.fillStyle = Config.Graphics.diceNumCircleFill;
     ctx.strokeStyle = Config.Graphics.strokeStyle;
     ctx.lineWidth = Config.Graphics.lineWidth;
     ctx.fill();
     ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(this.hex.centreX,
+        this.hex.centreY,
+        Config.Graphics.diceNumCircleRadius2,
+        0,
+        2 * Math.PI,
+        false);
+    ctx.fillStyle = Config.Graphics.diceNumCircleFill2;
+    ctx.fill();
 
     // Add the text
     ctx.font = Config.Graphics.diceNumFont;
