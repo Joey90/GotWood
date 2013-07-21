@@ -108,7 +108,7 @@ class GameController < ApplicationController
   end
 
   def player
-    player = authenticate(cookies[:passcode])
+    player = authenticate()
     if player.nil?
       render :text => 'Unknown Player'
     else
@@ -267,14 +267,14 @@ class GameController < ApplicationController
     (player.ore >= ore)
   end
 
-  def authenticate(passcode)
-    Player.find_by_passcode(passcode)
+  def authenticate
+    Player.find_by_passcode(cookies[:passcode])
   end
 
   def build_settlement
     is_player_turn = true #check whether it is the player's turn qq
     early = true #check if it is early build phase qq
-    player = authenticate(cookies[:passcode])
+    player = authenticate()
     vertex = Vertex.find_by_vertex_id(params[:vertex_id])
     if settlement_build_is_valid?(vertex, player.team, early) &&
         player_has_resources?(player, 1, 1, 1, 1, 0) &&
@@ -295,7 +295,7 @@ class GameController < ApplicationController
 
   def build_city
     is_player_turn = true #check whether it is the player's turn qq
-    player = authenticate(cookies[:passcode])
+    player = authenticate()
     vertex = Vertex.find_by_vertex_id(params[:vertex_id])
     if city_build_is_valid?(vertex, player.team) &&
         player_has_resources?(player, 0, 0, 3, 0, 2) &&
@@ -314,7 +314,7 @@ class GameController < ApplicationController
 
   def build_road
     is_player_turn = true #check whether it is the player's turn qq
-    player = authenticate(cookies[:passcode])
+    player = authenticate()
     edge = Edge.find_by_edge_id(params[:edge_id])
     if road_build_is_valid?(edge, player.team) &&
         player_has_resources?(player, 1, 1, 0, 0, 0) &&

@@ -4,11 +4,17 @@ function init() {
 
     WebFontConfig = {
         google: { families: [ 'Cantora One' ] },
-        active: function() {console.log('Loaded font'); Game.LoadedStatus.font = true; drawLoadingScreen(ctx); continue_loading();}
+        active: function() {drawLoadingScreen(ctx); console.log('Loaded font'); Game.LoadedStatus.font = true; continueLoading();}
     };
 
     resizeCanvases();
 
+    fetchTileData(continueLoading);
+    fetchEdgeData(continueLoading);
+    fetchVertexData(continueLoading);
+}
+
+function fetchTileData(callback) {
     $.ajax({
         url: '/game/tiles',
         success: function(data) {
@@ -16,9 +22,11 @@ function init() {
             Game.LoadedStatus.tiles = true;
             console.log("Game tile data updated.");
         },
-        complete: continue_loading
+        complete: callback
     });
+}
 
+function fetchEdgeData(callback) {
     $.ajax({
         url: '/game/edges',
         success: function(data) {
@@ -26,9 +34,11 @@ function init() {
             Game.LoadedStatus.edges = true;
             console.log("Game edge data updated.");
         },
-        complete: continue_loading
+        complete: callback
     });
+}
 
+function fetchVertexData(callback) {
     $.ajax({
         url: '/game/vertices',
         success: function(data) {
@@ -36,12 +46,12 @@ function init() {
             Game.LoadedStatus.vertices = true;
             console.log("Game vertex data updated.");
         },
-        complete: continue_loading
-    })
+        complete: callback
+    });
 }
 
 // See if we have all the data, and start drawing the game if we have
-function continue_loading() {
+function continueLoading() {
     if ( Game.LoadedStatus.vertices && Game.LoadedStatus.edges && Game.LoadedStatus.tiles && Game.LoadedStatus.font) {
         window.onresize = function() {
             resizeCanvases();
@@ -147,7 +157,7 @@ function updateGameData() {
     }
     // And for settlements/cities
     for(var i = 0; i < Game.verticesData.length; i++) {
-        if(Game.verticesData[i].building == BuildingEnums.VILLAGE) {
+        if(Game.verticesData[i].building == BuildingEnums.SETTLEMENT) {
             Game.BuildingLayer.push(new Settlement(i, Game.verticesData[i].team));
         } else if(Game.verticesData[i].building == BuildingEnums.CITY) {
             Game.BuildingLayer.push(new City(i, Game.verticesData[i].team));

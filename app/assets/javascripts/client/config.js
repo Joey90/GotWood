@@ -10,7 +10,7 @@ TileEnums = {
 
 BuildingEnums = {
     EMPTY: 0,
-    VILLAGE: 1,
+    SETTLEMENT: 1,
     CITY: 2,
     ROAD: 3
 };

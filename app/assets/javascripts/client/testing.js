@@ -40,7 +40,7 @@ function showBuildingOverlay(team, buildingType) {
 
     for(var i = 0; i < Config.Graphics.numVertices; i++) {
         var settlement = null;
-        if(buildingType == BuildingEnums.VILLAGE) {
+        if(buildingType == BuildingEnums.SETTLEMENT) {
             settlement = new Settlement(i, team);
         } else if(buildingType == BuildingEnums.CITY) {
             settlement = new City(i, team);

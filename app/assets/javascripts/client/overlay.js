@@ -12,7 +12,7 @@ function buildPlaceBuildingOverlay(building, team, early) {
 	           var structure = null;
 	           
 	           switch(building) {
-	               case BuildingEnums.VILLAGE:
+	               case BuildingEnums.SETTLEMENT:
 	                   structure = new Settlement(data[i], team);
 	                   break;
 	               case BuildingEnums.CITY: 
@@ -67,21 +67,59 @@ function hideOverlay() {
 
 function placeStructureCallback(hex, args) {
     
-    // TODO: Tell the server about the chosen location, for now, emulate
-    console.log("Emulating structure update.");
     switch(args.building) {
-        case BuildingEnums.VILLAGE:
+        case BuildingEnums.SETTLEMENT:
+            $.ajax({
+                url: '/game/build_settlement',
+                data: 'vertex_id='+hex.struct.vertex,
+                success: function(data) {
+                    if (data == 'built') {
+                        console.log('Built Settlement!');
+                        fetchVertexData(function() {
+                            updateGameData();
+                            redrawBuildings();
+                        });
+                    } else {
+                        console.log('Build Failed!');
+                    }
+                }
+            });
+            break;
         case BuildingEnums.CITY:
-            Game.verticesData[hex.struct.vertex].building = args.building;
-            Game.verticesData[hex.struct.vertex].team = args.team;
+            $.ajax({
+                url: '/game/build_city',
+                data: 'vertex_id='+hex.struct.vertex,
+                success: function(data) {
+                    if (data == 'built') {
+                        console.log('Built City!');
+                        fetchVertexData(function() {
+                            updateGameData();
+                            redrawBuildings();
+                        });
+                    } else {
+                        console.log('Build Failed!');
+                    }
+                }
+            });
             break;
         case BuildingEnums.ROAD:
-            Game.edgesData[hex.struct.edge].road = true;
-            Game.edgesData[hex.struct.edge].team = args.team;
+            $.ajax({
+                url: '/game/build_road',
+                data: 'edge_id='+hex.struct.edge,
+                success: function(data) {
+                    if (data == 'built') {
+                        console.log('Built Road!');
+                        fetchEdgeData(function() {
+                            updateGameData();
+                            redrawBuildings();
+                        });
+                    } else {
+                        console.log('Build Failed!');
+                    }
+                }
+            });
+            break;
     }
-    
-    updateGameData();
-    redrawBuildings();
 }
 
 function placeRobberCallback(hex, args) {
