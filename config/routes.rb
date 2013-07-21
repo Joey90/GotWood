@@ -10,6 +10,7 @@ GotWood::Application.routes.draw do
   get "game/set_cookie"
   get "game/player"
   get "game/valid_build_locations/:team/:building/:early" => 'game#valid_build_locations'
+  get "game/build_settlement"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

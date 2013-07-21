@@ -214,7 +214,7 @@ class GameController < ApplicationController
     (0...size).map{ charset.sample }.join
   end
 
-  # Parmas
+  # Params
   # :team     => Int,  Team number
   # :building => Int,  Building type, see BuildingEnum for valid values
   # :early    => Bool, Is this the early game setup? If so, we relax some restrictions on settlement placement
@@ -222,40 +222,71 @@ class GameController < ApplicationController
     
     team = Integer(params[:team])
     building = Integer(params[:building])
-    early = params[:early] == "1"
+    early = params[:early] == '1'
     
     case building
-    when BuildingEnums::VILLAGE # Village
-      valid = Vertex.all.select {|vertex|
-        (early || vertex.edges.any? {|edge|
-          edge.team == team && edge.road # Is this vertex connected by a road owned by the player?
-        }) &&
-        vertex.neighbours.all? {|n|
-          n.building == BuildingEnums::EMPTY
-        } &&
-        vertex.building == BuildingEnums::EMPTY
-      }.map {|v| v.vertex_id}
-    when BuildingEnums::CITY # City
-      valid = Vertex.all.select {|vertex|
-        vertex.building == BuildingEnums::VILLAGE && vertex.team == team
-      }.map {|v| v.vertex_id}
-    when BuildingEnums::ROAD # Road
-      valid = Edge.all.select {|edge|
-        !edge.road &&
-        edge.vertices.any? {|vertex|
-          (vertex.building != BuildingEnums::EMPTY && vertex.team == team) || 
-          vertex.edges.any? {|nedge|
-            nedge.road && nedge.team == team
-          }
-        }
-      }.map {|e| e.edge_id}
+    when BuildingEnums::SETTLEMENT
+      valid = Vertex.all.select {|vertex| settlement_build_is_valid?(vertex, team, early)}.map {|v| v.vertex_id}
+    when BuildingEnums::CITY
+      valid = Vertex.all.select {|vertex| city_build_is_valid?(vertex, team)}.map {|v| v.vertex_id}
+    when BuildingEnums::ROAD
+      valid = Edge.all.select {|edge| road_build_is_valid?(edge, team)}.map {|e| e.edge_id}
     else
       valid = []
     end
     render :json => valid
   end
 
+  def settlement_build_is_valid?(vertex, team, early = false)
+    (early || vertex.edges.any? {|edge| edge.team == team && edge.road}) &&
+    (vertex.neighbours.all? {|n| n.building == BuildingEnums::EMPTY}) &&
+    (vertex.building == BuildingEnums::EMPTY)
+  end
+
+  def city_build_is_valid?(vertex, team)
+    (vertex.building == BuildingEnums::SETTLEMENT) &&
+    (vertex.team == team)
+  end
+
+  def road_build_is_valid?(edge, team)
+    !edge.road &&
+    edge.vertices.any? do |vertex|
+       (vertex.building != BuildingEnums::EMPTY && vertex.team == team) ||
+       vertex.edges.any? {|nedge| nedge.road && nedge.team == team}
+    end
+  end
+
+  def player_has_resources?(player, wood = 0, brick = 0, wheat = 0, wool = 0, ore = 0)
+    (player.wood >= wood) &&
+    (player.brick >= brick) &&
+    (player.wheat >= wheat) &&
+    (player.wool >= wool) &&
+    (player.ore >= ore)
+  end
+
   def authenticate(passcode)
-    return Player.find_by_passcode(passcode)
+    Player.find_by_passcode(passcode)
+  end
+
+  def build_settlement
+    is_player_turn = true #check whether it is the player's turn qq
+    early = true #check if it is early build phase qq
+    player = authenticate(cookies[:passcode])
+    vertex = Vertex.find_by_vertex_id(params[:vertex_id])
+    if settlement_build_is_valid?(vertex, player.player_id, early) &&
+        player_has_resources?(player_id, 1, 1, 1, 1, 0) &&
+        is_player_turn
+      vertex.building = BuildingEnums::SETTLEMENT
+      vertex.team = player.player_id
+      vertex.save()
+      player.wood -= 1
+      player.brick -= 1
+      player.wheat -= 1
+      player.wool -= 1
+      player.save()
+      render :text => 'built'
+    else
+      render :text => 'invalid'
+    end
   end
 end
