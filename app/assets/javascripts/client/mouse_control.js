@@ -32,7 +32,18 @@ function _handleMouseMove(event) {
 
 function _handleMouseClick(event) {
     var mouse = trueMouse(event);
-    // No use for mouse clicks yet
+    
+    // If the overlay is active, calculate any hits, 
+    if(Game.State[Game.State.length - 1] == StateEnum.OVERLAY_ACTIVE) {
+        for(var i = 0; i < Game.OverlayLayer.length; i++) {
+            Game.OverlayLayer[i].highlighted = Game.OverlayLayer[i].isWithin(mouse.x, mouse.y);
+            if(Game.OverlayLayer[i].highlighted) {
+                Game.OverlayCallback(Game.OverlayLayer[i], Game.OverlayCallbackArgs);
+                hideOverlay();
+                break;
+            }
+        }
+    }
 }
 
 function trueMouse(e) {
