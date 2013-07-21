@@ -2,8 +2,12 @@ function init() {
     var canvas = document.getElementById('mapCanvas');
     var ctx = canvas.getContext('2d');
 
+    WebFontConfig = {
+        google: { families: [ 'Cantora One' ] },
+        active: function() {console.log('Loaded font'); Game.LoadedStatus.font = true; drawLoadingScreen(ctx); continue_loading();}
+    };
+
     resizeCanvases();
-    drawLoadingScreen(ctx);
 
     $.ajax({
         url: '/game/tiles',
@@ -38,7 +42,7 @@ function init() {
 
 // See if we have all the data, and start drawing the game if we have
 function continue_loading() {
-    if ( Game.LoadedStatus.vertices && Game.LoadedStatus.edges && Game.LoadedStatus.tiles ) {
+    if ( Game.LoadedStatus.vertices && Game.LoadedStatus.edges && Game.LoadedStatus.tiles && Game.LoadedStatus.font) {
         window.onresize = function() {
             resizeCanvases();
             updateGameData();
@@ -265,7 +269,7 @@ function redrawUi() {
 
 // Loading screen
 function drawLoadingScreen(ctx) {
-    ctx.font = '46pt Denk One';
+    ctx.font = '46pt Cantora One, sans-serif';
     ctx.fillStyle = 'Black';
     ctx.textAlign = 'center';
 
@@ -278,6 +282,6 @@ function drawLoadingScreen(ctx) {
     var textLine = Config.LoadingLines[randNum];
     console.log(textLine);
 
-    ctx.font = '16pt Denk One';
+    ctx.font = '16pt Cantora One, sans-serif';
     ctx.fillText(textLine, Config.Graphics.startX, Config.Graphics.startY);
 }

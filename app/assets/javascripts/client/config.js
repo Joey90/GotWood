@@ -40,7 +40,8 @@ Game = {
     LoadedStatus: {
         tiles: false,
         edges: false,
-        vertices: false
+        vertices: false,
+        font: false
     },
     State: [StateEnum.IDLE],
     TileLayer: [],
@@ -80,7 +81,7 @@ Config = {
         portFill2: 'rgb(170,100,20)',
         strokeStyle: 'Black',
         lineWidth  : 2,
-        font       : '14pt Denk One',
+        font       : '14pt Cantora One, sans-serif',
         fontColor  : 'Black',
         textAlign  : 'center',
         teamColours: ['White', 'Red', 'Blue', 'Orange'],
@@ -92,7 +93,7 @@ Config = {
         diceNumCircleRadius2: 20,
         diceNumCircleFill: 'SteelBlue',
         diceNumCircleFill2: 'rgb(180,200,250)',
-        diceNumFont: '14pt Denk One',
+        diceNumFont: '14pt Cantora One, sans-serif',
         diceNumFontFill : 'Black',
         testPlacementAlpha: 0.5,
         overlayDebug: false,
