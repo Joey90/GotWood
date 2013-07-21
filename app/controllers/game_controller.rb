@@ -211,4 +211,45 @@ class GameController < ApplicationController
     charset = %w{ 2 3 4 6 7 9 A C D E F G H J K M N P Q R T V W X Y Z}
     (0...size).map{ charset.sample }.join
   end
+
+  # Parmas
+  # :team     => Int,  Team number
+  # :building => Int,  Building type, see BuildingEnum for valid values
+  # :early    => Bool, Is this the early game setup? If so, we relax some restrictions on settlement placement
+  def valid_build_locations
+    
+    team = Integer(params[:team])
+    building = Integer(params[:building])
+    early = params[:early] == "1"
+    
+    case building
+    when BuildingEnums::VILLAGE # Village
+      valid = Vertex.all.select {|vertex|
+        (early || vertex.edges.any? {|edge|
+          edge.team == team && edge.road # Is this vertex connected by a road owned by the player?
+        }) &&
+        vertex.neighbours.all? {|n|
+          n.building == BuildingEnums::EMPTY
+        } &&
+        vertex.building == BuildingEnums::EMPTY
+      }.map {|v| v.vertex_id}
+    when BuildingEnums::CITY # City
+      valid = Vertex.all.select {|vertex|
+        vertex.building == BuildingEnums::VILLAGE && vertex.team == team
+      }.map {|v| v.vertex_id}
+    when BuildingEnums::ROAD # Road
+      valid = Edge.all.select {|edge|
+        !edge.road &&
+        edge.vertices.any? {|vertex|
+          (vertex.building != BuildingEnums::EMPTY && vertex.team == team) || 
+          vertex.edges.any? {|nedge|
+            nedge.road && nedge.team == team
+          }
+        }
+      }.map {|e| e.edge_id}
+    else
+      valid = []
+    end
+    render :json => valid
+  end
 end
