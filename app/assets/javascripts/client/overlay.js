@@ -123,14 +123,19 @@ function placeStructureCallback(hex, args) {
 }
 
 function placeRobberCallback(hex, args) {
-    
-    // TODO: Tell the server the chosen location, for now, emulate
-    console.log("Emulating robber update.");
-    for(var i = 0; i < args.locations.length; i++) {
-        Game.tileData[args.locations[i]].robber = false;
-    }
-    Game.tileData[hex.struct.tile].robber = true;
-    
-    updateGameData();
-    redrawRobber();
+    $.ajax({
+        url: '/game/move_robber',
+        data: 'tile_id='+hex.struct.tile,
+        success: function(data) {
+            if (data == 'robber moved') {
+                console.log('Moved Robber!');
+                fetchTileData(function() {
+                    updateGameData();
+                    redrawRobber();
+                });
+            } else {
+                console.log('Failed to move Robber!');
+            }
+        }
+    });
 }

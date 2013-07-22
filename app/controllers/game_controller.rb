@@ -332,8 +332,8 @@ class GameController < ApplicationController
   end
 
   def roll_dice
-    is_player_turn = true #check! qq
-    if is_player_turn
+    is_player_roll = true #check! qq
+    if is_player_roll
       roll_one = 1 + rand(6)
       roll_two = 1 + rand(6)
       process_dice_roll(roll_one+roll_two)
@@ -363,5 +363,20 @@ class GameController < ApplicationController
 
   def robber_roll
     #TODO
+  end
+
+  def move_robber
+    is_player_robber_move = true #check! qq
+    tile = Tile.find_by_tile_id(params[:tile_id])
+    if is_player_robber_move && !tile.robber
+      robber_tile = Tile.find_by_robber(true)
+      robber_tile.robber = false
+      tile.robber = true
+      robber_tile.save()
+      tile.save()
+      render :text => 'robber moved'
+    else
+      render :text => 'invalid'
+    end
   end
 end
