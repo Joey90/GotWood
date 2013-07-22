@@ -42,6 +42,7 @@ Game = {
         tiles: false,
         edges: false,
         vertices: false,
+        player: false,
         font: false
     },
     State: [StateEnum.IDLE],

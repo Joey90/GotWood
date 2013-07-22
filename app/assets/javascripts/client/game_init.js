@@ -4,10 +4,10 @@ function init() {
         active: function() {console.log('Loaded font');}
     };
 
-	var button = document.getElementById('startGameButton');
-	button.onclick = function() {
-		button.innerHTML = "Preparing...";
-		button.className = "loading";
+	var startButton = document.getElementById('startGameButton');
+	startButton.onclick = function() {
+		startButton.innerHTML = "Preparing...";
+		startButton.className = "gameButton loading";
 		
 		$.ajax({
 			url: '/game/init',
@@ -15,11 +15,68 @@ function init() {
 			success: function(data) {
 				console.log(data);
 				if(data == "initialised") {
-					button.innerHTML = "Game Ready!";
-					button.className = "ready";
-					window.location.replace('/client/game_board');
-				}
-			}
+					startButton.innerHTML = "Game Ready!";
+					startButton.className = "gameButton ready";
+					window.location.href = '/client/game_board';
+				} else {
+                    startButton.innerHTML = "Something Went Wrong!";
+                    startButton.className = "gameButton failed";
+                    setTimeout(function () {
+                        startButton.innerHTML = "Start New Game";
+                        startButton.className = "gameButton unloaded";
+                    }, 1000)
+                }
+			},
+            error: function() {
+                startButton.innerHTML = "Something Went Wrong!";
+                startButton.className = "gameButton failed";
+                setTimeout(function () {
+                    startButton.innerHTML = "Start New Game";
+                    startButton.className = "gameButton unloaded";
+                }, 1000)
+            }
 		})
-	}
+	};
+
+    var continueButton = document.getElementById('continueGameButton');
+    continueButton.onclick = function() {
+        continueButton.innerHTML = "Game Ready!";
+        continueButton.className = "gameButton ready";
+        window.location.href = '/client/game_board';
+    };
+
+    var passcodeButton = document.getElementById('passcodeButton');
+    passcodeButton.onclick = function() {
+        var passcode = document.getElementById('passcodeInput').value;
+        console.log(passcode);
+        passcodeButton.innerHTML = "Validating...";
+        passcodeButton.className = "gameButton loading";
+        $.ajax({
+            url: '/game/set_cookie',
+            data: 'passcode='+passcode,
+            success: function(data) {
+                if(data == 'cookie set') {
+                    passcodeButton.innerHTML = "Game Ready!";
+                    passcodeButton.className = "gameButton ready";
+                    window.location.href = '/client/game_board';
+                } else {
+                    passcodeButton.innerHTML = "Invalid Passcode!";
+                    passcodeButton.className = "gameButton failed";
+                    setTimeout(function () {
+                        passcodeButton.innerHTML = "Enter Passcode";
+                        passcodeButton.className = "gameButton unloaded";
+                    }, 1000)
+                }
+            },
+            error: function() {
+                passcodeButton.innerHTML = "Something Went Wrong!";
+                passcodeButton.className = "gameButton failed";
+                setTimeout(function () {
+                    passcodeButton.innerHTML = "Enter Passcode";
+                    passcodeButton.className = "gameButton unloaded";
+                }, 1000)
+            }
+        })
+    };
+
 }

@@ -12,6 +12,7 @@ function init() {
     fetchTileData(continueLoading);
     fetchEdgeData(continueLoading);
     fetchVertexData(continueLoading);
+    fetchPlayerData(continueLoading);
 }
 
 function fetchTileData(callback) {
@@ -50,9 +51,31 @@ function fetchVertexData(callback) {
     });
 }
 
+function fetchPlayerData(callback) {
+    $.ajax({
+        url: '/game/player',
+        success: function(data) {
+            Game.playerData = data;
+            Game.LoadedStatus.player = true;
+            console.log("Player data updated.")
+            console.log("Player has "+
+                        data.wood+" wood, "+
+                        data.brick+" brick, "+
+                        data.wheat+" wheat, "+
+                        data.wool+" wool, "+
+                        data.ore+" ore.");
+        },
+        complete: callback
+    });
+}
+
 // See if we have all the data, and start drawing the game if we have
 function continueLoading() {
-    if ( Game.LoadedStatus.vertices && Game.LoadedStatus.edges && Game.LoadedStatus.tiles && Game.LoadedStatus.font) {
+    if ( Game.LoadedStatus.vertices &&
+         Game.LoadedStatus.edges &&
+         Game.LoadedStatus.tiles &&
+         Game.LoadedStatus.player &&
+         Game.LoadedStatus.font) {
         window.onresize = function() {
             resizeCanvases();
             updateGameData();
