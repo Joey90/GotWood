@@ -2,7 +2,6 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	height: 480px;
 	width: 480px;
 	margin-top: -245px;
 	margin-left: -245px;
@@ -31,17 +30,18 @@ p {
 	margin-bottom: 10pt;
 }
 
-#startGameButton {
+.gameButton {
 	height: 25px;
 	width: 200px;
 	padding: 10px;
 
-	position: absolute;
 	bottom: 100px;
 	left: 50%;
 
-	margin-left: -106px;
+	margin-left: auto;
 	margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 5px;
 	border-radius: 5px;
 	border: 1px solid #000000;	
 	
@@ -55,22 +55,37 @@ p {
 	box-shadow: 1px 1px 0px #888;
 }
 
-#startGameButton.loading {
+.gameButton.loading {
 	background: #fcfff4; /* Old browsers */
 	background: linear-gradient(to bottom, #fcfff4 0%,#e9e9ce 100%); /* W3C */
 }
 
-#startGameButton.unloaded, #startGameButton.ready {
+.gameButton.unloaded, .gameButton.ready {
 	background: #e5e696;
 	background: linear-gradient(to bottom, #e5e696 0%,#d1d360 100%); /* W3C */
 	content: 'Start New Game';
 }
 
-#startGameButton.unloaded:hover {
+.gameButton.unloaded:hover {
 	background: #d1d360;
 	background: linear-gradient(to top, #e5e696 0%, #d1d360 100%);
 }
 
-#startGameButton.unloaded:active {
+.gameButton.unloaded:active {
 	box-shadow: 1px 1px 0px #888 inset;
+}
+
+.gameButton.failed {
+    background: #cf5e4c;
+    background: linear-gradient(to bottom, #cf5e4c 0%,#7f2e2c 100%); /* W3C */
+}
+
+#passcodeInput {
+    width: 60px;
+}
+
+#passcodeInputDiv {
+    width: 60px;
+    margin-left: auto;
+    margin-right: auto;
 }
