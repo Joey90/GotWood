@@ -37,7 +37,7 @@ InfoWindow.prototype.drawContent = function(ctx) {
         }
 
         if(tile.robber && tile.resource != TileEnums.DESERT) {
-            text += "The robber is here, blocking resource production.";
+            text += "The robber is here.";
         }
 
         ctx.fillText(text, 0, 0);

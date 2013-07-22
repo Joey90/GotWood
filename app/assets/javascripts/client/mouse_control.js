@@ -7,6 +7,22 @@ function registerMouseHandlers() {
 function _handleMouseMove(event) {
     var mouse = trueMouse(event);
 
+    // UI layer has top priority for mouse detection
+    var hit = false;
+    for(var k in Game.UiLayer) {
+        if(Game.UiLayer[k].isWithin(mouse.x, mouse.y)) {
+            hit = true;
+        }
+        Game.UiLayer[k].highlighted = Game.UiLayer[k].isWithinTab(mouse.x, mouse.y);
+    }
+    
+    redrawUi();
+    
+    // Return if we found a UI window.
+    if(hit)
+        return;
+
+    
     // If the overlay is active, calculate any hits for it
     if(Game.State[Game.State.length - 1] == StateEnum.OVERLAY_ACTIVE) {
         for(var i = 0; i < Game.OverlayLayer.length; i++) {
@@ -33,6 +49,15 @@ function _handleMouseMove(event) {
 function _handleMouseClick(event) {
     var mouse = trueMouse(event);
     
+    // Check to see if a UI window was clicke in
+    for(var k in Game.UiLayer) {
+        Game.UiLayer[k].highlighted = Game.UiLayer[k].isWithinTab(mouse.x, mouse.y);
+        if(Game.UiLayer[k].isWithin(mouse.x, mouse.y)) {
+            hit = true;
+            Game.UiLayer[k].click(mouse);
+        }
+    }
+    
     // If the overlay is active, calculate any hits, 
     if(Game.State[Game.State.length - 1] == StateEnum.OVERLAY_ACTIVE) {
         for(var i = 0; i < Game.OverlayLayer.length; i++) {
@@ -44,6 +69,8 @@ function _handleMouseClick(event) {
             }
         }
     }
+    
+    redrawUi();
 }
 
 function trueMouse(e) {

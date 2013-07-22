@@ -154,7 +154,8 @@ Config = {
         uiWindowStroke: 'black',
         uiWindowBorderRadius: 5,
         uiWindowFill: 'rgba(250,250,250,0.8)',
-        uiWindowFillLite: 'rgba(250,250,250,0.4)'
+        uiWindowFillLite: 'rgba(250,250,250,0.4)',
+        uiWindowTabHighlightFill: 'rgba(218, 165, 32, 0.8)'
     },
     Resources: [],
     LoadingLines: [

@@ -165,15 +165,16 @@ function updateGameData() {
     }
 
 
-    // Add the info window
+    // Construct the various UI elements
     Game.UiLayer.infoWindow = new InfoWindow();
+    Game.UiLayer.testingWin = new CollapsableWindow(400, 50, 5, true, 'Testing Window', WindowTabLocationEnum.TOP_LEFT, false);
 }
 
 function resizeCanvases() {
     for(var k in Config.Graphics.canvasNames) {
         var canvas = document.getElementById(Config.Graphics.canvasNames[k]);
         canvas.width = document.documentElement.clientWidth;
-        canvas.height = document.documentElement.clientHeight - 2;
+        canvas.height = document.documentElement.clientHeight;
     }
 
     if(
@@ -188,7 +189,7 @@ function resizeCanvases() {
     }
 
     Config.Graphics.startX = (document.documentElement.clientWidth / 2) / Config.Graphics.scale;
-    Config.Graphics.startY = (document.documentElement.clientHeight / 2 - 1) / Config.Graphics.scale;
+    Config.Graphics.startY = (document.documentElement.clientHeight / 2) / Config.Graphics.scale;
 
 }
 
