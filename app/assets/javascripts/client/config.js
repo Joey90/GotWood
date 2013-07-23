@@ -148,15 +148,15 @@ Config = {
         diceDotRadius: 1.3,
         diceDotFill: 'Black',
         buildingBaseRadius: 20,
-        uiWindowFontSize: 14, //px
+        uiWindowFontSize: 16, //px
         uiWindowFont    : 'Arial',
         uiWindowFontFill: 'Black',
         uiWindowLineWidth: 1,
         uiWindowStroke: 'black',
         uiWindowBorderRadius: 5,
-        uiWindowFill: 'rgba(250,250,250,0.8)',
-        uiWindowFillLite: 'rgba(250,250,250,0.4)',
-        uiWindowTabHighlightFill: 'rgba(218, 165, 32, 0.8)'
+        uiWindowFill: 'rgba(250,250,250,1)',
+        uiWindowFillLite: 'rgba(230,230,230,0.6)',
+        uiWindowTabHighlightFill: 'rgba(218, 165, 32, 1)'
     },
     Resources: [],
     LoadingLines: [
@@ -167,12 +167,12 @@ Config = {
     ]
 };
 
-Config.Graphics.tiles[TileEnums.DESERT] = { fill: 'LightGoldenrodYellow', label: 'Desert' };
-Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'DarkGreen',            label: 'Forest' };
-Config.Graphics.tiles[TileEnums.BRICK]  = { fill: 'FireBrick',            label: 'Hill' };
-Config.Graphics.tiles[TileEnums.WHEAT]  = { fill: 'Wheat',                label: 'Field' };
-Config.Graphics.tiles[TileEnums.WOOL]   = { fill: 'PaleGreen',            label: 'Pasture' };
-Config.Graphics.tiles[TileEnums.ORE]    = { fill: 'rgb(100,100,140)',     label: 'Mountain' };
+Config.Graphics.tiles[TileEnums.DESERT] = { fill: 'rgb(250, 250, 210)', paleFill: 'rgb(240, 210, 170)', label: 'Desert' };
+Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'rgb(000, 100, 000)', paleFill: 'rgb(200, 256, 190)', label: 'Forest' };
+Config.Graphics.tiles[TileEnums.BRICK]  = { fill: 'rgb(178, 034, 034)', paleFill: 'rgb(256, 200, 190)', label: 'Hill' };
+Config.Graphics.tiles[TileEnums.WHEAT]  = { fill: 'rgb(245, 222, 179)', paleFill: 'rgb(256, 232, 189)', label: 'Field' };
+Config.Graphics.tiles[TileEnums.WOOL]   = { fill: 'rgb(152, 251, 152)', paleFill: 'rgb(220, 256, 200)', label: 'Pasture' };
+Config.Graphics.tiles[TileEnums.ORE]    = { fill: 'rgb(100, 100, 140)', paleFill: 'rgb(220, 210, 240)', label: 'Mountain' };
 
 Config.Resources[TileEnums.DESERT] = { name: 'Nothing' };
 Config.Resources[TileEnums.WOOD]   = { name: 'Wood' };

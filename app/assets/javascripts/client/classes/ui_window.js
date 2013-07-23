@@ -8,45 +8,22 @@ var UiWindow = function(x, y, width, height, padding, visible, showTab, tabTitle
     this.showTab = showTab;
     this.tabTitle = tabTitle;
     this.tabPosition = tabPosition;
-
     this.highlighted = false;
     this.tabPos = null;
     this.tabSize = null;
+
+    this.fillStyle = Config.Graphics.uiWindowFill;
+    this.fillStyleLite = Config.Graphics.uiWindowFillLite;
 };
 
 UiWindow.prototype.draw = function(ctx) {
     if(this.visible) {
+        this.beforeDraw();
 
-        if(this.showTab)
-           this.drawTab(ctx);
+        if(this.showTab) this.drawTab(ctx);
 
-        // Draw outer frame
-        ctx.fillStyle = Config.Graphics.uiWindowFillLite;
-        ctx.strokeStyle = Config.Graphics.uiWindowStroke;
-        ctx.lineWidth = Config.Graphics.uiWindowLineWidth;
-        roundedRect(ctx,
-            this.x,
-            this.y,
-            this.width + 2*this.padding,
-            this.height + 2*this.padding,
-            Config.Graphics.uiWindowBorderRadius
-        );
-        ctx.fill();
-        ctx.stroke();
-
-        // Draw the inner frame
-        ctx.fillStyle = Config.Graphics.uiWindowFill;
-        ctx.strokeStyle = Config.Graphics.uiWindowStroke;
-        ctx.lineWidth = Config.Graphics.uiWindowLineWidth;
-        roundedRect(ctx,
-            this.x + this.padding,
-            this.y + this.padding,
-            this.width,
-            this.height,
-            Config.Graphics.uiWindowBorderRadius
-        );
-        ctx.fill();
-        ctx.stroke();
+        this.drawOuterFrame(ctx);
+        this.drawInnerFrame(ctx);
 
         // Set the clipping region for the actual content and draw it
         ctx.save();
@@ -65,9 +42,39 @@ UiWindow.prototype.draw = function(ctx) {
     }
 };
 
-UiWindow.prototype.drawContent = function(ctx) {
-
+UiWindow.prototype.drawOuterFrame = function(ctx) {
+    ctx.fillStyle = this.fillStyleLite;
+    ctx.strokeStyle = Config.Graphics.uiWindowStroke;
+    ctx.lineWidth = Config.Graphics.uiWindowLineWidth;
+    roundedRect(ctx,
+        this.x,
+        this.y,
+        this.width + 2*this.padding,
+        this.height + 2*this.padding,
+        Config.Graphics.uiWindowBorderRadius
+    );
+    ctx.fill();
+    ctx.stroke();
 };
+
+UiWindow.prototype.drawInnerFrame = function(ctx) {
+    ctx.fillStyle = this.fillStyle;
+    ctx.strokeStyle = Config.Graphics.uiWindowStroke;
+    ctx.lineWidth = Config.Graphics.uiWindowLineWidth;
+    roundedRect(ctx,
+        this.x + this.padding,
+        this.y + this.padding,
+        this.width,
+        this.height,
+        Config.Graphics.uiWindowBorderRadius
+    );
+    ctx.fill();
+    ctx.stroke();
+};
+
+UiWindow.prototype.beforeDraw = function () { }; //Before Draw Callback
+
+UiWindow.prototype.drawContent = function(ctx) { }; //Intended to be overriden
 
 UiWindow.prototype.drawTab = function(ctx) {
     this.tabSize = this.tabMetrics(ctx);

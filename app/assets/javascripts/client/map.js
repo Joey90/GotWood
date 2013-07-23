@@ -194,12 +194,12 @@ function drawPorts(ctx, portData) {
         	ctx.save();
         	ctx.rotate(Math.PI);
         	
-            ctx.fillText(tradeRate, -Config.Graphics.length/2,20);
-            ctx.fillText(resource, -Config.Graphics.length/2, 50);
+            ctx.fillText(tradeRate, -Config.Graphics.length/2, 22);
+            ctx.fillText(resource, -Config.Graphics.length/2, 43);
             
             ctx.restore();
         } else {
-            ctx.fillText(tradeRate, Config.Graphics.length/2, -5);
+            ctx.fillText(tradeRate, Config.Graphics.length/2, -7);
             ctx.fillText(resource, Config.Graphics.length/2, -30);
         }
         
