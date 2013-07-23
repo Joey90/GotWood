@@ -189,7 +189,7 @@ function drawPorts(ctx, portData) {
         ctx.textBaseline = 'alphabetic';
         
         // The ports with a positive angle need their text rotating to be legible.
-        if( angle % Math.PI > 0 ) {
+        if( angle % Math.PI > 0.1 ) {
         	// Rotate the frame a half circle to make the text legible
         	ctx.save();
         	ctx.rotate(Math.PI);

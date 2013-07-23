@@ -171,7 +171,7 @@ Config.Graphics.tiles[TileEnums.DESERT] = { fill: 'rgb(250, 250, 210)', paleFill
 Config.Graphics.tiles[TileEnums.WOOD]   = { fill: 'rgb(000, 100, 000)', paleFill: 'rgb(200, 256, 190)', label: 'Forest' };
 Config.Graphics.tiles[TileEnums.BRICK]  = { fill: 'rgb(178, 034, 034)', paleFill: 'rgb(256, 200, 190)', label: 'Hill' };
 Config.Graphics.tiles[TileEnums.WHEAT]  = { fill: 'rgb(245, 222, 179)', paleFill: 'rgb(256, 232, 189)', label: 'Field' };
-Config.Graphics.tiles[TileEnums.WOOL]   = { fill: 'rgb(152, 251, 152)', paleFill: 'rgb(220, 256, 200)', label: 'Pasture' };
+Config.Graphics.tiles[TileEnums.WOOL]   = { fill: 'rgb(162, 241, 152)', paleFill: 'rgb(220, 256, 200)', label: 'Pasture' };
 Config.Graphics.tiles[TileEnums.ORE]    = { fill: 'rgb(100, 100, 140)', paleFill: 'rgb(220, 210, 240)', label: 'Mountain' };
 
 Config.Resources[TileEnums.DESERT] = { name: 'Nothing' };
