@@ -12,5 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require ./client/config.js
-//= require_tree ./client
+//= require ./client/config
+//= require_directory ./client
+//= require_directory ./client/classes
+//= require_directory ./client/classes/ui_windows
+//= require ./client/classes/hexagons/tile_hexagon
+//= require_directory ./client/classes/hexagons

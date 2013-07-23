@@ -1,5 +1,6 @@
 var SeaHexagon = function() {
-    this.hex = new Hexagon(Config.Graphics.seaLength,
+    Hexagon.call(this,
+        Config.Graphics.seaLength,
         0,
         0,
         Config.Graphics.oceanFill,
@@ -8,15 +9,18 @@ var SeaHexagon = function() {
     );
 };
 
+SeaHexagon.prototype = new Hexagon;
+SeaHexagon.constructor = SeaHexagon;
+
 SeaHexagon.prototype.draw = function(ctx) {
     ctx.save();
 
     ctx.translate(Config.Graphics.startX, Config.Graphics.startY);
     ctx.rotate(Math.PI/6);
 
-    this.hex.drawFill(ctx);
+    this.drawFill(ctx);
     this.drawArt(ctx);
-    this.hex.drawStroke(ctx);
+    this.drawStroke(ctx);
 
     ctx.restore();
 };
@@ -25,7 +29,7 @@ SeaHexagon.prototype.isWithin = function(x,y) { return false; };
 
 SeaHexagon.prototype.drawArt = function(ctx) {
     ctx.save();
-    this.hex.drawPath(ctx);
+    this.drawPath(ctx);
     ctx.clip();
     ctx.rotate(-Math.PI/6);
     for (var i=0; i<Config.Graphics.seaWaveCount; i++)

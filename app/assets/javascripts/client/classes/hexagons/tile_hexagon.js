@@ -1,16 +1,20 @@
 var TileHexagon = function(length, centreX, centreY, resource, dice) {
-    this.hex = new Hexagon(length,
+    Hexagon.call(this,
+        length,
         centreX,
         centreY,
-        Config.Graphics.tiles[resource].fill,
+        (typeof resource === "undefined")  ? undefined : Config.Graphics.tiles[resource].fill,
         Config.Graphics.strokeStyle,
         Config.Graphics.lineWidth);
     this.resource = resource;
     this.dice = dice;
 };
 
+TileHexagon.prototype = new Hexagon;
+TileHexagon.constructor = TileHexagon;
+
 TileHexagon.prototype.draw = function(ctx) {
-    this.hex.draw(ctx);
+    Hexagon.draw.call(this, ctx);
 
     if(this.resource != TileEnums.DESERT) {
         this.drawDiceNumber(ctx);
@@ -20,8 +24,8 @@ TileHexagon.prototype.draw = function(ctx) {
 
 TileHexagon.prototype.drawDiceNumber = function(ctx) {
     ctx.beginPath();
-    ctx.arc(this.hex.centreX,
-        this.hex.centreY,
+    ctx.arc(this.centreX,
+        this.centreY,
         Config.Graphics.diceNumCircleRadius,
         0,
         2 * Math.PI,
@@ -34,8 +38,8 @@ TileHexagon.prototype.drawDiceNumber = function(ctx) {
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.arc(this.hex.centreX,
-        this.hex.centreY,
+    ctx.arc(this.centreX,
+        this.centreY,
         Config.Graphics.diceNumCircleRadius2,
         0,
         2 * Math.PI,
@@ -48,15 +52,15 @@ TileHexagon.prototype.drawDiceNumber = function(ctx) {
     ctx.fillStyle = Config.Graphics.diceNumFontFill;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(this.dice, this.hex.centreX, this.hex.centreY);
+    ctx.fillText(this.dice, this.centreX, this.centreY);
 };
 
 TileHexagon.prototype.drawDiceDots = function(ctx) {
     dotCount = DiceDots[this.dice];
     for (var i = 0; i < dotCount; i++) {
         ctx.beginPath();
-        ctx.arc(this.hex.centreX - Config.Graphics.diceDotRadius*2*(dotCount - 1 - 2*i),
-                this.hex.centreY + Config.Graphics.diceNumCircleRadius/2,
+        ctx.arc(this.centreX - Config.Graphics.diceDotRadius*2*(dotCount - 1 - 2*i),
+                this.centreY + Config.Graphics.diceNumCircleRadius/2,
                 Config.Graphics.diceDotRadius,
                 0,
                 2 * Math.PI,
@@ -64,8 +68,4 @@ TileHexagon.prototype.drawDiceDots = function(ctx) {
         ctx.fillStyle = Config.Graphics.diceDotFill;
         ctx.fill();
     }
-};
-
-TileHexagon.prototype.isWithin = function(x,y) {
-    return this.hex.isWithin(x,y);
 };

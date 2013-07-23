@@ -1,27 +1,24 @@
 var DesertHexagon = function(length, centreX, centreY) {
-    this.tilehex = new TileHexagon(length,
+    TileHexagon.call(this,
+        length,
         centreX,
         centreY,
         TileEnums.DESERT,
         0);
-    this.centreX  = centreX;
-    this.centreY  = centreY;
-    this.resource = TileEnums.DESERT;
 };
+
+DesertHexagon.prototype = new TileHexagon;
+DesertHexagon.constructor = DesertHexagon;
 
 DesertHexagon.prototype.draw = function(ctx) {
-    this.tilehex.hex.drawFill(ctx);
+    this.drawFill(ctx);
     this.drawArt(ctx);
-    this.tilehex.hex.drawStroke(ctx);
-};
-
-DesertHexagon.prototype.isWithin = function(x,y) {
-    return this.tilehex.hex.isWithin(x,y);
+    this.drawStroke(ctx);
 };
 
 DesertHexagon.prototype.drawArt = function(ctx) {
     ctx.save();
-    this.tilehex.hex.drawPath(ctx);
+    this.drawPath(ctx);
     ctx.clip();
     for (var i=0; i<Config.Graphics.desertWaveCount; i++)
     {

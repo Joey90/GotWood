@@ -1,30 +1,26 @@
 var PastureHexagon = function(length, centreX, centreY, dice) {
-    this.tilehex = new TileHexagon(length,
+    TileHexagon.call(this,
+        length,
         centreX,
         centreY,
         TileEnums.WOOL,
         dice);
-    this.centreX  = centreX;
-    this.centreY  = centreY;
-    this.resource = TileEnums.WOOL;
-    this.dice = dice;
 };
+
+PastureHexagon.prototype = new TileHexagon;
+PastureHexagon.constructor = PastureHexagon;
 
 PastureHexagon.prototype.draw = function(ctx) {
-    this.tilehex.hex.drawFill(ctx);
+    this.drawFill(ctx);
     this.drawArt(ctx);
-    this.tilehex.drawDiceNumber(ctx);
-    this.tilehex.drawDiceDots(ctx);
-    this.tilehex.hex.drawStroke(ctx);
-};
-
-PastureHexagon.prototype.isWithin = function(x,y) {
-    return this.tilehex.hex.isWithin(x,y);
+    this.drawDiceNumber(ctx);
+    this.drawDiceDots(ctx);
+    this.drawStroke(ctx);
 };
 
 PastureHexagon.prototype.drawArt = function(ctx) {
     ctx.save();
-    this.tilehex.hex.drawPath(ctx);
+    this.drawPath(ctx);
     ctx.clip();
     for (var i=0; i<Config.Graphics.pastureCircleCount; i++)
     {

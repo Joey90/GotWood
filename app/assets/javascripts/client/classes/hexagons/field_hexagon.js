@@ -1,30 +1,26 @@
 var FieldHexagon = function(length, centreX, centreY, dice) {
-    this.tilehex = new TileHexagon(length,
+    TileHexagon.call(this,
+        length,
         centreX,
         centreY,
         TileEnums.WHEAT,
         dice);
-    this.centreX  = centreX;
-    this.centreY  = centreY;
-    this.resource = TileEnums.WHEAT;
-    this.dice = dice;
 };
+
+FieldHexagon.prototype = new TileHexagon;
+FieldHexagon.constructor = FieldHexagon;
 
 FieldHexagon.prototype.draw = function(ctx) {
-    this.tilehex.hex.drawFill(ctx);
+    this.drawFill(ctx);
     this.drawArt(ctx);
-    this.tilehex.drawDiceNumber(ctx);
-    this.tilehex.drawDiceDots(ctx);
-    this.tilehex.hex.drawStroke(ctx);
-};
-
-FieldHexagon.prototype.isWithin = function(x,y) {
-    return this.tilehex.hex.isWithin(x,y);
+    this.drawDiceNumber(ctx);
+    this.drawDiceDots(ctx);
+    this.drawStroke(ctx);
 };
 
 FieldHexagon.prototype.drawArt = function(ctx) {
     ctx.save();
-    this.tilehex.hex.drawPath(ctx);
+    this.drawPath(ctx);
     ctx.clip();
     for (var i=0; i<Config.Graphics.fieldStripeCount; i++)
     {

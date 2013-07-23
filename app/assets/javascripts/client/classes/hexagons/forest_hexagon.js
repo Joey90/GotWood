@@ -1,30 +1,26 @@
 var ForestHexagon = function(length, centreX, centreY, dice) {
-    this.tilehex = new TileHexagon(length,
+    TileHexagon.call(this,
+        length,
         centreX,
         centreY,
         TileEnums.WOOD,
         dice);
-    this.centreX  = centreX;
-    this.centreY  = centreY;
-    this.resource = TileEnums.WOOD;
-    this.dice = dice;
 };
+
+ForestHexagon.prototype = new TileHexagon;
+ForestHexagon.constructor = ForestHexagon;
 
 ForestHexagon.prototype.draw = function(ctx) {
-    this.tilehex.hex.drawFill(ctx);
+    this.drawFill(ctx);
     this.drawArt(ctx);
-    this.tilehex.drawDiceNumber(ctx);
-    this.tilehex.drawDiceDots(ctx);
-    this.tilehex.hex.drawStroke(ctx);
-};
-
-ForestHexagon.prototype.isWithin = function(x,y) {
-    return this.tilehex.hex.isWithin(x,y);
+    this.drawDiceNumber(ctx);
+    this.drawDiceDots(ctx);
+    this.drawStroke(ctx);
 };
 
 ForestHexagon.prototype.drawArt = function(ctx) {
     ctx.save();
-    this.tilehex.hex.drawPath(ctx);
+    this.drawPath(ctx);
     ctx.clip();
     for (var i=0; i<Config.Graphics.forestCircleCount; i++)
     {
