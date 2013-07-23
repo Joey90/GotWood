@@ -1,6 +1,6 @@
 var OverlayHexagon = function(structure) {
     var loc = structure.centre();
-    this.hex = new Hexagon(
+    Hexagon.call(this,
         Config.Graphics.length / 2,
         loc.x,
         loc.y,
@@ -12,10 +12,13 @@ var OverlayHexagon = function(structure) {
     this.highlighted = false;
 };
 
+OverlayHexagon.prototype = new Hexagon;
+OverlayHexagon.constructor = OverlayHexagon;
+
 OverlayHexagon.prototype.draw = function(ctx) {
 
     if(Config.Graphics.overlayDebug == true) {
-        this.hex.draw(ctx);
+        this.draw(ctx);
     }
 
     if(this.highlighted) {
@@ -24,8 +27,4 @@ OverlayHexagon.prototype.draw = function(ctx) {
         this.struct.draw(ctx);
         ctx.restore();
     }
-};
-
-OverlayHexagon.prototype.isWithin = function(x,y) {
-    return this.hex.isWithin(x,y);
 };
