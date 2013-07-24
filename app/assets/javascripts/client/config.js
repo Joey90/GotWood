@@ -156,7 +156,11 @@ Config = {
         uiWindowBorderRadius: 5,
         uiWindowFill: 'rgba(250,250,250,1)',
         uiWindowFillLite: 'rgba(230,230,230,0.6)',
-        uiWindowTabHighlightFill: 'rgba(218, 165, 32, 1)'
+        uiWindowTabHighlightFill: 'rgba(218, 165, 32, 1)',
+        cardWidth: 40,
+        cardHeight: 60,
+        cardFontSize: 12,
+        cardNumberFontSize: 20
     },
     Resources: [],
     LoadingLines: [

@@ -58,12 +58,6 @@ function fetchPlayerData(callback) {
             Game.playerData = data;
             Game.LoadedStatus.player = true;
             console.log("Player data updated.")
-            console.log("Player has "+
-                        data.wood+" wood, "+
-                        data.brick+" brick, "+
-                        data.wheat+" wheat, "+
-                        data.wool+" wool, "+
-                        data.ore+" ore.");
         },
         complete: callback
     });
@@ -190,7 +184,7 @@ function updateGameData() {
 
     // Construct the various UI elements
     Game.UiLayer.infoWindow = new InfoWindow();
-    Game.UiLayer.testingWin = new CollapsableWindow(400, 50, 5, true, 'Testing Window', WindowTabLocationEnum.TOP_LEFT, false);
+    Game.UiLayer.cardWindow = new CardWindow();
 }
 
 function resizeCanvases() {
