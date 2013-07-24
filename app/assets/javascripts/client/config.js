@@ -160,7 +160,10 @@ Config = {
         cardWidth: 40,
         cardHeight: 60,
         cardFontSize: 12,
-        cardNumberFontSize: 20
+        cardNumberFontSize: 20,
+        separatorWidth: 1,
+        separatorStrokeStyle: 'Black',
+        controlButtonFill: 'rgba(200,200,250,.9)'
     },
     Resources: [],
     LoadingLines: [

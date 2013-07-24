@@ -185,6 +185,7 @@ function updateGameData() {
     // Construct the various UI elements
     Game.UiLayer.infoWindow = new InfoWindow();
     Game.UiLayer.cardWindow = new CardWindow();
+    Game.UiLayer.controlWindow = new ControlWindow();
 }
 
 function resizeCanvases() {
