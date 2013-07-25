@@ -1,7 +1,7 @@
 var PlayersWindow = function() {
     CollapsableWindow.call(this,
         35 + 2*Config.Graphics.cardWidth,
-        600,
+        560,
         5,
         true,
         'Players',
@@ -38,13 +38,31 @@ PlayersWindow.prototype.drawBackground = function(ctx) {
 
 PlayersWindow.prototype.drawPlayerInfo = function(ctx, team, y) {
     var player = Game.playersData[team];
+    var max_vps = ((player.victory_points >= Game.playersData[0].victory_points) &&
+        (player.victory_points >= Game.playersData[1].victory_points) &&
+        (player.victory_points >= Game.playersData[2].victory_points) &&
+        (player.victory_points >= Game.playersData[3].victory_points));
 
-    this.drawCard(ctx, 10, y + 10 + Config.Graphics.playerNameFontSize, 'white', player.cards);
-    this.drawCard(ctx, 20 + Config.Graphics.cardWidth, y + 10 + Config.Graphics.playerNameFontSize, 'white', player.dev_cards);
+    if (max_vps) {
+        this.drawHighlight(ctx, -10, y + 10 + Config.Graphics.playerNameFontSize + Config.Graphics.cardHeight, 20,
+            Config.Graphics.teamColours[player.team], Config.Graphics.teamColoursLight[player.team]);
+    }
+
+    if (player.largest_army) {
+        this.drawHighlight(ctx, this.width/3 - 10, y + 10 + Config.Graphics.playerNameFontSize + Config.Graphics.cardHeight, 20,
+            Config.Graphics.teamColours[player.team], Config.Graphics.teamColoursLight[player.team]);
+    }
+    if (player.longest_road) {
+        this.drawHighlight(ctx, 2*this.width/3 - 10, y + 10 + Config.Graphics.playerNameFontSize + Config.Graphics.cardHeight, 20,
+            Config.Graphics.teamColours[player.team], Config.Graphics.teamColoursLight[player.team]);
+    }
 
     this.drawVPIcon(ctx, 0, y + 20 + Config.Graphics.playerNameFontSize + Config.Graphics.cardHeight);
     this.drawArmyIcon(ctx, this.width/3, y + 20 + Config.Graphics.playerNameFontSize + Config.Graphics.cardHeight);
     this.drawRoadIcon(ctx, 2*this.width/3, y + 20 + Config.Graphics.playerNameFontSize + Config.Graphics.cardHeight);
+
+    this.drawCard(ctx, 10, y + 10 + Config.Graphics.playerNameFontSize, Config.Graphics.resourceCardFill, player.cards);
+    this.drawCard(ctx, 20 + Config.Graphics.cardWidth, y + 10 + Config.Graphics.playerNameFontSize, Config.Graphics.developmentCardFill, player.dev_cards);
 
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
@@ -122,3 +140,11 @@ PlayersWindow.prototype.drawSeparator = function(ctx, y) {
     ctx.strokeStyle = Config.Graphics.separatorStrokeStyle;
     ctx.stroke();
 };
+
+PlayersWindow.prototype.drawHighlight = function(ctx, x, y, r, fill1, fill2) {
+    var grd = ctx.createRadialGradient(x+r, y+r, 0, x+r, y+r, r);
+    grd.addColorStop(0.3, fill1);
+    grd.addColorStop(1, fill2);
+    ctx.fillStyle = grd;
+    ctx.fillRect(x,y,2*r,2*r);
+}

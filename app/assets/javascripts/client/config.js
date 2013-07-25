@@ -92,7 +92,7 @@ Config = {
         fontColor  : 'Black',
         textAlign  : 'center',
         teamColours: ['rgb(200,200,200)', 'rgb(200,20,20)', 'rgb(20,20,200)', 'rgb(250,130,0)'],
-        teamColoursLight: ['rgb(255,255,255)', 'rgb(255,120,120)', 'rgb(120,120,255)', 'rgb(255,180,50)'],
+        teamColoursLight: ['rgb(255,255,255)', 'rgb(255,120,120)', 'rgb(120,120,255)', 'rgb(255,200,100)'],
         oceanFill  : 'RoyalBlue',
         villageSize: 15,
         citySize: 15,
@@ -172,7 +172,9 @@ Config = {
         roadHeight: 20,
         roadWidth: 16,
         armySize: 20,
-        armyFill: 'rgb(250,50,50)'
+        armyFill: 'rgb(250,50,50)',
+        resourceCardFill: 'rgb(200,150,256)',
+        developmentCardFill: 'rgb(200,200,200)'
     },
     Resources: [],
     LoadingLines: [
