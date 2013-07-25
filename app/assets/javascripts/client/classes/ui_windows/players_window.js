@@ -13,14 +13,28 @@ PlayersWindow.prototype = new CollapsableWindow;
 PlayersWindow.constructor = PlayersWindow;
 
 PlayersWindow.prototype.drawContent = function(ctx) {
+    this.drawBackground(ctx);
     this.drawPlayerInfo(ctx, 0, 0);
-    this.drawSeparator(ctx, this.height/4 - 5);
     this.drawPlayerInfo(ctx, 1, this.height/4);
-    this.drawSeparator(ctx, this.height/2 - 5);
     this.drawPlayerInfo(ctx, 2, this.height/2);
-    this.drawSeparator(ctx, 3*this.height/4 - 5);
     this.drawPlayerInfo(ctx, 3, 3*this.height/4);
 };
+
+PlayersWindow.prototype.drawBackground = function(ctx) {
+    ctx.fillStyle = Config.Graphics.teamColoursLight[0];
+    ctx.fillRect(0, 0, this.width, this.height/4);
+    ctx.fillStyle = Config.Graphics.teamColoursLight[1];
+    ctx.fillRect(0, this.height/4 - 5, this.width, this.height/4);
+    ctx.fillStyle = Config.Graphics.teamColoursLight[2];
+    ctx.fillRect(0, this.height/2 - 5, this.width, this.height/4);
+    ctx.fillStyle = Config.Graphics.teamColoursLight[3];
+    ctx.fillRect(0, 3*this.height/4 - 5, this.width, this.height/4);
+
+    this.drawSeparator(ctx, this.height/4 - 5);
+    this.drawSeparator(ctx, this.height/2 - 5);
+    this.drawSeparator(ctx, 3*this.height/4 - 5);
+
+}
 
 PlayersWindow.prototype.drawPlayerInfo = function(ctx, team, y) {
     var player = Game.playersData[team];
@@ -40,7 +54,7 @@ PlayersWindow.prototype.drawPlayerInfo = function(ctx, team, y) {
     ctx.font = Config.Graphics.uiWindowFontSize.toString() + 'px ' + Config.Graphics.uiWindowFont;
     ctx.fillText(player.victory_points, 2 + 2 * Config.Graphics.starRadius, y + 20 + Config.Graphics.playerNameFontSize + Config.Graphics.cardHeight);
     ctx.fillText(player.army, 2 + Config.Graphics.armySize + this.width/3, y + 20 + Config.Graphics.playerNameFontSize + Config.Graphics.cardHeight);
-    ctx.fillText(player.longest_road, 7 + Config.Graphics.roadWidth + 2*this.width/3, y + 20 + Config.Graphics.playerNameFontSize + Config.Graphics.cardHeight);
+    ctx.fillText(player.road, 7 + Config.Graphics.roadWidth + 2*this.width/3, y + 20 + Config.Graphics.playerNameFontSize + Config.Graphics.cardHeight);
 };
 
 PlayersWindow.prototype.drawCard = function(ctx, x, y, fill, number) {
@@ -102,8 +116,8 @@ PlayersWindow.prototype.drawRoadIcon = function(ctx, x, y) {
 
 PlayersWindow.prototype.drawSeparator = function(ctx, y) {
     ctx.beginPath();
-    ctx.moveTo(5, y);
-    ctx.lineTo(this.width-10, y)
+    ctx.moveTo(0, y);
+    ctx.lineTo(this.width, y)
     ctx.lineWidth = Config.Graphics.separatorWidth;
     ctx.strokeStyle = Config.Graphics.separatorStrokeStyle;
     ctx.stroke();

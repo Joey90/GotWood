@@ -41,4 +41,18 @@ class Player < ActiveRecord::Base
         self.ore = amount
     end
   end
+
+  def road
+    Edge.where("team = ? AND road = true", self.team).count
+  end
+
+  def victory_points
+    points = 0
+    points += Vertex.where("team = ? AND building = 1", self.team).count
+    points += 2*Vertex.where("team = ? AND building = 2", self.team).count
+    points += 2 if self.largest_army
+    points += 2 if self.longest_road
+    #points += victory_point_cards
+    points
+  end
 end

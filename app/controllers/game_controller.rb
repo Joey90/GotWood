@@ -130,11 +130,14 @@ class GameController < ApplicationController
     else
       players.each do |player|
         hash = { 'team' => player.team,
-                 'name' => 'testname',
+                 'name' => player.name,
                  'cards' => player.cards,
-                 'dev_cards' => '3', 'army' => 2,
-                 'longest_road' => '3',
-                 'victory_points' => 6}
+                 'dev_cards' => 3,
+                 'army' => player.army,
+                 'largest_army' => player.largest_army,
+                 'road' => player.road,
+                 'longest_road' => player.longest_road,
+                 'victory_points' => player.victory_points}
         array << hash
       end
     end

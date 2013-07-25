@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130721192701) do
+ActiveRecord::Schema.define(:version => 20130725114232) do
 
   create_table "edges", :force => true do |t|
     t.integer  "edge_id"
@@ -33,9 +33,13 @@ ActiveRecord::Schema.define(:version => 20130721192701) do
     t.integer  "wheat"
     t.integer  "wool"
     t.integer  "ore"
-    t.string   "passcode",   :limit => 6
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.string   "passcode",     :limit => 6
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.string   "name"
+    t.integer  "army"
+    t.boolean  "largest_army"
+    t.boolean  "longest_road"
   end
 
   create_table "ports", :force => true do |t|

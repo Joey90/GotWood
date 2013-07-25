@@ -39,6 +39,8 @@ UiWindow.prototype.draw = function(ctx) {
         this.drawContent(ctx);
 
         ctx.restore();
+
+        this.drawInnerFrameBorder(ctx);
     }
 };
 
@@ -59,6 +61,17 @@ UiWindow.prototype.drawOuterFrame = function(ctx) {
 
 UiWindow.prototype.drawInnerFrame = function(ctx) {
     ctx.fillStyle = this.fillStyle;
+    roundedRect(ctx,
+        this.x + this.padding,
+        this.y + this.padding,
+        this.width,
+        this.height,
+        Config.Graphics.uiWindowBorderRadius
+    );
+    ctx.fill();
+};
+
+UiWindow.prototype.drawInnerFrameBorder = function(ctx) {
     ctx.strokeStyle = Config.Graphics.uiWindowStroke;
     ctx.lineWidth = Config.Graphics.uiWindowLineWidth;
     roundedRect(ctx,
@@ -68,7 +81,6 @@ UiWindow.prototype.drawInnerFrame = function(ctx) {
         this.height,
         Config.Graphics.uiWindowBorderRadius
     );
-    ctx.fill();
     ctx.stroke();
 };
 
