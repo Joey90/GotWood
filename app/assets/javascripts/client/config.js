@@ -43,6 +43,7 @@ Game = {
         edges: false,
         vertices: false,
         player: false,
+        players: false,
         font: false
     },
     State: [StateEnum.IDLE],
@@ -163,7 +164,15 @@ Config = {
         cardNumberFontSize: 20,
         separatorWidth: 1,
         separatorStrokeStyle: 'Black',
-        controlButtonFill: 'rgba(200,200,250,.9)'
+        controlButtonFill: 'rgba(200,200,250,.9)',
+        playerNameFontSize: 20,
+        starFill: 'rgb(256,256,20)',
+        starRadius: 10,
+        roadFill: 'rgb(150,150,150)',
+        roadHeight: 20,
+        roadWidth: 16,
+        armySize: 20,
+        armyFill: 'rgb(250,50,50)'
     },
     Resources: [],
     LoadingLines: [

@@ -1,4 +1,3 @@
-
 function tileCoordinates(tileId) {
 	// Spacing and offset constants
     var spaceX = Config.Graphics.length * Math.sqrt(3);

@@ -13,6 +13,7 @@ function init() {
     fetchEdgeData(continueLoading);
     fetchVertexData(continueLoading);
     fetchPlayerData(continueLoading);
+    fetchPlayersData(continueLoading);
 }
 
 function fetchTileData(callback) {
@@ -63,12 +64,25 @@ function fetchPlayerData(callback) {
     });
 }
 
+function fetchPlayersData(callback) {
+    $.ajax({
+        url: '/game/players',
+        success: function(data) {
+            Game.playersData = data;
+            Game.LoadedStatus.players = true;
+            console.log("Players data updated.")
+        },
+        complete: callback
+    });
+}
+
 // See if we have all the data, and start drawing the game if we have
 function continueLoading() {
     if ( Game.LoadedStatus.vertices &&
          Game.LoadedStatus.edges &&
          Game.LoadedStatus.tiles &&
          Game.LoadedStatus.player &&
+         Game.LoadedStatus.players &&
          Game.LoadedStatus.font) {
         window.onresize = function() {
             resizeCanvases();
@@ -186,6 +200,7 @@ function updateGameData() {
     Game.UiLayer.infoWindow = new InfoWindow();
     Game.UiLayer.cardWindow = new CardWindow();
     Game.UiLayer.controlWindow = new ControlWindow();
+    Game.UiLayer.playersWindow = new PlayersWindow();
 }
 
 function resizeCanvases() {

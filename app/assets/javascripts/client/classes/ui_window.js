@@ -225,16 +225,3 @@ UiWindow.prototype.isWithinTab = function(x,y) {
 UiWindow.prototype.click = function(mouse) {
     
 };
-
-function roundedRect(ctx, x, y, w, h, r) {
-    ctx.beginPath();
-    ctx.moveTo(x, y + r);
-    ctx.lineTo(x, y + h - r);
-    ctx.quadraticCurveTo(x, y + h, x + r, y + h);
-    ctx.lineTo(x + w - r, y + h);
-    ctx.quadraticCurveTo(x + w, y + h, x + w, y + h - r);
-    ctx.lineTo(x + w, y + r);
-    ctx.quadraticCurveTo(x + w, y, x + w - r, y);
-    ctx.lineTo(x + r, y);
-    ctx.quadraticCurveTo(x,y,x,y+r);
-}
