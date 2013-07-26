@@ -60,6 +60,10 @@ class GameController < ApplicationController
       player.wool = 0
       player.ore = 0
       player.passcode = generate_activation_code
+      player.army = 0
+      player.largest_army = false
+      player.longest_road = false
+      player.name = "Player #{i+1}"
       player.save()
     end
 
