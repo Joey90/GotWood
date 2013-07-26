@@ -78,6 +78,8 @@ CollapsableWindow.prototype.isWithin = function(x,y) {
 };
 
 CollapsableWindow.prototype.click = function(mouse) {
-    if(this.highlighted)
+    if(this.highlighted) {
         this.expanded = !this.expanded;
+        this.highlighted = false;
+    }
 };
