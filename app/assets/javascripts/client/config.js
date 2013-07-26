@@ -159,7 +159,7 @@ Config = {
         uiWindowFillLite: 'rgba(230,230,230,0.6)',
         uiWindowTabHighlightFill: 'rgba(218, 165, 32, 1)',
         cardWidth: 40,
-        cardHeight: 60,
+        cardHeight: 65,
         cardFontSize: 12,
         cardNumberFontSize: 20,
         separatorWidth: 1,
