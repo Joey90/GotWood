@@ -1,32 +1,28 @@
 var ControlWindow = function() {
     CollapsableWindow.call(this,
-        80,
+        100,
         400,
         5,
         true,
         'Controls',
         WindowTabLocationEnum.LEFT_TOP,
-        false);
+        false
+    );
+        
+    var buildButton = new UiButton(0, 0, 5, "Build", 14, "Arial", "Black", 85, 24);
+    var tradeButton = new UiButton(0, 29, 5, " Trade", 14, "Arial", "Black", 85, 24);
+    
+    buildButton.click = function(mouse) {
+    	alert("Build!");
+    };
+    
+    tradeButton.click = function(mouse) {
+    	alert("Trade");
+    };
+    
+    this.contents.push(buildButton);
+    this.contents.push(tradeButton);    
 };
 
 ControlWindow.prototype = new CollapsableWindow;
 ControlWindow.constructor = ControlWindow;
-
-ControlWindow.prototype.drawContent = function(ctx) {
-    this.drawButton(ctx, 0, 30, 'Build');
-};
-
-ControlWindow.prototype.drawButton = function(ctx, y, height, text) {
-    roundedRect(ctx, 0, y, this.width - 10, height, 5);
-    ctx.fillStyle = Config.Graphics.controlButtonFill;
-    ctx.fill();
-    ctx.lineWidth = Config.Graphics.uiWindowLineWidth;
-    ctx.strokeStyle = Config.Graphics.uiWindowStroke;
-    ctx.stroke();
-
-    ctx.fillStyle = Config.Graphics.uiWindowFontFill
-    ctx.font = Config.Graphics.uiWindowFontSize.toString() + 'px ' + Config.Graphics.uiWindowFont;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(text, this.width/2 - 5, y + height/2);
-}

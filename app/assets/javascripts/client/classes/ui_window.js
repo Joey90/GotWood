@@ -98,7 +98,7 @@ UiWindow.prototype.drawContent = function(ctx) {
 		ctx.save();
 		ctx.translate(this.contents[i].x, this.contents[i].y);
 		ctx.beginPath();
-		ctx.rect(this.contents[i].x - 1, this.contents[i].y - 1,
+		ctx.rect(- 1, - 1,
 			this.contents[i].width + 2, this.contents[i].height + 2);
 		ctx.clip();
 		
