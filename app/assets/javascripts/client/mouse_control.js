@@ -11,6 +11,7 @@ function _handleMouseMove(event) {
     var hit = false;
     for(var k in Game.UiLayer) {
         if(Game.UiLayer[k].isWithin(mouse.x, mouse.y)) {
+            Game.UiLayer[k].mouseOver(mouse);
             hit = true;
         }
         Game.UiLayer[k].highlighted = Game.UiLayer[k].isWithinTab(mouse.x, mouse.y);

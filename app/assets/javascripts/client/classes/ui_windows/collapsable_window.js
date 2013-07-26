@@ -81,5 +81,7 @@ CollapsableWindow.prototype.click = function(mouse) {
     if(this.highlighted) {
         this.expanded = !this.expanded;
         this.highlighted = false;
+    } else {
+    	UiWindow.prototype.click.call(this, mouse);
     }
 };

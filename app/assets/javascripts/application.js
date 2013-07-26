@@ -17,5 +17,6 @@
 //= require_directory ./client/classes
 //= require ./client/classes/ui_windows/collapsable_window
 //= require_directory ./client/classes/ui_windows
+//= require_directory ./client/classes/ui_elements
 //= require ./client/classes/hexagons/tile_hexagon
 //= require_directory ./client/classes/hexagons

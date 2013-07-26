@@ -14,11 +14,13 @@ var UiWindow = function(x, y, width, height, padding, visible, showTab, tabTitle
 
     this.fillStyle = Config.Graphics.uiWindowFill;
     this.fillStyleLite = Config.Graphics.uiWindowFillLite;
+    
+    this.contents = [];
 };
 
 UiWindow.prototype.draw = function(ctx) {
     if(this.visible) {
-        this.beforeDraw();
+        this.beforeDraw(ctx);
 
         if(this.showTab) this.drawTab(ctx);
 
@@ -84,9 +86,27 @@ UiWindow.prototype.drawInnerFrameBorder = function(ctx) {
     ctx.stroke();
 };
 
-UiWindow.prototype.beforeDraw = function () { }; //Before Draw Callback
+UiWindow.prototype.beforeDraw = function(ctx) {
+	for(var i = 0; i < this.contents.length; i++) {
+		this.contents[i].beforeDraw(ctx);
+	}
+};
 
-UiWindow.prototype.drawContent = function(ctx) { }; //Intended to be overriden
+UiWindow.prototype.drawContent = function(ctx) {
+	for(var i = 0; i < this.contents.length; i++) {
+		// Create the clipping region and then draw the content
+		ctx.save();
+		ctx.translate(this.contents[i].x, this.contents[i].y);
+		ctx.beginPath();
+		ctx.rect(this.contents[i].x - 1, this.contents[i].y - 1,
+			this.contents[i].width + 2, this.contents[i].height + 2);
+		ctx.clip();
+		
+		this.contents[i].draw(ctx);
+		
+		ctx.restore();
+	}
+};
 
 UiWindow.prototype.drawTab = function(ctx) {
     this.tabSize = this.tabMetrics(ctx);
@@ -234,6 +254,20 @@ UiWindow.prototype.isWithinTab = function(x,y) {
         return false;
 };
 
+UiWindow.prototype.mouseOver = function(mouse) {
+	var relMouse = {x: mouse.x - this.x - 2*this.padding, y: mouse.y - this.y - 2*this.padding};
+	for(var i = 0; i < this.contents.length; i++) {
+		if(this.contents[i].isWithin(relMouse.x, relMouse.y))
+			this.contents[i].mouseOver(relMouse);
+		else if(this.contents[i].highlighted)
+			this.contents[i].mouseOut(relMouse);
+	}
+}
+
 UiWindow.prototype.click = function(mouse) {
-    
+	var relMouse = {x: mouse.x - this.x - 2*this.padding, y: mouse.y - this.y - 2*this.padding};
+    for(var i = 0; i < this.contents.length; i++) {
+    	if(this.contents[i].isWithin(relMouse.x, relMouse.y))
+    		this.contents[i].click(relMouse);
+    }
 };
