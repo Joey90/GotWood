@@ -13,6 +13,8 @@ function _handleMouseMove(event) {
         if(Game.UiLayer[k].isWithin(mouse.x, mouse.y)) {
             Game.UiLayer[k].mouseOver(mouse);
             hit = true;
+        } else {
+            Game.UiLayer[k].mouseOut(mouse);
         }
         Game.UiLayer[k].highlighted = Game.UiLayer[k].isWithinTab(mouse.x, mouse.y);
     }

@@ -264,6 +264,13 @@ UiWindow.prototype.mouseOver = function(mouse) {
 	}
 }
 
+UiWindow.prototype.mouseOut = function(mouse) {
+    var relMouse = {x: mouse.x - this.x - 2*this.padding, y: mouse.y - this.y - 2*this.padding};
+    for(var i = 0; i < this.contents.length; i++) {
+        this.contents[i].mouseOut(mouse);
+    }
+}
+
 UiWindow.prototype.click = function(mouse) {
 	var relMouse = {x: mouse.x - this.x - 2*this.padding, y: mouse.y - this.y - 2*this.padding};
     for(var i = 0; i < this.contents.length; i++) {
