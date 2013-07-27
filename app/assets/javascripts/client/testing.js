@@ -69,8 +69,11 @@ function setPlayerResources() {
             if(data.result) {
                 Game.LoadedStatus.player = false;
                 Game.LoadedStatus.players = false;
-                fetchPlayerData(continueLoading);
-                fetchPlayersData(continueLoading);
+                var postBuild = function() {
+                    redrawUi();
+                };
+                fetchPlayerData(function() {});
+                fetchPlayersData(postBuild);
             }
         }
     });

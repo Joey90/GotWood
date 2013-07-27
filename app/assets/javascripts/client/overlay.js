@@ -78,6 +78,7 @@ function placeStructureCallback(hex, args) {
                         fetchVertexData(function() {
                             updateGameData();
                             redrawBuildings();
+                            redrawUi();
                         });
                     } else {
                         console.log('Build Failed!');
@@ -95,6 +96,7 @@ function placeStructureCallback(hex, args) {
                         fetchVertexData(function() {
                             updateGameData();
                             redrawBuildings();
+                            redrawUi();
                         });
                     } else {
                         console.log('Build Failed!');
@@ -112,6 +114,7 @@ function placeStructureCallback(hex, args) {
                         fetchEdgeData(function() {
                             updateGameData();
                             redrawBuildings();
+                            redrawUi();
                         });
                     } else {
                         console.log('Build Failed!');
@@ -132,6 +135,7 @@ function placeRobberCallback(hex, args) {
                 fetchTileData(function() {
                     updateGameData();
                     redrawRobber();
+                    redrawUi();
                 });
             } else {
                 console.log('Failed to move Robber!');

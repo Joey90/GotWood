@@ -25,6 +25,10 @@ var ControlWindow = function() {
     
     // Debugging controls
     if(Game.Debug) {
+        var moveRobber = new UiButton(0, 395 - 6*29, 5,
+            "Move Robber", 10, "Arial", "Black", 85, 24);
+        moveRobber.click = buildPlaceRobberOverlay;
+
         var grantResource = new UiButton(0, 395 - 5*29, 5,
             "Set Resources", 10, "Arial", "Black", 85, 24);
         grantResource.click = setPlayerResources;
@@ -65,6 +69,19 @@ var ControlWindow = function() {
         this.contents.push(townOverlay);
         this.contents.push(cityOverlay);
         this.contents.push(grantResource);
+        this.contents.push(moveRobber);
+        
+        this.contents.push(
+            new UiLabel(13, 395 - 7*29 + 5,
+                "Cheats",
+                18,
+                "Arial",
+                "Black"
+            )
+        );
+        this.contents.push(
+            new UiSeparator(0, 395-7*29, 90, true)  
+        );
     }
 };
 

@@ -18,5 +18,7 @@ UiLabel.prototype.beforeDraw = function(ctx) {
 UiLabel.prototype.draw = function(ctx) {
 	ctx.font = this.font;
 	ctx.fillStyle = this.fill;
+	ctx.textAlign = 'left';
+	ctx.textBaseline = 'top';
 	ctx.fillText(this.text, 0, 0);
 };
