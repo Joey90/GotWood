@@ -1,12 +1,12 @@
 var PlayersWindow = function() {
     CollapsableWindow.call(this,
-        35 + 2*Config.Graphics.cardWidth,
+        150,
         560,
         5,
         true,
         'Players',
         WindowTabLocationEnum.RIGHT_TOP,
-        false);
+        true);
 };
 
 PlayersWindow.prototype = new CollapsableWindow;

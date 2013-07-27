@@ -3,6 +3,7 @@ class GameController < ApplicationController
   TILE_ORDER = [0,3,7,12,16,17,18,15,11,6,2,1,4,8,13,14,10,5,9]
   DICE_ORDER = [5,2,6,3,8,10,9,12,11,4,8,10,9,4,5,6,3,11]
   PORT_RESOURCES = [0,5,3,0,1,2,0,0,4]
+  DEBUG = true
 
   def init
     Tile.delete_all
@@ -391,4 +392,17 @@ class GameController < ApplicationController
       render :text => 'invalid'
     end
   end
+  
+  def set_resources
+    if DEBUG
+      player = Player.find_by_team(params[:player])
+      player.wood = params[:wood]
+      player.brick = params[:brick]
+      player.wheat = params[:wheat]
+      player.wool = params[:wool]
+      player.ore = params[:ore]
+      render :json => { :result => player.save }
+    end
+  end
+  
 end

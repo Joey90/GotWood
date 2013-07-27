@@ -53,7 +53,9 @@ Game = {
     RobberLayer: [],
     UiLayer: { },
     OverlayCallback: function() { },
-    OverlayCallbackArgs: { }
+    OverlayCallbackArgs: { },
+    Debug: true,
+    DebugArgs : {early: true}
 };
 
 Config = {
