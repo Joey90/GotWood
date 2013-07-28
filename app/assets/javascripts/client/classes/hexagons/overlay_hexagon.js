@@ -17,8 +17,8 @@ OverlayHexagon.constructor = OverlayHexagon;
 
 OverlayHexagon.prototype.draw = function(ctx) {
 
-    if(Config.Graphics.overlayDebug == true) {
-        this.draw(ctx);
+    if(Config.Graphics.overlayDebug) {
+        Hexagon.prototype.draw.call(this, ctx);
     }
 
     if(this.highlighted) {
