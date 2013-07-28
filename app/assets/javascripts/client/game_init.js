@@ -79,4 +79,10 @@ function init() {
         })
     };
 
+    var passcodeBox = document.getElementById('passcodeInput');
+    passcodeBox.onkeydown = function(event) {
+        if(event.keyCode == KeyboardEvent.DOM_VK_RETURN) {
+            passcodeButton.click();
+        }
+    };
 }
