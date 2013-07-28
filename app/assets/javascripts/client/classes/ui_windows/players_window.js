@@ -7,11 +7,19 @@ var PlayersWindow = function() {
         'Players',
         WindowTabLocationEnum.RIGHT_TOP,
         true);
+        
+    for(var i = 0; i < 4; i++) {
+        this.contents.push(new UiPlayerInfo(0,-5 + (i)*this.height/4, this.width, this.height/4, i));
+        if(i != 3)
+            this.contents.push(new UiSeparator(-2, -5 + (i+1)*this.height/4, this.width + 4, true));
+    }
 };
+
 
 PlayersWindow.prototype = new CollapsableWindow;
 PlayersWindow.constructor = PlayersWindow;
 
+/*
 PlayersWindow.prototype.drawContent = function(ctx) {
     this.drawBackground(ctx);
     this.drawPlayerInfo(ctx, 0, 0);
@@ -147,4 +155,4 @@ PlayersWindow.prototype.drawHighlight = function(ctx, x, y, r, fill1, fill2) {
     grd.addColorStop(1, fill2);
     ctx.fillStyle = grd;
     ctx.fillRect(x,y,2*r,2*r);
-}
+} */

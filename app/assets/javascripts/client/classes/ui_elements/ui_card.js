@@ -6,7 +6,6 @@ var UiCard = function(x, y, resource, number) {
 		Config.Graphics.cardHeight +2
 	);
 	this.resource = resource;
-	this.number = number;
 };
 
 UiCard.prototype = new UiElement;
@@ -28,5 +27,25 @@ UiCard.prototype.draw = function(ctx) {
 	ctx.font = Config.Graphics.cardFontSize.toString() + 'px ' + Config.Graphics.uiWindowFont;
 	ctx.fillText(Config.Resources[this.resource].name, Config.Graphics.cardWidth/2, 5);
 	ctx.font = Config.Graphics.diceNumFont;
-	ctx.fillText(this.number, Config.Graphics.cardWidth/2, 30);
+	
+	var text = '';
+	switch(this.resource) {
+	    case TileEnums.WOOD:
+	       text = 'wood';
+	       break;
+	    case TileEnums.BRICK:
+	       text = 'brick';
+	       break;
+	    case TileEnums.WHEAT:
+	       text = 'wheat';
+	       break;
+	    case TileEnums.WOOL:
+	       text = 'wool';
+	       break;
+	    case TileEnums.ORE:
+	       text = 'ore';
+	       break;
+	}
+	
+	ctx.fillText(Game.playerData[text], Config.Graphics.cardWidth/2, 30);
 };

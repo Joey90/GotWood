@@ -12,32 +12,27 @@ var CardWindow = function() {
 	var woodCard = new UiCard(
 	    0,
 	    0,
-	    TileEnums.WOOD,
-	    Game.playerData.wood
+	    TileEnums.WOOD
 	);
 	var brickCard = new UiCard(
 	    5 + Config.Graphics.cardWidth,
 	    0,
-	    TileEnums.BRICK,
-	    Game.playerData.brick
+	    TileEnums.BRICK
 	);
 	var wheatCard = new UiCard(
 	    10 + 2*Config.Graphics.cardWidth,
 	    0,
-	    TileEnums.WHEAT,
-	    Game.playerData.wheat
+	    TileEnums.WHEAT
 	);
 	var woolCard = new UiCard(
 	    15 + 3*Config.Graphics.cardWidth,
 	    0,
-	    TileEnums.WOOL,
-	    Game.playerData.wool
+	    TileEnums.WOOL
 	);
 	var oreCard = new UiCard(
 	    20 + 4*Config.Graphics.cardWidth,
 	    0,
-	    TileEnums.ORE,
-	    Game.playerData.ore
+	    TileEnums.ORE
 	);
 	
 	this.contents.push(woodCard);
