@@ -8,30 +8,20 @@ function _handleMouseMove(event) {
     var mouse = trueMouse(event);
 
     // UI layer has top priority for mouse detection
-    var hit = false;
     for(var k in Game.UiLayer) {
         if(Game.UiLayer[k].isWithin(mouse.x, mouse.y)) {
             Game.UiLayer[k].mouseOver(mouse);
-            hit = true;
         } else {
             Game.UiLayer[k].mouseOut(mouse);
         }
         Game.UiLayer[k].highlighted = Game.UiLayer[k].isWithinTab(mouse.x, mouse.y);
     }
     
-    redrawUi();
-    
-    // Return if we found a UI window.
-    if(hit)
-        return;
-
-    
     // If the overlay is active, calculate any hits for it
     if(Game.State[Game.State.length - 1] == StateEnum.OVERLAY_ACTIVE) {
         for(var i = 0; i < Game.OverlayLayer.length; i++) {
             Game.OverlayLayer[i].highlighted = Game.OverlayLayer[i].isWithin(mouse.x, mouse.y);
         }
-
         redrawOverlay();
     }
 

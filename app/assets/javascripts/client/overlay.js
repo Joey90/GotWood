@@ -30,7 +30,11 @@ function buildPlaceBuildingOverlay(building, team, early) {
 	       Game.OverlayCallback = placeStructureCallback;
 	       Game.OverlayCallbackArgs = {building: building, team: team};
 	       
+	       // Add the OverlayInfoWindow
+	       Game.UiLayer.overlayInfoWindow = new OverlayInfoWindow(true, building, true);
+	       
 	       redrawOverlay();
+	       redrawUi();
 	   } 
 	});
 }
@@ -55,14 +59,22 @@ function buildPlaceRobberOverlay() {
     Game.OverlayCallback = placeRobberCallback;
     Game.OverlayCallbackArgs = {locations: locations};
     
+    // Add the OverlayInfoWindow
+    Game.UiLayer.overlayInfoWindow = new OverlayInfoWindow(false);
+
     redrawOverlay();
+    redrawUi();
 }
 
 function hideOverlay() {
     Game.OverlayLayer = [];
+    delete Game.UiLayer.overlayInfoWindow;
+    
     if(Game.State[Game.State.length - 1] == StateEnum.OVERLAY_ACTIVE)
         Game.State.pop();
+
     redrawOverlay();
+    redrawUi();
 }
 
 function placeStructureCallback(hex, args) {
