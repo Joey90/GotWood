@@ -77,8 +77,8 @@ class GameController < ApplicationController
 
   def set_cookie
     player = Player.find_by_passcode(params[:passcode])
-    if !player.nil?
-      cookies[:passcode] = { :value => player.passcode, :expires => 7.days.from_now }
+    unless player.nil?
+      cookies[:passcode] = {:value => player.passcode, :expires => 7.days.from_now}
       render :text => 'cookie set'
     else
       render :text => 'invalid passcode'
@@ -134,15 +134,15 @@ class GameController < ApplicationController
       end
     else
       players.each do |player|
-        hash = { 'team' => player.team,
-                 'name' => player.name,
-                 'cards' => player.cards,
-                 'dev_cards' => 3,
-                 'army' => player.army,
-                 'largest_army' => player.largest_army,
-                 'road' => player.road,
-                 'longest_road' => player.longest_road,
-                 'victory_points' => player.victory_points}
+        hash = { :team => player.team,
+                 :name => player.name,
+                 :cards => player.cards,
+                 :dev_cards => 3,
+                 :army => player.army,
+                 :largest_army => player.largest_army,
+                 :road => player.road,
+                 :longest_road => player.longest_road,
+                 :victory_points => player.victory_points }
         array << hash
       end
     end

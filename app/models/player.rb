@@ -1,5 +1,5 @@
 class Player < ActiveRecord::Base
-  attr_accessible :brick, :ore, :passcode, :team, :wheat, :wood, :wool
+  attr_accessible :brick, :ore, :passcode, :team, :wheat, :wood, :wool, :army, :longest_road, :largest_army
   validates :team, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 3 }
   validates :wood, :numericality => { :greater_than_or_equal_to => 0 }
   validates :brick, :numericality => { :greater_than_or_equal_to => 0 }
@@ -9,7 +9,7 @@ class Player < ActiveRecord::Base
   validates :passcode, :uniqueness => true
 
   def cards
-    return self.wood + self.brick + self.wheat + self.wool + self.ore
+    self.wood + self.brick + self.wheat + self.wool + self.ore
   end
 
   def get_resource(resource)
@@ -24,6 +24,8 @@ class Player < ActiveRecord::Base
         return self.wool
       when ResourceEnums::ORE
         return self.ore
+      else
+        return 0
     end
   end
 
@@ -39,6 +41,8 @@ class Player < ActiveRecord::Base
         self.wool = amount
       when ResourceEnums::ORE
         self.ore = amount
+      else
+        return
     end
   end
 

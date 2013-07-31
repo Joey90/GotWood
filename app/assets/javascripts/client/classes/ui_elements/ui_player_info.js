@@ -68,7 +68,7 @@ UiPlayerInfo.prototype.draw = function(ctx) {
     
     // Draw VP star
     ctx.beginPath();
-    star(ctx, this.width - 21, 16, 15, 5, 0.5);
+    star(ctx, this.width - 21, 18, 15, 5, 0.5);
     ctx.fillStyle = 'Yellow';
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 1;
