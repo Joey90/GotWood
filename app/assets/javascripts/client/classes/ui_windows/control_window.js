@@ -25,6 +25,10 @@ var ControlWindow = function() {
     
     // Debugging controls
     if(Game.Debug) {
+        var rollDiceButton = new UiButton(0, 395 - 7*29, 5,
+            "Roll Dice", 10, "Arial", "Black", 85, 24);
+        rollDiceButton.click = rollDice;
+
         var moveRobber = new UiButton(0, 395 - 6*29, 5,
             "Move Robber", 10, "Arial", "Black", 85, 24);
         moveRobber.click = buildPlaceRobberOverlay;
@@ -63,16 +67,17 @@ var ControlWindow = function() {
         cityOverlay.click = function(mouse) {
             buildPlaceBuildingOverlay(BuildingEnums.CITY, Game.playerData.team, Game.DebugArgs.early);
         };
-        
+
         this.contents.push(toggleEarly);
         this.contents.push(roadOverlay);
         this.contents.push(townOverlay);
         this.contents.push(cityOverlay);
         this.contents.push(grantResource);
         this.contents.push(moveRobber);
+        this.contents.push(rollDiceButton);
         
         this.contents.push(
-            new UiLabel(13, 395 - 7*29 + 5,
+            new UiLabel(13, 395 - 8*29 + 5,
                 "Cheats",
                 18,
                 "Arial",
@@ -80,7 +85,7 @@ var ControlWindow = function() {
             )
         );
         this.contents.push(
-            new UiSeparator(0, 395-7*29, 90, true)  
+            new UiSeparator(0, 395-8*29, 90, true)
         );
     }
 };

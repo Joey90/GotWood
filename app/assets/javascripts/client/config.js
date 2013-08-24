@@ -176,7 +176,8 @@ Config = {
         armySize: 20,
         armyFill: 'rgb(250,50,50)',
         resourceCardFill: 'rgb(200,150,256)',
-        developmentCardFill: 'rgb(200,200,200)'
+        developmentCardFill: 'rgb(200,200,200)',
+        dieWidth: 50
     },
     Resources: [],
     LoadingLines: [

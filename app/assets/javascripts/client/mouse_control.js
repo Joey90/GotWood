@@ -41,7 +41,10 @@ function _handleMouseMove(event) {
 
 function _handleMouseClick(event) {
     var mouse = trueMouse(event);
-    
+
+    // Dispel the Dice window if it was being displayed
+    if (Game.UiLayer.diceWindow != null) {Game.UiLayer.diceWindow.visible = false;}
+
     // Check to see if a UI window was clicke in
     for(var k in Game.UiLayer) {
         Game.UiLayer[k].highlighted = Game.UiLayer[k].isWithinTab(mouse.x, mouse.y);

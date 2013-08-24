@@ -329,3 +329,24 @@ function drawLoadingScreen(ctx) {
     ctx.font = '16pt Cantora One, sans-serif';
     ctx.fillText(textLine, Config.Graphics.startX, Config.Graphics.startY);
 }
+
+function rollDice() {
+    $.ajax({
+        url: '/game/roll_dice',
+        dataType: 'json',
+        success: function(data) {
+            console.log('Rolled a ' + data[0] + ' and a ' + data[1]);
+            if (parseInt(data[0])+parseInt(data[1]) == 7) {
+                buildPlaceRobberOverlay();
+            }
+            else
+            {
+                fetchPlayerData(function () {
+                    Game.UiLayer.diceWindow = new DiceWindow(parseInt(data[0]), parseInt(data[1]));
+                    updateGameData();
+                    redrawUi();
+                })
+            }
+        }
+    })
+}
